@@ -1,0 +1,996 @@
+{
+ "id": "up-fiitjee-mock-jee-adv",
+ "exam": "FIITJEE · JEE Advanced",
+ "title": "FiitJee mock jee adv",
+ "duration": 10800,
+ "maxMarks": 180,
+ "subjects": [
+  "Physics",
+  "Chemistry",
+  "Mathematics"
+ ],
+ "questions": [
+  {
+   "n": 1,
+   "subject": "Physics",
+   "section": 1,
+   "sec": 0,
+   "type": "multi",
+   "marks": 4,
+   "neg": 2,
+   "partial": true,
+   "answer": "BD",
+   "sectionImage": "sec0_0.png",
+   "images": [
+    "q1_0.png"
+   ],
+   "solution": [
+    "s1_0.png"
+   ]
+  },
+  {
+   "n": 2,
+   "subject": "Physics",
+   "section": 1,
+   "sec": 0,
+   "type": "multi",
+   "marks": 4,
+   "neg": 2,
+   "partial": true,
+   "answer": "BD",
+   "sectionImage": "sec0_0.png",
+   "images": [
+    "q2_0.png"
+   ],
+   "solution": [
+    "s2_0.png"
+   ]
+  },
+  {
+   "n": 3,
+   "subject": "Physics",
+   "section": 1,
+   "sec": 0,
+   "type": "multi",
+   "marks": 4,
+   "neg": 2,
+   "partial": true,
+   "answer": "ACD",
+   "sectionImage": "sec0_0.png",
+   "images": [
+    "q3_0.png"
+   ],
+   "solution": [
+    "s3_0.png"
+   ]
+  },
+  {
+   "n": 4,
+   "subject": "Physics",
+   "section": 1,
+   "sec": 0,
+   "type": "multi",
+   "marks": 4,
+   "neg": 2,
+   "partial": true,
+   "answer": "ABC",
+   "sectionImage": "sec0_0.png",
+   "images": [
+    "q4_0.png"
+   ],
+   "solution": [
+    "s4_0.png"
+   ]
+  },
+  {
+   "n": 5,
+   "subject": "Physics",
+   "section": 1,
+   "sec": 0,
+   "type": "multi",
+   "marks": 4,
+   "neg": 2,
+   "partial": true,
+   "answer": "BD",
+   "sectionImage": "sec0_0.png",
+   "images": [
+    "q5_0.png"
+   ],
+   "solution": [
+    "s5_0.png"
+   ]
+  },
+  {
+   "n": 6,
+   "subject": "Physics",
+   "section": 1,
+   "sec": 0,
+   "type": "multi",
+   "marks": 4,
+   "neg": 2,
+   "partial": true,
+   "answer": "ABD",
+   "sectionImage": "sec0_0.png",
+   "images": [
+    "q6_0.png"
+   ],
+   "solution": [
+    "s6_0.png"
+   ]
+  },
+  {
+   "n": 7,
+   "subject": "Physics",
+   "section": 2,
+   "sec": 1,
+   "type": "matching",
+   "marks": 3,
+   "neg": 1,
+   "partial": false,
+   "answer": "C",
+   "sectionImage": "sec1_0.png",
+   "images": [
+    "q7_0.png"
+   ],
+   "solution": [
+    "s7_0.png"
+   ]
+  },
+  {
+   "n": 8,
+   "subject": "Physics",
+   "section": 2,
+   "sec": 1,
+   "type": "matching",
+   "marks": 3,
+   "neg": 1,
+   "partial": false,
+   "answer": "A",
+   "sectionImage": "sec1_0.png",
+   "images": [
+    "q8_0.png",
+    "q8_1.png"
+   ],
+   "solution": [
+    "s8_0.png"
+   ]
+  },
+  {
+   "n": 9,
+   "subject": "Physics",
+   "section": 2,
+   "sec": 1,
+   "type": "matching",
+   "marks": 3,
+   "neg": 1,
+   "partial": false,
+   "answer": "B",
+   "sectionImage": "sec1_0.png",
+   "images": [
+    "q9_0.png"
+   ],
+   "solution": [
+    "s9_0.png"
+   ]
+  },
+  {
+   "n": 10,
+   "subject": "Physics",
+   "section": 2,
+   "sec": 1,
+   "type": "matching",
+   "marks": 3,
+   "neg": 1,
+   "partial": false,
+   "answer": "A",
+   "sectionImage": "sec1_0.png",
+   "images": [
+    "q10_0.png"
+   ],
+   "solution": [
+    "s10_0.png"
+   ]
+  },
+  {
+   "n": 11,
+   "subject": "Physics",
+   "section": 3,
+   "sec": 2,
+   "type": "numeric",
+   "marks": 3,
+   "neg": 0,
+   "partial": false,
+   "answer": "0.04",
+   "sectionImage": "sec2_0.png",
+   "images": [
+    "q11_0.png"
+   ],
+   "solution": [
+    "s11_0.png"
+   ]
+  },
+  {
+   "n": 12,
+   "subject": "Physics",
+   "section": 3,
+   "sec": 2,
+   "type": "numeric",
+   "marks": 3,
+   "neg": 0,
+   "partial": false,
+   "answer": "0.02",
+   "sectionImage": "sec2_0.png",
+   "images": [
+    "q12_0.png"
+   ],
+   "solution": [
+    "s12_0.png",
+    "s12_1.png"
+   ]
+  },
+  {
+   "n": 13,
+   "subject": "Physics",
+   "section": 3,
+   "sec": 2,
+   "type": "numeric",
+   "marks": 3,
+   "neg": 0,
+   "partial": false,
+   "answer": "0.25",
+   "sectionImage": "sec2_0.png",
+   "images": [
+    "q13_0.png"
+   ],
+   "solution": [
+    "s13_0.png"
+   ]
+  },
+  {
+   "n": 14,
+   "subject": "Physics",
+   "section": 3,
+   "sec": 2,
+   "type": "numeric",
+   "marks": 3,
+   "neg": 0,
+   "partial": false,
+   "answer": "2.50",
+   "sectionImage": "sec2_0.png",
+   "images": [
+    "q14_0.png"
+   ],
+   "solution": [
+    "s14_0.png"
+   ]
+  },
+  {
+   "n": 15,
+   "subject": "Physics",
+   "section": 3,
+   "sec": 2,
+   "type": "numeric",
+   "marks": 3,
+   "neg": 0,
+   "partial": false,
+   "answer": "48.00",
+   "sectionImage": "sec2_0.png",
+   "images": [
+    "q15_0.png"
+   ],
+   "solution": [
+    "s15_0.png"
+   ]
+  },
+  {
+   "n": 16,
+   "subject": "Physics",
+   "section": 3,
+   "sec": 2,
+   "type": "numeric",
+   "marks": 3,
+   "neg": 0,
+   "partial": false,
+   "answer": "0.25",
+   "sectionImage": "sec2_0.png",
+   "images": [
+    "q16_0.png"
+   ],
+   "solution": [
+    "s16_0.png"
+   ]
+  },
+  {
+   "n": 17,
+   "subject": "Physics",
+   "section": 3,
+   "sec": 2,
+   "type": "numeric",
+   "marks": 3,
+   "neg": 0,
+   "partial": false,
+   "answer": "3.00",
+   "sectionImage": "sec2_0.png",
+   "images": [
+    "q17_0.png"
+   ],
+   "solution": [
+    "s17_0.png"
+   ]
+  },
+  {
+   "n": 18,
+   "subject": "Physics",
+   "section": 3,
+   "sec": 2,
+   "type": "numeric",
+   "marks": 3,
+   "neg": 0,
+   "partial": false,
+   "answer": "0.09",
+   "sectionImage": "sec2_0.png",
+   "images": [
+    "q18_0.png"
+   ],
+   "solution": [
+    "s18_0.png"
+   ]
+  },
+  {
+   "n": 19,
+   "subject": "Chemistry",
+   "section": 1,
+   "sec": 3,
+   "type": "multi",
+   "marks": 4,
+   "neg": 2,
+   "partial": true,
+   "answer": "AC",
+   "sectionImage": "sec3_0.png",
+   "images": [
+    "q19_0.png"
+   ],
+   "solution": [
+    "s19_0.png"
+   ]
+  },
+  {
+   "n": 20,
+   "subject": "Chemistry",
+   "section": 1,
+   "sec": 3,
+   "type": "multi",
+   "marks": 4,
+   "neg": 2,
+   "partial": true,
+   "answer": "ABD",
+   "sectionImage": "sec3_0.png",
+   "images": [
+    "q20_0.png"
+   ],
+   "solution": [
+    "s20_0.png"
+   ]
+  },
+  {
+   "n": 21,
+   "subject": "Chemistry",
+   "section": 1,
+   "sec": 3,
+   "type": "multi",
+   "marks": 4,
+   "neg": 2,
+   "partial": true,
+   "answer": "ABC",
+   "sectionImage": "sec3_0.png",
+   "images": [
+    "q21_0.png"
+   ],
+   "solution": [
+    "s21_0.png"
+   ]
+  },
+  {
+   "n": 22,
+   "subject": "Chemistry",
+   "section": 1,
+   "sec": 3,
+   "type": "multi",
+   "marks": 4,
+   "neg": 2,
+   "partial": true,
+   "answer": "ABC",
+   "sectionImage": "sec3_0.png",
+   "images": [
+    "q22_0.png"
+   ],
+   "solution": [
+    "s22_0.png",
+    "s22_1.png"
+   ]
+  },
+  {
+   "n": 23,
+   "subject": "Chemistry",
+   "section": 1,
+   "sec": 3,
+   "type": "multi",
+   "marks": 4,
+   "neg": 2,
+   "partial": true,
+   "answer": "AB",
+   "sectionImage": "sec3_0.png",
+   "images": [
+    "q23_0.png"
+   ],
+   "solution": [
+    "s23_0.png"
+   ]
+  },
+  {
+   "n": 24,
+   "subject": "Chemistry",
+   "section": 1,
+   "sec": 3,
+   "type": "multi",
+   "marks": 4,
+   "neg": 2,
+   "partial": true,
+   "answer": "BCD",
+   "sectionImage": "sec3_0.png",
+   "images": [
+    "q24_0.png"
+   ],
+   "solution": [
+    "s24_0.png"
+   ]
+  },
+  {
+   "n": 25,
+   "subject": "Chemistry",
+   "section": 2,
+   "sec": 4,
+   "type": "matching",
+   "marks": 3,
+   "neg": 1,
+   "partial": false,
+   "answer": "C",
+   "sectionImage": "sec4_0.png",
+   "images": [
+    "q25_0.png"
+   ],
+   "solution": [
+    "s25_0.png"
+   ]
+  },
+  {
+   "n": 26,
+   "subject": "Chemistry",
+   "section": 2,
+   "sec": 4,
+   "type": "matching",
+   "marks": 3,
+   "neg": 1,
+   "partial": false,
+   "answer": "D",
+   "sectionImage": "sec4_0.png",
+   "images": [
+    "q26_0.png"
+   ],
+   "solution": [
+    "s26_0.png"
+   ]
+  },
+  {
+   "n": 27,
+   "subject": "Chemistry",
+   "section": 2,
+   "sec": 4,
+   "type": "matching",
+   "marks": 3,
+   "neg": 1,
+   "partial": false,
+   "answer": "C",
+   "sectionImage": "sec4_0.png",
+   "images": [
+    "q27_0.png"
+   ],
+   "solution": [
+    "s27_0.png"
+   ]
+  },
+  {
+   "n": 28,
+   "subject": "Chemistry",
+   "section": 2,
+   "sec": 4,
+   "type": "matching",
+   "marks": 3,
+   "neg": 1,
+   "partial": false,
+   "answer": "A",
+   "sectionImage": "sec4_0.png",
+   "images": [
+    "q28_0.png"
+   ],
+   "solution": [
+    "s28_0.png"
+   ]
+  },
+  {
+   "n": 29,
+   "subject": "Chemistry",
+   "section": 3,
+   "sec": 5,
+   "type": "numeric",
+   "marks": 3,
+   "neg": 0,
+   "partial": false,
+   "answer": "164.30",
+   "sectionImage": "sec5_0.png",
+   "images": [
+    "q29_0.png"
+   ],
+   "solution": [
+    "s29_0.png"
+   ]
+  },
+  {
+   "n": 30,
+   "subject": "Chemistry",
+   "section": 3,
+   "sec": 5,
+   "type": "numeric",
+   "marks": 3,
+   "neg": 0,
+   "partial": false,
+   "answer": "150.00",
+   "sectionImage": "sec5_0.png",
+   "images": [
+    "q30_0.png"
+   ],
+   "solution": [
+    "s30_0.png"
+   ]
+  },
+  {
+   "n": 31,
+   "subject": "Chemistry",
+   "section": 3,
+   "sec": 5,
+   "type": "numeric",
+   "marks": 3,
+   "neg": 0,
+   "partial": false,
+   "answer": "50.00",
+   "sectionImage": "sec5_0.png",
+   "images": [
+    "q31_0.png"
+   ],
+   "solution": [
+    "s31_0.png"
+   ]
+  },
+  {
+   "n": 32,
+   "subject": "Chemistry",
+   "section": 3,
+   "sec": 5,
+   "type": "numeric",
+   "marks": 3,
+   "neg": 0,
+   "partial": false,
+   "answer": "20.00",
+   "sectionImage": "sec5_0.png",
+   "images": [
+    "q32_0.png",
+    "q32_1.png"
+   ],
+   "solution": [
+    "s32_0.png"
+   ]
+  },
+  {
+   "n": 33,
+   "subject": "Chemistry",
+   "section": 3,
+   "sec": 5,
+   "type": "numeric",
+   "marks": 3,
+   "neg": 0,
+   "partial": false,
+   "answer": "56.25",
+   "sectionImage": "sec5_0.png",
+   "images": [
+    "q33_0.png",
+    "q33_1.png"
+   ],
+   "solution": [
+    "s33_0.png",
+    "s33_1.png"
+   ],
+   "text": "A sample of Argon gas at 1 atm pressure and at \\( 27^\\circ\\text{C} \\) expands reversibly and adiabatically from 1.25 L to 10.0 litre. Calculate \\( \\Delta H \\) change for this process, \\( C_V = 3 \\text{ cal / mole / K} \\), \\( R = 2 \\text{ cal/mole/K} \\)"
+  },
+  {
+   "n": 34,
+   "subject": "Chemistry",
+   "section": 3,
+   "sec": 5,
+   "type": "numeric",
+   "marks": 3,
+   "neg": 0,
+   "partial": false,
+   "answer": "9.26",
+   "sectionImage": "sec5_0.png",
+   "images": [
+    "q34_0.png"
+   ],
+   "solution": [
+    "s34_0.png"
+   ]
+  },
+  {
+   "n": 35,
+   "subject": "Chemistry",
+   "section": 3,
+   "sec": 5,
+   "type": "numeric",
+   "marks": 3,
+   "neg": 0,
+   "partial": false,
+   "answer": "35.00",
+   "sectionImage": "sec5_0.png",
+   "images": [
+    "q35_0.png"
+   ],
+   "solution": [
+    "s35_0.png"
+   ]
+  },
+  {
+   "n": 36,
+   "subject": "Chemistry",
+   "section": 3,
+   "sec": 5,
+   "type": "numeric",
+   "marks": 3,
+   "neg": 0,
+   "partial": false,
+   "answer": "76.03",
+   "sectionImage": "sec5_0.png",
+   "images": [
+    "q36_0.png"
+   ],
+   "solution": [
+    "s36_0.png"
+   ]
+  },
+  {
+   "n": 37,
+   "subject": "Mathematics",
+   "section": 1,
+   "sec": 6,
+   "type": "multi",
+   "marks": 4,
+   "neg": 2,
+   "partial": true,
+   "answer": "ABC",
+   "sectionImage": "sec6_0.png",
+   "images": [
+    "q37_0.png"
+   ],
+   "solution": [
+    "s37_0.png"
+   ]
+  },
+  {
+   "n": 38,
+   "subject": "Mathematics",
+   "section": 1,
+   "sec": 6,
+   "type": "multi",
+   "marks": 4,
+   "neg": 2,
+   "partial": true,
+   "answer": "ACD",
+   "sectionImage": "sec6_0.png",
+   "images": [
+    "q38_0.png"
+   ],
+   "solution": [
+    "s38_0.png"
+   ]
+  },
+  {
+   "n": 39,
+   "subject": "Mathematics",
+   "section": 1,
+   "sec": 6,
+   "type": "multi",
+   "marks": 4,
+   "neg": 2,
+   "partial": true,
+   "answer": "AC",
+   "sectionImage": "sec6_0.png",
+   "images": [
+    "q39_0.png"
+   ],
+   "solution": [
+    "s39_0.png"
+   ]
+  },
+  {
+   "n": 40,
+   "subject": "Mathematics",
+   "section": 1,
+   "sec": 6,
+   "type": "multi",
+   "marks": 4,
+   "neg": 2,
+   "partial": true,
+   "answer": "BC",
+   "sectionImage": "sec6_0.png",
+   "images": [
+    "q40_0.png"
+   ],
+   "solution": [
+    "s40_0.png"
+   ]
+  },
+  {
+   "n": 41,
+   "subject": "Mathematics",
+   "section": 1,
+   "sec": 6,
+   "type": "multi",
+   "marks": 4,
+   "neg": 2,
+   "partial": true,
+   "answer": "C",
+   "sectionImage": "sec6_0.png",
+   "images": [
+    "q41_0.png"
+   ],
+   "solution": [
+    "s41_0.png"
+   ]
+  },
+  {
+   "n": 42,
+   "subject": "Mathematics",
+   "section": 1,
+   "sec": 6,
+   "type": "multi",
+   "marks": 4,
+   "neg": 2,
+   "partial": true,
+   "answer": "CD",
+   "sectionImage": "sec6_0.png",
+   "images": [
+    "q42_0.png"
+   ],
+   "solution": [
+    "s42_0.png"
+   ]
+  },
+  {
+   "n": 43,
+   "subject": "Mathematics",
+   "section": 2,
+   "sec": 7,
+   "type": "matching",
+   "marks": 3,
+   "neg": 1,
+   "partial": false,
+   "answer": "C",
+   "sectionImage": "sec7_0.png",
+   "images": [
+    "q43_0.png"
+   ],
+   "solution": [
+    "s43_0.png"
+   ]
+  },
+  {
+   "n": 44,
+   "subject": "Mathematics",
+   "section": 2,
+   "sec": 7,
+   "type": "matching",
+   "marks": 3,
+   "neg": 1,
+   "partial": false,
+   "answer": "B",
+   "sectionImage": "sec7_0.png",
+   "images": [
+    "q44_0.png",
+    "q44_1.png"
+   ],
+   "solution": [
+    "s44_0.png"
+   ]
+  },
+  {
+   "n": 45,
+   "subject": "Mathematics",
+   "section": 2,
+   "sec": 7,
+   "type": "matching",
+   "marks": 3,
+   "neg": 1,
+   "partial": false,
+   "answer": "D",
+   "sectionImage": "sec7_0.png",
+   "images": [
+    "q45_0.png"
+   ],
+   "solution": [
+    "s45_0.png",
+    "s45_1.png"
+   ]
+  },
+  {
+   "n": 46,
+   "subject": "Mathematics",
+   "section": 2,
+   "sec": 7,
+   "type": "matching",
+   "marks": 3,
+   "neg": 1,
+   "partial": false,
+   "answer": "C",
+   "sectionImage": "sec7_0.png",
+   "images": [
+    "q46_0.png"
+   ],
+   "solution": [
+    "s46_0.png"
+   ]
+  },
+  {
+   "n": 47,
+   "subject": "Mathematics",
+   "section": 3,
+   "sec": 8,
+   "type": "numeric",
+   "marks": 3,
+   "neg": 0,
+   "partial": false,
+   "answer": "8.00",
+   "sectionImage": "sec8_0.png",
+   "images": [
+    "q47_0.png"
+   ],
+   "solution": [
+    "s47_0.png"
+   ]
+  },
+  {
+   "n": 48,
+   "subject": "Mathematics",
+   "section": 3,
+   "sec": 8,
+   "type": "numeric",
+   "marks": 3,
+   "neg": 0,
+   "partial": false,
+   "answer": "7.71",
+   "sectionImage": "sec8_0.png",
+   "images": [
+    "q48_0.png"
+   ],
+   "solution": [
+    "s48_0.png"
+   ]
+  },
+  {
+   "n": 49,
+   "subject": "Mathematics",
+   "section": 3,
+   "sec": 8,
+   "type": "numeric",
+   "marks": 3,
+   "neg": 0,
+   "partial": false,
+   "answer": "15.00",
+   "sectionImage": "sec8_0.png",
+   "images": [
+    "q49_0.png"
+   ],
+   "solution": [
+    "s49_0.png",
+    "s49_1.png"
+   ]
+  },
+  {
+   "n": 50,
+   "subject": "Mathematics",
+   "section": 3,
+   "sec": 8,
+   "type": "numeric",
+   "marks": 3,
+   "neg": 0,
+   "partial": false,
+   "answer": "5.00",
+   "sectionImage": "sec8_0.png",
+   "images": [
+    "q50_0.png"
+   ],
+   "solution": [
+    "s50_0.png"
+   ]
+  },
+  {
+   "n": 51,
+   "subject": "Mathematics",
+   "section": 3,
+   "sec": 8,
+   "type": "numeric",
+   "marks": 3,
+   "neg": 0,
+   "partial": false,
+   "answer": "1.00",
+   "sectionImage": "sec8_0.png",
+   "images": [
+    "q51_0.png"
+   ],
+   "solution": [
+    "s51_0.png"
+   ]
+  },
+  {
+   "n": 52,
+   "subject": "Mathematics",
+   "section": 3,
+   "sec": 8,
+   "type": "numeric",
+   "marks": 3,
+   "neg": 0,
+   "partial": false,
+   "answer": "3.14",
+   "sectionImage": "sec8_0.png",
+   "images": [
+    "q52_0.png"
+   ],
+   "solution": [
+    "s52_0.png"
+   ]
+  },
+  {
+   "n": 53,
+   "subject": "Mathematics",
+   "section": 3,
+   "sec": 8,
+   "type": "numeric",
+   "marks": 3,
+   "neg": 0,
+   "partial": false,
+   "answer": "1.00",
+   "sectionImage": "sec8_0.png",
+   "images": [
+    "q53_0.png"
+   ],
+   "solution": [
+    "s53_0.png"
+   ]
+  },
+  {
+   "n": 54,
+   "subject": "Mathematics",
+   "section": 3,
+   "sec": 8,
+   "type": "numeric",
+   "marks": 3,
+   "neg": 0,
+   "partial": false,
+   "answer": "2023.00",
+   "sectionImage": "sec8_0.png",
+   "images": [
+    "q54_0.png"
+   ],
+   "solution": [
+    "s54_0.png"
+   ]
+  }
+ ]
+}

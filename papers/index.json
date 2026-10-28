@@ -19,5 +19,12 @@
   "title": "Jee Advanced Paper 1",
   "duration": 180,
   "maxMarks": 198
+ },
+ {
+  "id": "up-fiitjee-mock-jee-adv",
+  "exam": "FIITJEE · JEE Advanced",
+  "title": "FiitJee mock jee adv",
+  "duration": 180,
+  "maxMarks": 180
  }
 ]
