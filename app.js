@@ -1,11 +1,38 @@
 // Shared: paper loading, scoring, attempt storage. Plain browser JS, also loadable by node for tests.
 const JEE = {
+  // paper.src(file) gives the URL of a question/solution image, whether the paper is bundled or uploaded
   async loadPaper(id) {
     const r = await fetch(`papers/${id}/paper.json`);
-    if (!r.ok) throw new Error(`paper ${id} not found`);
-    return r.json();
+    if (r.ok) { const p = await r.json(); p.src = f => `papers/${id}/${f}`; return p; }
+    const rec = await JEE.db.get(id);
+    if (!rec) throw new Error(`paper ${id} not found`);
+    const urls = {};
+    rec.paper.src = f => urls[f] ??= URL.createObjectURL(rec.blobs[f]);
+    return rec.paper;
   },
-  async loadIndex() { return (await fetch('papers/index.json')).json(); },
+  async loadIndex() {
+    const bundled = await (await fetch('papers/index.json')).json();
+    const local = (await JEE.db.all()).map(r => ({ id: r.id, exam: r.paper.exam || 'Uploaded', title: r.paper.title, duration: r.paper.duration / 60, maxMarks: r.paper.maxMarks, local: true }));
+    return [...bundled, ...local];
+  },
+  // uploaded papers live in IndexedDB: {id, paper, blobs:{file: Blob}}
+  db: {
+    open() {
+      return new Promise((res, rej) => {
+        const q = indexedDB.open('jee', 1);
+        q.onupgradeneeded = () => q.result.createObjectStore('papers', { keyPath: 'id' });
+        q.onsuccess = () => res(q.result); q.onerror = () => rej(q.error);
+      });
+    },
+    async tx(mode, fn) {
+      const db = await JEE.db.open();
+      return new Promise((res, rej) => { const r = fn(db.transaction('papers', mode).objectStore('papers')); r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); });
+    },
+    get(id) { return JEE.db.tx('readonly', s => s.get(id)); },
+    all() { return JEE.db.tx('readonly', s => s.getAll()); },
+    put(rec) { return JEE.db.tx('readwrite', s => s.put(rec)); },
+    del(id) { return JEE.db.tx('readwrite', s => s.delete(id)); },
+  },
 
   isAnswered(ans) { return !(ans == null || ans === '' || (Array.isArray(ans) && ans.length === 0)); },
 
@@ -55,6 +82,14 @@ const JEE = {
   saveAttempt(a) { const all = JEE.attempts().filter(x => x.id !== a.id); all.unshift(a); localStorage.setItem('jee.attempts', JSON.stringify(all)); },
   fmtTime(sec) { sec = Math.max(0, Math.round(sec)); const h = Math.floor(sec / 3600), m = Math.floor(sec % 3600 / 60), s = sec % 60; return [h, m, s].map(x => String(x).padStart(2, '0')).join(':'); },
   esc(s) { return String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); },
+  // question body: typed text + optional figure (a clipped band of the crop) when transcribed, else the crop images
+  bodyHtml(q, src) {
+    if (!q.text) return q.images.map(f => `<img src="${src(f)}" alt="question ${q.n}">`).join('');
+    const f = q.figure;
+    const fig = f ? `<div class="fig"><img src="${src(f.image)}" alt="figure"></div>` : '';
+    return `<div class="qtext">${q.text}</div>${fig}`;
+  },
+  typeset(el) { if (window.MathJax?.typesetPromise) return MathJax.typesetPromise([el]).catch(() => {}); },
   typeLabel: { single: 'Single Correct Option', multi: 'One or More Correct Options', integer: 'Single Digit Integer (0-9)', numeric: 'Numerical Value' },
 };
 if (typeof module !== 'undefined') module.exports = JEE;

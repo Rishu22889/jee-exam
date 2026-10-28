@@ -24,7 +24,14 @@
    ],
    "solution": [
     "s01_0.png"
-   ]
+   ],
+   "text": "&ldquo;Sudheer has 7 friends. He writes 7 letters, each uniquely meant for one friend, and places them randomly into 7 addressed envelopes, each bearing the specific name of the intended friend.<br>Out of the seven friends :<br>1) Two of them are brothers and live at the same address.<br>2) The other five friends live at five different addresses.<br>Find the number of ways Sudheer can place the letters into the addressed envelopes such that none of the friends receives the letter meant for them.&rdquo;<br>(Assume that letters received at the two brothers address are received by both)",
+   "options": {
+    "A": "1280",
+    "B": "1368",
+    "C": "684",
+    "D": "640"
+   }
   },
   {
    "n": 2,
@@ -40,7 +47,14 @@
    ],
    "solution": [
     "s02_0.png"
-   ]
+   ],
+   "text": "If the area bounded by \\(x=\\sqrt{r^2-y^2}\\) and \\(|y|=\\left|\\tan\\theta\\,(x+r)\\right|\\) is \\(\\dfrac{1}{2}\\pi r^2\\) then (where \\(r\\in R^+\\) and \\(0<\\theta<\\dfrac{\\pi}{2}\\))",
+   "options": {
+    "A": "\\(2\\theta-\\sin 2\\theta=\\dfrac{\\pi}{2}\\)",
+    "B": "\\(\\sin\\theta=\\theta\\)",
+    "C": "\\(2\\theta+\\sin 2\\theta=\\dfrac{\\pi}{2}\\)",
+    "D": "\\(\\sin 2\\theta+2\\theta=\\pi\\)"
+   }
   },
   {
    "n": 3,
@@ -56,7 +70,14 @@
    ],
    "solution": [
     "s03_0.png"
-   ]
+   ],
+   "text": "\\(\\displaystyle\\int_1^2 \\dfrac{x(x+1)\\,dx}{\\left(2x^3+3x^2-1\\right)\\left(4x^6+12x^5+9x^4-6x^3-9x^2+2\\right)^{\\frac12}}=\\)",
+   "options": {
+    "A": "\\(\\dfrac{2\\sqrt{78}+9\\sqrt3}{54}\\)",
+    "B": "\\(\\dfrac{2\\sqrt{78}-9\\sqrt3}{54}\\)",
+    "C": "\\(\\dfrac{9\\sqrt3-2\\sqrt{78}}{54}\\)",
+    "D": "\\(\\dfrac{2\\sqrt{26}-3\\sqrt3}{18}\\)"
+   }
   },
   {
    "n": 4,
@@ -72,7 +93,14 @@
    ],
    "solution": [
     "s04_0.png"
-   ]
+   ],
+   "text": "Let \\(f:R\\to R\\) be a differentiable function such that \\(\\displaystyle\\int_0^x \\left(t.f(x)-x.f(t)\\right)t\\,dt=0,\\ \\forall x\\in R\\) and \\(f(2)=\\dfrac{-1}{3}\\) then",
+   "options": {
+    "A": "\\(f(0)=-1\\)",
+    "B": "\\(f(0)=1\\)",
+    "C": "\\(f(3)=-2\\)",
+    "D": "\\(f(6)=-1\\)"
+   }
   },
   {
    "n": 5,
@@ -88,7 +116,14 @@
    ],
    "solution": [
     "s05_0.png"
-   ]
+   ],
+   "text": "Let \\(A=\\begin{bmatrix}\\cos\\left(\\dfrac{\\pi}{5}\\right) & -\\sin\\left(\\dfrac{\\pi}{5}\\right)\\\\[2ex] \\sin\\left(\\dfrac{\\pi}{5}\\right) & \\cos\\left(\\dfrac{\\pi}{5}\\right)\\end{bmatrix}\\) and \\(B=\\begin{bmatrix}0 & -1\\\\ 1 & 0\\end{bmatrix}\\)<br>If \\(\\displaystyle\\sum_{r=1}^{4}\\left(B^2-B.A^{9r}-A^r.B+A^{10r}\\right)=\\begin{bmatrix}a & b\\\\ c & d\\end{bmatrix}\\), then \\(a^{10}+b^{10}+c^{10}+d^{10}=\\)",
+   "options": {
+    "A": "0",
+    "B": "\\(2\\left(\\cos^{10}\\left(\\dfrac{\\pi}{5}\\right)+\\sin^{10}\\left(\\dfrac{\\pi}{5}\\right)\\right)\\)",
+    "C": "4",
+    "D": "2"
+   }
   },
   {
    "n": 6,
@@ -103,8 +138,16 @@
     "q06_0.png"
    ],
    "solution": [
-    "s06_0.png"
-   ]
+    "s06_0.png",
+    "s06_1.png"
+   ],
+   "text": "Sudheer has 3 identical white cubes and wants to turn them into dice. For each of the three cubes, he will make two independent decisions :<br>1. The colour : He will use either a Red or a Blue marker.<br>2. The Pattern : He will use either Dots or Digits.<br>For each cube, he flips a fair coin to decide the colour and another fair coin to decide the pattern (resulting in 6 coin flips in total to create the set of 3 dice).<br>After making the dice, Sudheer places all 3 dice into a bag. Renuka then randomly selects one die from the bag and notes its colour and pattern.<br>Consider the following events :<br>a. Event A : The die Renuka selects is Red.<br>b. Event B : The die Renuka selects is Dotted.<br>The probability that the events A and B are independent is",
+   "options": {
+    "A": "\\(\\dfrac{7}{16}\\)",
+    "B": "\\(\\dfrac{21}{64}\\)",
+    "C": "\\(\\dfrac{15}{32}\\)",
+    "D": "0"
+   }
   },
   {
    "n": 7,
@@ -120,7 +163,14 @@
    ],
    "solution": [
     "s07_0.png"
-   ]
+   ],
+   "text": "Which of the following is/are odd functions ? (where [.] denotes G.I.F)",
+   "options": {
+    "A": "\\(f:R\\to R\\) such that \\(f(x)=\\dfrac{|x|.x}{1+x+x^2}\\)",
+    "B": "\\(f:Z\\to R\\) such that \\(f(x)=\\dfrac{x.[x].\\tan x}{x^4+x^2+1}\\)",
+    "C": "\\(f:R-Q\\to R\\) such that \\(f(x)=\\sin\\left(\\dfrac{\\pi}{2}\\left[x+\\dfrac12\\right]\\right)\\)",
+    "D": "\\(f:\\left\\{4k\\pm\\dfrac12:k\\in Z\\right\\}\\to R\\) such that \\(f(x)=\\sin\\left(\\dfrac{\\pi}{2}\\left[x+\\dfrac12\\right]\\right)-\\dfrac12\\)"
+   }
   },
   {
    "n": 8,
@@ -136,7 +186,14 @@
    ],
    "solution": [
     "s08_0.png"
-   ]
+   ],
+   "text": "Let \\(f:R^+\\to R\\) be a twice differentiable function such that \\(f''(x)>0\\), for all \\(x>0\\) and \\(f(x+1)-f(x)\\) is a positive integer for all positive integral values of \\(x\\).<br>If \\(f(2025)=f(2026)-2027\\) and \\(f(1)=\\dfrac12\\) then \\(f(3)\\) can be",
+   "options": {
+    "A": "9.5",
+    "B": "8.5",
+    "C": "7.5",
+    "D": "6.5"
+   }
   },
   {
    "n": 9,
@@ -152,7 +209,14 @@
    ],
    "solution": [
     "s09_0.png"
-   ]
+   ],
+   "text": "Let M be a point on the ellipse \\(\\dfrac{x^2}{2}+\\dfrac{y^2}{1}=1\\). Let normal at M meets the ellipse at N. Tangents drawn to the ellipse at M and N intersect at \\(S(\\alpha,\\beta)\\) such that \\(\\alpha\\) and \\(\\beta\\) are both integers. Then",
+   "options": {
+    "A": "\\(\\dfrac{8}{\\alpha^2}+\\dfrac{1}{\\beta^2}=1\\)",
+    "B": "\\(\\dfrac{3}{\\alpha^2}+\\dfrac{6}{\\beta^2}=1\\)",
+    "C": "Number of such possible points of S is 4",
+    "D": "\\(\\tan(\\angle MNS)=\\dfrac32\\)"
+   }
   },
   {
    "n": 10,
@@ -168,7 +232,14 @@
    ],
    "solution": [
     "s10_0.png"
-   ]
+   ],
+   "text": "If \\(f:[0,1]\\to(0,\\infty)\\) is a continuous function such that \\(\\displaystyle\\int_0^1 f(x)\\,dx=1\\) then which of the following is/are always <b>TRUE</b>?",
+   "options": {
+    "A": "\\(\\left(\\displaystyle\\int_0^1\\sqrt[3]{f(x)}\\,dx\\right).\\left(\\displaystyle\\int_0^1\\sqrt[5]{f(x)}.dx\\right)\\le 1\\)",
+    "B": "\\(\\displaystyle\\int_0^1\\dfrac{f(x)}{1+2f(x)}\\,dx\\le\\dfrac13\\)",
+    "C": "\\(\\left(\\displaystyle\\int_0^1\\sqrt[4]{f(x)}\\,dx\\right)^2\\ge 1\\)",
+    "D": "There exists \\(c\\in(0,1)\\ni f(c)=1\\)"
+   }
   },
   {
    "n": 11,
@@ -184,7 +255,14 @@
    ],
    "solution": [
     "s11_0.png"
-   ]
+   ],
+   "text": "Let S be the set of all points in three dimensional space whose position vector, \\(\\vec r\\) satisfies \\(\\vec r.\\hat i=0\\) and \\(\\left|\\vec r.\\left(\\hat j-2\\hat k\\right)\\right|=\\left|\\vec r.\\left(2\\hat j+\\hat k\\right)\\right|\\) then",
+   "options": {
+    "A": "Number of points in &lsquo;S&rsquo;, whose distance from origin is 1, is 4",
+    "B": "Number of points in &lsquo;S&rsquo;, whose distance from origin is 1, is infinite",
+    "C": "Let P, Q be two points which belongs to set S such that OP = OQ = \\(\\sqrt{10}\\) and O, P, Q are non collinear, where O is origin. Then mid point of P, Q can be (0, 1, -2)",
+    "D": "Let P, Q be two points which belongs to set S such that OP = OQ = \\(\\sqrt{10}\\) and O, P, Q are non collinear, where O is origin. Then mid point of P, Q can be (0, 2, -1)"
+   }
   },
   {
    "n": 12,
@@ -200,7 +278,14 @@
    ],
    "solution": [
     "s12_0.png"
-   ]
+   ],
+   "text": "Let S be the set of all possible value of &lsquo;n&rsquo; for which the following list of &lsquo;3n&rsquo; numbers has unique mode<br>1, 2, 3, &hellip;., n, \\(1^2,2^2,3^2,\\ldots..,\\ n^2,1^3,2^3,3^3,....,n^3\\)<br>Let &lsquo;k&rsquo; be the median of the following list of 4052 numbers<br>1, 2, 3, &hellip;.,2026, \\(1^2,2^2,3^2,....,2026^2\\)<br>then which of the following options is/are <b>CORRECT</b>?",
+   "options": {
+    "A": "The sum of elements in the set S is equal to 2016",
+    "B": "The sum of elements in the set S is greater than 2026",
+    "C": "k = 1982.5",
+    "D": "k = 1981.5"
+   }
   },
   {
    "n": 13,
@@ -216,7 +301,8 @@
    ],
    "solution": [
     "s13_0.png"
-   ]
+   ],
+   "text": "Let \\(f:[1,\\infty)\\to[1,\\infty)\\) be a function such that<br>\\[f(x)=\\begin{cases}2n.\\left(\\dfrac{2n-1}{2n}\\right)^{x-2n+1} & ;2n-1\\le x\\le 2n;\\forall n\\in N\\\\ (2n+1)\\left(\\dfrac{2n}{2n+1}\\right)^{x-2n} & ;2n\\lt x\\lt 2n+1;\\forall n\\in N\\end{cases}\\]Then the number of values of &lsquo;x&rsquo; in [1, 5] for which \\(f(x)=f^{-1}(x)\\) is"
   },
   {
    "n": 14,
@@ -232,7 +318,8 @@
    ],
    "solution": [
     "s14_0.png"
-   ]
+   ],
+   "text": "Let \\(f(x)=\\displaystyle\\lim_{n\\to\\infty}\\left[\\dfrac{12xn^2+84x^2-12x}{n^2+10x^2}\\right]\\); where [.] denotes G.I.F then number of positive integers, &lsquo;m&rsquo; which satisfy the equation \\(f\\left(\\dfrac1m\\right)-\\dfrac{12}{m}=0\\) is"
   },
   {
    "n": 15,
@@ -248,7 +335,8 @@
    ],
    "solution": [
     "s15_0.png"
-   ]
+   ],
+   "text": "Let \\(z_1,z_2,z_3\\) are three distinct complex numbers such that \\(|z_1|=|z_2|=|z_3|=4\\) and \\(\\left|z_1.\\left(\\overline{z_2-z_3}\\right)-\\overline{z_1}.(z_2-z_3)+z_2\\overline{z_3}-z_3\\overline{z_2}\\right|=48\\) then<br>\\(\\left|(z_1-z_2)(z_2-z_3)(z_3-z_1)\\right|\\) is equal to"
   },
   {
    "n": 16,
@@ -263,8 +351,10 @@
     "q16_0.png"
    ],
    "solution": [
-    "s16_0.png"
-   ]
+    "s16_0.png",
+    "s16_1.png"
+   ],
+   "text": "Let \\(b>a>0\\) and \\(A_1,H_1\\) be arithmetic mean and Harmonic mean of &lsquo;a&rsquo; and &lsquo;b&rsquo; respectively. Let \\(A_n,H_n\\) be respectively arithmetic mean and Harmonic mean of &lsquo;a&rsquo; and \\(A_{n-1}\\) for all \\(n\\ge 2\\), where \\(n\\in N\\). If \\(A_{2025}=H_{2024}\\) then number of divisors of \\(\\left(\\dfrac{b-a}{a}\\right)\\) that are less than 2025 is"
   },
   {
    "n": 17,
@@ -280,7 +370,8 @@
    ],
    "solution": [
     "s17_0.png"
-   ]
+   ],
+   "text": "Let A, B be variable points on the parabola \\(y^2=12x\\) and foot of perpendiculars drawn from A, B on to directrix of the parabola be N, K respectively. Let S be the focus of the parabola. Then the locus of circumcentre of \\(\\Delta NSK\\), as A, B varies on the parabola such that \\(\\angle NSK=60^\\circ\\), is a conic whose eccentricity is &lsquo;e&rsquo;. The value of \\((e-2)^2\\) is"
   },
   {
    "n": 18,
@@ -295,8 +386,10 @@
     "q18_0.png"
    ],
    "solution": [
-    "s18_0.png"
-   ]
+    "s18_0.png",
+    "s18_1.png"
+   ],
+   "text": "The straight lines \\(2x-3y-18=0\\) and \\(3x+2y-1=0\\) intersects the circle \\(x^2+y^2-6x+8y+k=0\\) at {A, B} and {C, D} respectively. Let P be a point on the circle such that PA.PB = 14 and PC.PD = 48 then the value of &lsquo;k&rsquo; is"
   },
   {
    "n": 19,
@@ -311,8 +404,22 @@
     "q19_0.png"
    ],
    "solution": [
-    "s19_0.png"
-   ]
+    "s19_0.png",
+    "s19_1.png"
+   ],
+   "text": "A parallel beam of light of intensity I is incident normally on a plane surface A which absorbs 50% of the incident light. The reflected light falls on B which is perfect reflector, the light reflected by B is again partly reflected and partly absorbed and this process continues. For any light incident on A, absorption coefficient and reflection coefficient are both 0.5. The pressure experienced by A due to light is",
+   "options": {
+    "A": "\\(\\dfrac{1.5I}{c}\\)",
+    "B": "\\(\\dfrac{I}{c}\\)",
+    "C": "\\(\\dfrac{3I}{2c}\\)",
+    "D": "\\(\\dfrac{3I}{c}\\)"
+   },
+   "figure": {
+    "image": "f19.png",
+    "page": 8,
+    "y0": 275.4,
+    "y1": 350.3
+   }
   },
   {
    "n": 20,
@@ -328,7 +435,14 @@
    ],
    "solution": [
     "s20_0.png"
-   ]
+   ],
+   "text": "Two carnot engines A and B are operated in series. The first one A receives heat at 1200K and rejects to a reservoir at T K. The second engine B receives the heat rejected by the first engine and in turn rejects to a heat reservoir at 300 K. Calculate the value of T, when work outputs of the two engines are equal",
+   "options": {
+    "A": "600 K",
+    "B": "750 K",
+    "C": "450 K",
+    "D": "900 K"
+   }
   },
   {
    "n": 21,
@@ -344,7 +458,20 @@
    ],
    "solution": [
     "s21_0.png"
-   ]
+   ],
+   "text": "Consider the electrical circuit given below : initially chargeless capactitors \\(C_1\\) and \\(C_2\\) were connected to a battery and at certain moment, the key K will be closed. After the moment, current and voltage will start oscillating. For these oscillations",
+   "options": {
+    "A": "When charge on \\(C_2\\) is maximum, current through \\(C_1\\) is same as current in L",
+    "B": "When charge on \\(C_1\\) is maximum, power delivered by battery is positive",
+    "C": "Charge on \\(C_2\\) is maximum when current through L is maximum",
+    "D": "None of these"
+   },
+   "figure": {
+    "image": "f21.png",
+    "page": 8,
+    "y0": 570.6,
+    "y1": 668.0
+   }
   },
   {
    "n": 22,
@@ -360,7 +487,14 @@
    ],
    "solution": [
     "s22_0.png"
-   ]
+   ],
+   "text": "Two underdamped oscillators are known to have the same natural frequency \\(\\omega_0\\). The mass and damping coefficient of the first oscillator are \\(m_1\\) and \\(b_1\\), and the mass and damping coefficient of the second oscillator are \\(m_2\\) and \\(b_2\\), respectively. A sinusoidal driving force of \\(F_{ext}=F_0\\cos\\omega t\\) is applied to each oscillator. Starting with \\(\\omega\\) far from \\(\\omega_0\\) the driving force is tuned in order to observe resonant behavior. If \\(m_1=4m_2\\) and \\(b_1=2b_2\\), then which one of the following statements concerning the driven oscillations is <b>CORRECT</b>?",
+   "options": {
+    "A": "The resonant peak of the first driven oscillator is higher and narrower than that of the second oscillator",
+    "B": "The resonant peak of the first oscillator is higher and wider than that of the second oscillator",
+    "C": "The resonant peak of the first driven oscillator is lower and wider than that of the second oscillator",
+    "D": "The resonant peak of the first driven oscillator is lower and narrower than that of the second oscillator"
+   }
   },
   {
    "n": 23,
@@ -376,7 +510,20 @@
    ],
    "solution": [
     "s23_0.png"
-   ]
+   ],
+   "text": "A rope hangs from a rigid support. A pulse is set by jiggling the bottom end. We want to design a rope in which velocity v of pulse is independent of z, the distance of the pulse from fixed end of the rope. If the rope is very long the desired function for mass per unit length \\(\\mu(z)\\) in terms of \\(\\mu_0\\) (mass per unit length of the rope at the top (z = 0), g, v and z is",
+   "options": {
+    "A": "\\(\\mu(z)=\\mu_0 e^{-\\left[g/v^2\\right]z}\\)",
+    "B": "\\(\\mu(z)=\\mu_0 e^{-\\left[g/2v^2\\right]z}\\)",
+    "C": "\\(\\mu(z)=\\mu_0\\log_e\\left(\\dfrac{g}{v^2}\\right)z\\)",
+    "D": "\\(\\mu(z)=\\mu_0 e+\\left(\\dfrac{v^2}{g}\\right)z\\)"
+   },
+   "figure": {
+    "image": "f23.png",
+    "page": 9,
+    "y0": 441.9,
+    "y1": 550.3
+   }
   },
   {
    "n": 24,
@@ -392,7 +539,14 @@
    ],
    "solution": [
     "s24_0.png"
-   ]
+   ],
+   "text": "In single slit Fraunhofer diffraction pattern, resultant amplitude at the center of central maxima is \\(A_0\\) and it is A at an angular position of \\(30^\\circ\\) (with respect to central axis). Then \\(\\dfrac{A}{A_0}\\) will be [Slit width a = \\(\\lambda\\)]",
+   "options": {
+    "A": "\\(\\dfrac{\\pi}{2}\\)",
+    "B": "\\(\\dfrac{2}{\\pi}\\)",
+    "C": "\\(\\dfrac{\\pi}{4}\\)",
+    "D": "\\(\\dfrac{4}{\\pi}\\)"
+   }
   },
   {
    "n": 25,
@@ -408,7 +562,20 @@
    ],
    "solution": [
     "s25_0.png"
-   ]
+   ],
+   "text": "A clean surface of a metal in a vacuum tube is irradiated with a monochromatic light of wavelength 500 nm and the resulting photoelectric current is measured by the ammeter A, as shown in the circuit. It is found that if the voltmeter (V) reading is greater than 0.8 V, the ammeter shows zero reading. Now, with a second source of light, the ammeter reading becomes zero when the voltmeter reading is gradually increased to 1.2 V. Then choose the <b>CORRECT</b> option(s), [Battery B with rheostat R makes a potential divider circuit] [Given: \\(h = 6.6\\times10^{-34}\\,\\mathrm{Js}\\,c = 3\\times10^{8}\\,\\mathrm{ms^{-1}}\\), \\(e = 1.6\\times10^{-19}\\,\\mathrm{C}\\)]",
+   "options": {
+    "A": "the frequency of second source is \\(6.97\\times10^{14}\\,\\mathrm{Hz}\\)",
+    "B": "the kinetic energy of photoelectrons due to first source is less than or equal to 0.8 eV",
+    "C": "the work function of emitting surface is 1.68 eV",
+    "D": "the kinetic energy of photoelectrons due to second source is less than or equal to 1.2eV"
+   },
+   "figure": {
+    "image": "f25.png",
+    "page": 10,
+    "y0": 366.4,
+    "y1": 483.4
+   }
   },
   {
    "n": 26,
@@ -424,8 +591,22 @@
     "q26_1.png"
    ],
    "solution": [
-    "s26_0.png"
-   ]
+    "s26_0.png",
+    "s26_1.png"
+   ],
+   "text": "A partition divides a container having insulated walls into two compartments I and II. The same gas fills the two compartments whose initial parameters are given in the figure. The partition is a conducting wall which can move freely without friction. Which of the following statement(s) is/are <b>CORRECT</b>, with reference to the final equilibrium position ?",
+   "options": {
+    "A": "The pressure in the two compartments are equal",
+    "B": "Volume of compartment I is \\(\\dfrac{3V}{5}\\)",
+    "C": "Volume of compartment II is \\(\\dfrac{3V}{5}\\)",
+    "D": "Final pressure in compartment I is \\(\\dfrac{5P}{3}\\)"
+   },
+   "figure": {
+    "image": "f26.png",
+    "page": 10,
+    "y0": 679.6,
+    "y1": 743.4
+   }
   },
   {
    "n": 27,
@@ -441,7 +622,14 @@
    ],
    "solution": [
     "s27_0.png"
-   ]
+   ],
+   "text": "There exists a uniform electric field \\(E\\hat{j}\\) and a uniform magnetic field \\(B\\hat{k}\\) and no gravitational field in region of space. A particle at origin of mass m, charge +q is given velocity \\(\\vec{v}_1=+\\dfrac{E\\hat{i}}{B}\\) or \\(\\vec{v}_2=\\dfrac{+\\sqrt{3}E\\hat{j}}{B}\\) at t = 0. Then choose the <b>CORRECT</b> option(s)",
+   "options": {
+    "A": "For particle velocity \\(\\vec{v}_1=+\\dfrac{E\\hat{i}}{B}\\), electric force is balanced by magnetic force.",
+    "B": "For particle velocity \\(\\vec{v}_2\\), particle will attain maximum y \u2013 coordinate for the first time at \\(\\dfrac{2\\pi m}{3qB}\\)",
+    "C": "For particle velocity \\(\\vec{v}_2\\), maximum y \u2013 coordinate is \\(\\dfrac{3mE}{qB^2}\\).",
+    "D": "For particle velocity \\(\\vec{v}_2\\), minimum y \u2013 coordinate is \\(\\dfrac{-mE}{qB^2}\\)"
+   }
   },
   {
    "n": 28,
@@ -458,7 +646,20 @@
    ],
    "solution": [
     "s28_0.png"
-   ]
+   ],
+   "text": "Two parallel resistance less rails are connected by an inductor of inductance L at one end as shown in the figure. A magnetic field B exists in the space which is perpendicular to the plane of the rails. Now a conductor of length \\(\\ell\\) and mass m is placed transverse on the rails and given an impulse J towards the rightward direction. Then choose the <b>CORRECT</b> option (s)",
+   "options": {
+    "A": "Velocity of the conductor is half of the initial velocity after a displacement of the conductor \\(d=\\sqrt{\\dfrac{3J^2L}{4B^2\\ell^2 m}}\\)",
+    "B": "Current flowing through the inductor at the instant when velocity of the conductor is half of the initial velocity is \\(i=\\sqrt{\\dfrac{3J^2}{4Lm}}\\)",
+    "C": "Velocity of the conductor is half of the initial velocity after a displacement of the conductor \\(d=\\sqrt{\\dfrac{3J^2L}{B^2\\ell^2 m}}\\)",
+    "D": "Current flowing through the inductor at the instant when velocity of the conductor is half of the initial velocity is \\(i=\\sqrt{\\dfrac{3J^2}{mL}}\\)"
+   },
+   "figure": {
+    "image": "f28.png",
+    "page": 11,
+    "y0": 563.5,
+    "y1": 655.0
+   }
   },
   {
    "n": 29,
@@ -473,8 +674,22 @@
     "q29_0.png"
    ],
    "solution": [
-    "s29_0.png"
-   ]
+    "s29_0.png",
+    "s29_1.png"
+   ],
+   "text": "A vessel containing water is kept on an inclined plane of coefficient of friction \\(\\mu\\). The angle made by the free surface of liquid with horizontal as shown in steady state is \\(\\theta\\). If surface is as shown in figure (a), mark the angle \\(\\theta\\) as positive and if it is as shown in figure (b) mark the angle \\(\\theta\\) as negative. Then choose the <b>CORRECT</b> option(s)",
+   "options": {
+    "A": "If \\(\\mu=1.2\\), then \\(\\theta=0^\\circ\\)",
+    "B": "If \\(\\mu=0\\), then \\(\\theta=45^\\circ\\)",
+    "C": "If \\(\\mu=\\dfrac{3}{4}\\), then \\(\\theta=15^\\circ\\)",
+    "D": "If \\(\\mu=\\dfrac{3}{4}\\), then \\(\\theta=-15^\\circ\\)"
+   },
+   "figure": {
+    "image": "f29.png",
+    "page": 12,
+    "y0": 271.3,
+    "y1": 395.0
+   }
   },
   {
    "n": 30,
@@ -490,7 +705,14 @@
    ],
    "solution": [
     "s30_0.png"
-   ]
+   ],
+   "text": "At the equator on a spherical planet a body weighs one third of that at the pole. Radius of planet is R. The time period of revolution of the planet around its axis is equal to T = 60 min. Then choose the <b>CORRECT</b> option(s) (Take : \\(G=\\dfrac{20}{3}\\times10^{-11}\\,\\mathrm{Nm^2/kg^2}\\))",
+   "options": {
+    "A": "The average density \\(\\rho\\) of the planet is \\(\\dfrac{\\pi}{192}\\times10^{6}\\,\\mathrm{kg/m^3}\\)",
+    "B": "The height of geostationary satellite from the surface of planet is \\(\\left(\\sqrt[3]{\\dfrac{3}{2}}-1\\right)R\\)",
+    "C": "At a latitude of \\(60^\\circ\\), the weight of the body is half the weight at pole",
+    "D": "The geostationary satellite can be in a plane passing through the poles"
+   }
   },
   {
    "n": 31,
@@ -506,7 +728,14 @@
    ],
    "solution": [
     "s31_0.png"
-   ]
+   ],
+   "text": "A ring of mass m connecting freely two identical thin hoops of mass M each starts sliding down. The hoops move apart over a rough horizontal surface. Determine the acceleration a (in \\(\\mathrm{m/s^2}\\)) of the ring at the initial instant if \\(\\angle AO_1O_2=60^\\circ\\) (Figure), neglecting the friction between the ring and the hoops (given m = 2M &amp; g = 10 \\(\\mathrm{m/s^2}\\)) (There is no slipping between hoop and ground)",
+   "figure": {
+    "image": "f31.png",
+    "page": 13,
+    "y0": 250.4,
+    "y1": 318.6
+   }
   },
   {
    "n": 32,
@@ -522,7 +751,14 @@
    ],
    "solution": [
     "s32_0.png"
-   ]
+   ],
+   "text": "The resistance of each resistor in the circuit diagram shown in figure is the same and equal to R. The voltage across the terminals is U. The current I in the leads if their resistance can be neglected is given by \\(\\dfrac{xU}{R}\\). Find the value of \u2018x\u2019.",
+   "figure": {
+    "image": "f32.png",
+    "page": 13,
+    "y0": 387.4,
+    "y1": 506.2
+   }
   },
   {
    "n": 33,
@@ -538,7 +774,14 @@
    ],
    "solution": [
     "s33_0.png"
-   ]
+   ],
+   "text": "In the arrangement shown in figure, weight A possesses mass m, a symmetric pulley B possesses mass M. Also known are the moment of inertia I of the pulley relative to its axis and the radii of the pulley R and 2R. The mass of the threads is negligible. The acceleration of the weight A after the system is set free from rest is given by \\(a=\\dfrac{3g\\left(pM+qm\\right)}{\\left(rM+sm+\\dfrac{I}{R^2}\\right)}\\). Where p,q,r,s are integers. Find the value of <b>p + q + r + s</b>.",
+   "figure": {
+    "image": "f33.png",
+    "page": 13,
+    "y0": 628.4,
+    "y1": 771.4
+   }
   },
   {
    "n": 34,
@@ -554,7 +797,14 @@
    ],
    "solution": [
     "s34_0.png"
-   ]
+   ],
+   "text": "Find the time period (in sec) of small oscillations of a mathematical pendulum of length \\(\\ell\\) if its point of suspension O moves relative to the Earth\u2019s surface in an arbitrary direction with a constant acceleration w (figure). It is given that \\(\\ell\\) = 21 cm, w = \\(\\dfrac{g}{2}\\), and the angle between the vectors \\(\\vec{w}\\) and \\(\\vec{g}\\) equals \\(\\beta=120^\\circ\\). (Take g = \\(10\\,\\mathrm{m/s^2}\\))",
+   "figure": {
+    "image": "f34.png",
+    "page": 14,
+    "y0": 153.8,
+    "y1": 286.5
+   }
   },
   {
    "n": 35,
@@ -570,7 +820,8 @@
    ],
    "solution": [
     "s35_0.png"
-   ]
+   ],
+   "text": "In accordance with classical electrodynamics an electron moving with acceleration \\(\\vec{w}\\) loses its energy due to radiation as \\(\\dfrac{dE}{dt}=-\\dfrac{2e^2}{3c^3}w_{avg.}^2\\), where e is the electron charge, c is the speed of light, \\(w_{avg.}\\) is the average of magnitude of acceleration of the electron. The time during which the energy of an electron of mass m performing almost harmonic oscillations with frequency \\(\\omega\\) becomes \\(\\dfrac{1}{\\eta}\\) times is given by \\(\\dfrac{xmc^y}{2e^2\\omega^z}\\ln\\left(\\eta\\right)\\) where x, y, z are integers. Find the value of \\(\\dfrac{xy}{z}\\)."
   },
   {
    "n": 36,
@@ -586,7 +837,14 @@
    ],
    "solution": [
     "s36_0.png"
-   ]
+   ],
+   "text": "A uniform rod of mass M and length L is hinged at its lower end on a table. The rod can rotate freely in vertical plane and there is no friction at the hinge. A solid spherical ball of mass M and radius \\(R=\\dfrac{L}{3}\\) is placed in contact with the vertical rod and a horizontal force F is applied at the upper end of the rod. The horizontal component of hinge force acting on the rod immediately after force F starts acting is \\(\\dfrac{xF}{y}\\). Where x, y are co-primes. Find the value of x + y.<br>(Assume floor is sufficiently rough and the rod is smooth)",
+   "figure": {
+    "image": "f36.png",
+    "page": 14,
+    "y0": 657.9,
+    "y1": 746.4
+   }
   },
   {
    "n": 37,
@@ -602,7 +860,14 @@
    ],
    "solution": [
     "s37_0.png"
-   ]
+   ],
+   "text": "The heating of \\(\\ce{NH4NO2}\\) at \\(60-70^\\circ\\mathrm{C}\\) and \\(\\ce{NH4NO3}\\) at \\(200-250^\\circ\\mathrm{C}\\) is associated with the formation of nitrogen containing compounds X and Y , respectively. The only correct statement regarding \u201cX\u201d &amp; \u201cY\u201d is",
+   "options": {
+    "A": "N \u2013 N bond order in Y is less than 2",
+    "B": "N \u2013 N bond order in X is 2",
+    "C": "\u201cX\u201d and \u201cY\u201d have equal number of lone pair of electrons",
+    "D": "Both \u201cX\u201d and \u201cY\u201d are diamagnetic"
+   }
   },
   {
    "n": 38,
@@ -618,7 +883,20 @@
    ],
    "solution": [
     "s38_0.png"
-   ]
+   ],
+   "text": "Select the <b>INCORRECT</b> option regarding the given molecules [P] &amp; [Q]",
+   "options": {
+    "A": "Conjugate base of [Q] is aromatic, where as conjugate based of [P] is antiaromatic",
+    "B": "\\(\\mathrm{pK_a}\\) of [P] is more than [Q]",
+    "C": "Dissociation constant of [P] is less than [Q]",
+    "D": "All"
+   },
+   "figure": {
+    "image": "f38.png",
+    "page": 15,
+    "y0": 335.5,
+    "y1": 465.4
+   }
   },
   {
    "n": 39,
@@ -634,7 +912,14 @@
    ],
    "solution": [
     "s39_0.png"
-   ]
+   ],
+   "text": "A closed vessel contains 10g of an ideal gas X at 300 K, which exerts 2 atm pressure. At the same temperature, 80 g of another ideal gas Y is added to it and the pressure becomes 6 atm. The ratio of most probable velocities of Y and X at 300 K is",
+   "options": {
+    "A": "\\(2\\sqrt{2}:\\sqrt{3}\\)",
+    "B": "\\(2\\sqrt{2}:1\\)",
+    "C": "\\(1:2\\)",
+    "D": "\\(2:1\\)"
+   }
   },
   {
    "n": 40,
@@ -646,11 +931,25 @@
    "sectionImage": "sec06_0.png",
    "answer": "A",
    "images": [
-    "q40_0.png"
+    "q40_0.png",
+    "q40_1.png"
    ],
    "solution": [
     "s40_0.png"
-   ]
+   ],
+   "text": "<br>\\(\\ce{Z ->[H2O2/OH^{\\ominus}] }\\) Yellow solution<br>\u2018X\u2019, \u2018Y\u2019 and Z respectively are :",
+   "options": {
+    "A": "'X' \\(\\Rightarrow\\) \\(\\ce{K4[Fe(CN)6]}\\); 'Y' \\(\\Rightarrow\\) \\(\\ce{K3[Fe(CN)6]}\\); Z = \\(\\ce{CrCl3}\\)",
+    "B": "'X' \\(\\Rightarrow\\) \\(\\ce{CrCl3}\\); 'Y' \\(\\Rightarrow\\) \\(\\ce{CrO4^{2-}}\\); Z = \\(\\ce{Cr(OH)3}\\)",
+    "C": "'X' \\(\\Rightarrow\\) \\(\\ce{MnCl2}\\); 'Y' \\(\\Rightarrow\\) \\(\\ce{MnO2.xH2O}\\); Z = \\(\\ce{Mn(OH)2}\\)",
+    "D": "'X' \\(\\Rightarrow\\) \\(\\ce{Ag}\\); 'Y' \\(\\Rightarrow\\) \\(\\ce{Ag2O}\\); Z = \\(\\ce{AgOH}\\)"
+   },
+   "figure": {
+    "image": "f40.png",
+    "page": 15,
+    "y0": 656.0,
+    "y1": 737.8
+   }
   },
   {
    "n": 41,
@@ -666,7 +965,14 @@
    ],
    "solution": [
     "s41_0.png"
-   ]
+   ],
+   "text": "In the extraction of Aluminium metal, one of the process is summarized as follows :\\[\\underset{\\text{(bauxite Impure)}}{\\ce{Al2O3.3H2O}}\\xrightarrow[\\text{conc.'A'}]{\\text{hot}}\\underset{\\text{(aqueous solution)}}{\\text{Product 'B'}}\\xrightarrow[\\text{to change pH}]{\\text{bubble gas 'C'}}\\text{Pure almunia}\\xrightarrow{\\text{mix with 'D' melt at }1000^\\circ\\text{C}}\\]\\[\\xrightarrow[\\text{with carbon electrodes}]{\\text{electrolyse molten material}}\\]Aluminium at \u2018E\u2019, select the best combination for A to E.",
+   "options": {
+    "A": "A: \\(\\ce{NaOH}\\), B: \\(\\ce{Al^{3+}}\\), C: \\(\\ce{HF}\\), D: \\(\\ce{Na3AlF6}\\), E: Cathode",
+    "B": "A: \\(\\ce{NaOH}\\), B: \\(\\ce{NaAlO2}\\), C: \\(\\ce{CO2}\\), D: \\(\\ce{NaF}\\), E: Anode",
+    "C": "A: \\(\\ce{H2SO4}\\), B: \\(\\ce{Al2(SO4)3}\\), C: \\(\\ce{NH3}\\), D: \\(\\ce{Na3AlF6}\\), E: Cathode",
+    "D": "A: \\(\\ce{NaOH}\\), B: \\(\\ce{NaAlO2}\\), C: \\(\\ce{CO2}\\), D: \\(\\ce{Na3AlF6}\\), E: Cathode"
+   }
   },
   {
    "n": 42,
@@ -682,7 +988,20 @@
    ],
    "solution": [
     "s42_0.png"
-   ]
+   ],
+   "text": "Which of the following Newman projection is <b>not</b> a structural isomer with given compound [<b>X</b>]",
+   "options": {
+    "A": "(Newman projection shown in figure)",
+    "B": "(Newman projection shown in figure)",
+    "C": "(Newman projection shown in figure)",
+    "D": "All"
+   },
+   "figure": {
+    "image": "f42.png",
+    "page": 16,
+    "y0": 362.6,
+    "y1": 534.2
+   }
   },
   {
    "n": 43,
@@ -694,11 +1013,19 @@
    "sectionImage": "sec07_0.png",
    "answer": "AB",
    "images": [
-    "q43_0.png"
+    "q43_0.png",
+    "q43_1.png"
    ],
    "solution": [
     "s43_0.png"
-   ]
+   ],
+   "text": "Compound [<b>P</b>] \\(\\ce{C9H10O3}\\), (can show optical isomerism) gives a positive \\(\\ce{CrO3/H2SO4}\\) test and is oxidized by hot \\(\\ce{KMnO4}\\) to benzoic acid. [<b>P</b>] is converted by the following sequence of reactions into [<b>R</b>]:\\[\\underset{\\ce{C9H10O3}}{[\\mathbf{P}]}\\xrightarrow{\\ce{HBr}}\\ce{C9H9O2Br}\\xrightarrow{\\ce{OH-}}\\underset{\\substack{[\\mathbf{Q}]\\\\ \\text{(cannot show}\\\\ \\text{geometrical isomerism)}}}{\\ce{C9H8O2}}\\xrightarrow{\\ce{H2}\\,|\\,\\ce{Ni}}\\underset{\\ce{C9H10O2}}{[\\mathbf{R}]}\\]Choose the <b>CORRECT</b> option(s)",
+   "options": {
+    "A": "[<b>P</b>] on heating with con \\(\\ce{H3PO4}\\) gives [<b>Q</b>] acid",
+    "B": "[<b>R</b>] can show optical isomerism",
+    "C": "[<b>P</b>] can give neutral \\(\\ce{FeCl3}\\) test",
+    "D": "[<b>P</b>] and [<b>R</b>] can show diastereomerism"
+   }
   },
   {
    "n": 44,
@@ -714,7 +1041,20 @@
    ],
    "solution": [
     "s44_0.png"
-   ]
+   ],
+   "text": "The graph given below shows the molar entropy change \\((\\mathrm{S_m})\\) v/s temperature (T) for a substance undergoing solid \u2013 liquid phase transition at its normal melting point \\(\\mathrm{T_m}=300\\mathrm{K}\\). {Given \\(\\Delta\\mathrm{H_{fusion}}=6\\mathrm{kJ/mol}\\)} Which of the following statements are <b>CORRECT</b>.",
+   "options": {
+    "A": "The entropy change during the fusion at \\(\\mathrm{T_m}\\) is 20 J \\(\\mathrm{mol^{-1}K^{-1}}\\)",
+    "B": "Entropy change associated with heating the solid isobarically from 250 K to 300 K \\(\\Delta S=\\displaystyle\\int_{250}^{300}\\dfrac{\\mathrm{Cp_{(s)}}}{\\mathrm{T}}\\mathrm{dT}\\)",
+    "C": "At 300 K substance exist in liquid state only",
+    "D": "At \\(\\mathrm{T_m}\\), \\(\\Delta\\mathrm{H}=\\mathrm{T}\\Delta\\mathrm{S}\\) for melting of solid"
+   },
+   "figure": {
+    "image": "f44.png",
+    "page": 17,
+    "y0": 352.3,
+    "y1": 493.3
+   }
   },
   {
    "n": 45,
@@ -730,7 +1070,14 @@
    ],
    "solution": [
     "s45_0.png"
-   ]
+   ],
+   "text": "<b>CORRECT</b> statement(s) about solubility of \\(\\ce{AgCl(s)}\\) is/are ?<br>\\(\\mathrm{K_{SP}}\\) of \\(\\ce{AgCl}=10^{-10}\\mathrm{M^2}\\), \\(\\mathrm{K_f}\\) of \\(\\ce{[Ag(NH3)2]^+_{(aq)}}=10^{8}\\)",
+   "options": {
+    "A": "Solubility in pure water is \\(10^{-5}\\mathrm{M}\\)",
+    "B": "Solubility of AgCl is more in aqueous \\(\\ce{AgNO3}\\) solution than in water",
+    "C": "Solubility of AgCl in 2M \\(\\ce{NH3(aq)}\\) solution is approximately 0.166 M",
+    "D": "Solubility of AgCl is lesser in aqueous NaCl solution than in water"
+   }
   },
   {
    "n": 46,
@@ -747,7 +1094,14 @@
    "solution": [
     "s46_0.png",
     "s46_1.png"
-   ]
+   ],
+   "text": "Find <b>CORRECT</b> statements for coordination compounds",
+   "options": {
+    "A": "\\(\\ce{[PtCl2(NH3)2]}\\) &amp; \\(\\ce{[Cu(NH3)4]^{2+}}\\) are square planar complexes",
+    "B": "In \\(\\ce{[Fe(C2O4)3]^{3-}}\\), geometrical isomerism does not exist while optical isomerism exists",
+    "C": "CO bond order : \\(\\ce{[Ni(CO)4]} > \\ce{[Co(CO)4]^-} > \\ce{[Fe(CO)4]^{2-}}\\)",
+    "D": "\\(\\ce{[NiCl2(PPh3)2]}\\) has two geometrical isomers"
+   }
   },
   {
    "n": 47,
@@ -763,7 +1117,20 @@
    ],
    "solution": [
     "s47_0.png"
-   ]
+   ],
+   "text": "For reaction \\(\\ce{2N2O5(g) -> 4NO2 + O2(g)}\\) and \\(\\mathrm{t_{90\\%}}=10\\) sec then select the correct options. (Use log (2) = 0.3010)",
+   "options": {
+    "A": "Reaction is of 1<sup>st</sup> order",
+    "B": "Time to complete 50% reaction is 3.01 sec",
+    "C": "Time to complete definite fraction of reaction is independent of initial concentration of reactant",
+    "D": "\\(\\mathrm{t_{15/16}}=2\\mathrm{t_{3/4}}\\)"
+   },
+   "figure": {
+    "image": "f47.png",
+    "page": 18,
+    "y0": 279.7,
+    "y1": 397.8
+   }
   },
   {
    "n": 48,
@@ -779,7 +1146,20 @@
    ],
    "solution": [
     "s48_0.png"
-   ]
+   ],
+   "text": "Select <b>CORRECT</b> statement(s) about [P]",
+   "options": {
+    "A": "L isomer of [P] is essential amino acid",
+    "B": "[P] can give positive carbylamine test",
+    "C": "[P] on reaction with \\(\\ce{HNO2}\\) liberate \\(\\ce{N2}\\) gas",
+    "D": "[P] is having two chiral centers."
+   },
+   "figure": {
+    "image": "f48.png",
+    "page": 18,
+    "y0": 557.9,
+    "y1": 635.0
+   }
   },
   {
    "n": 49,
@@ -794,8 +1174,10 @@
     "q49_0.png"
    ],
    "solution": [
-    "s49_0.png"
-   ]
+    "s49_0.png",
+    "s49_1.png"
+   ],
+   "text": "Adsorption of phenol from its aqueous solution on to fly ash obeys Freundlich isotherm. At a given temperature, from \\(10\\,\\mathrm{mg\\,g^{-1}}\\) and \\(16\\,\\mathrm{mg\\,g^{-1}}\\) aqueous phenol solutions, the concentrations of adsorbed phenol are measured to be \\(4\\,\\mathrm{mg\\,g^{-1}}\\) and \\(10\\,\\mathrm{mg\\,g^{-1}}\\), respectively. At this temperature, the concentration \\(\\left(\\text{in }\\mathrm{mg\\,g^{-1}}\\right)\\) of adsorbed phenol from 32 mg \\(\\mathrm{g^{-1}}\\) aqueous solution of phenol will be \\(10^{x}\\), then \u2018x\u2019 is<br>Use : \\(\\log_{10}2=0.3\\)"
   },
   {
    "n": 50,
@@ -811,7 +1193,8 @@
    ],
    "solution": [
     "s50_0.png"
-   ]
+   ],
+   "text": "Vessel \u2013 1 contains \\(\\mathrm{w_2}\\)g of a non-volatile solute X dissolved in \\(\\mathrm{w_1}\\) g of water. Vessel \u2013 2 contains \\(\\mathrm{w_2}\\) g of another non-volatile solute Y dissolved in \\(\\mathrm{w_1}\\) g of water. Both the vessels are at the same temperature and pressure. The molar mass of X is 60% of that of Y. The van\u2019t Hoff factor for X is 20% more than that of Y for their respective concentrations.<br>The elevation of boiling point for solution in Vessel \u2013 1 is \u2026\u2026% of the solution in Vessel \u2013 2"
   },
   {
    "n": 51,
@@ -827,7 +1210,8 @@
    ],
    "solution": [
     "s51_0.png"
-   ]
+   ],
+   "text": "Some reactions are given below (correct / incorrect included) for slag formation in metallurgy. Identify the value of {(X \u2013 Y) \u00d7 Z} where<br>X = sum of \u201ccorrect\u201d reaction tags which include acidic impurity<br>Y = sum of \u201ccorrect\u201d reaction tags which include basic impurity<br>Z = sum of \u201cincorrect\u201d reaction tags combination(s) ?<br>(For example, if (1), (4) and (5) are correct then X = 1 + 4 + 5 = 10)<br><table><tr><td></td><td>Impurity</td><td></td><td>Flux</td><td>Slag</td></tr><tr><td>1)</td><td>\\(\\ce{CaO}\\)</td><td>+</td><td>\\(\\ce{SiO2 ->}\\)</td><td>Calcium silicate</td></tr><tr><td>2)</td><td>\\(\\ce{FeO}\\)</td><td>+</td><td>\\(\\ce{SiO2 ->}\\)</td><td>Iron silicate</td></tr><tr><td>3)</td><td>\\(\\ce{SiO2}\\)</td><td>+</td><td>\\(\\ce{CaCO3 ->}\\)</td><td>Calcium silicate + \\(\\ce{CO2}\\)</td></tr><tr><td>4)</td><td>\\(\\ce{SiO2}\\)</td><td>+</td><td>\\(\\ce{MgCO3 ->}\\)</td><td>Magnesium silicate + \\(\\ce{CO2}\\)</td></tr><tr><td>5)</td><td>\\(\\ce{P4O10}\\)</td><td>+</td><td>\\(\\ce{SiO2 ->}\\)</td><td>Phospho silicate</td></tr><tr><td>6)</td><td>\\(\\ce{P4O10}\\)</td><td>+</td><td>\\(\\ce{CaCO3 ->}\\)</td><td>Clacium phosphate + \\(\\ce{CO2}\\)</td></tr></table>"
   },
   {
    "n": 52,
@@ -843,7 +1227,8 @@
    ],
    "solution": [
     "s52_0.png"
-   ]
+   ],
+   "text": "During hydrolysis of ester is acidic medium \\(\\ce{ester + H2O ->[H+] acid + alcohol}\\) rate law is given as r = k[ester] \\(\\left[\\ce{H+}\\right]\\) and volume of base used at different time intervals is given as at pH = 3<br><table><tr><td>t (in sec)</td><td>0</td><td>10</td><td>\\(\\infty\\)</td></tr><tr><td>\\(\\mathrm{v_b}\\)(in mL)</td><td>50</td><td>100</td><td>150</td></tr></table>Value of rate constant at \u2018k\u2019 will be (in units of \\(\\mathrm{M^{1-n}\\,sec^{-1}}\\)) where n = order of the reaction"
   },
   {
    "n": 53,
@@ -859,7 +1244,14 @@
    ],
    "solution": [
     "s53_0.png"
-   ]
+   ],
+   "text": "Lithium borohydride (\\(\\ce{LiBH4}\\)) is a useful reducing agent, as it is more selective than \\(\\ce{LAlH4}\\) but less selective than \\(\\ce{NaBH4}\\). Unlike the later, \\(\\ce{LiBH4}\\) will reduce esters. However, it will not reduce amides. This selectivity is frequently employed by synthetic organic chemists. In the following reaction sequence, 50.6gm of product (3) is obtained with yield of 65% and 75% respectively in 1st and 2nd steps. Find the number of moles of reactant used in this reaction? (C=12, O=16, N=14, H=1)",
+   "figure": {
+    "image": "f53.png",
+    "page": 20,
+    "y0": 334.6,
+    "y1": 493.5
+   }
   },
   {
    "n": 54,
@@ -875,7 +1267,8 @@
    ],
    "solution": [
     "s54_0.png"
-   ]
+   ],
+   "text": "Treatment of ter-butyl benzene with CO/HCl in the presence of anhydrous \\(\\ce{AlCl3/CuCl}\\) followed by heating with \\(\\ce{CH3CHO}\\)/dil NaOH gives compound [<b>P</b>] as a major product. Compound [<b>P</b>] up on reaction with tollens reagent followed by esterification with methyl alcohol and then hydrogenation gives [<b>Q</b>]. Reaction of [<b>Q</b>] with \\(\\ce{CH3MgBr}\\) (excess) followed by addition of \\(\\ce{H2O}\\) gives [<b>R</b>]. Compound [<b>R</b>] on treatment with \\(\\ce{H2SO4}\\) at 0\u00ba C followed by treatment with succinic anhydride/\\(\\ce{AlCl3}\\) gives [<b>S</b>]. The reaction of compound [<b>S</b>] with Zn\u2013Hg + Con. HCl followed by treatment with con \\(\\ce{H3PO4}\\) (cat) gives [<b>T</b>]. Reaction of [<b>T</b>] with \\(\\ce{CH3MgBr}\\) followed by heating with con \\(\\ce{H2SO4}\\)(cat) gives corresponding [<b>U</b>]<br>Number of methyl groups in [<b>U</b>] is?"
   }
  ]
 }

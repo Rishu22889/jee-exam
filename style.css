@@ -27,8 +27,12 @@ th{background:#f1f4f8}
 .qbody{flex:1;overflow:auto;padding:14px;background:#fff}
 .qbody img{max-width:100%;display:block;border:1px solid #eee;margin-bottom:6px}
 details.sec summary{cursor:pointer;color:#1a56b0;margin-bottom:8px}
+.qtext{font-size:17px;line-height:1.7;max-width:900px}
+.fig{overflow:hidden;max-width:900px;margin:8px 0}.fig img{width:100%;display:block;border:0 !important;margin:0 !important}
 .opts{margin-top:12px;display:flex;flex-direction:column;gap:6px;font-size:16px}
-.opts label{display:flex;align-items:center;gap:8px;cursor:pointer;padding:4px 8px;border-radius:4px}
+.detail .opts div{padding:3px 0}
+.opts label{display:flex;align-items:flex-start;gap:8px;cursor:pointer;padding:4px 8px;border-radius:4px}
+.opts label input{flex:none;margin-top:4px}
 .opts label:hover{background:#f1f4f8}
 .opts input{width:18px;height:18px}
 .numbox{display:inline-block;min-width:180px;font-size:22px;padding:6px 12px;border:2px solid #2255a4;border-radius:4px;background:#fff;min-height:40px;margin-bottom:8px;text-align:right}

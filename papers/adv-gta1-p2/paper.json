@@ -24,7 +24,8 @@
    ],
    "solution": [
     "s01_0.png"
-   ]
+   ],
+   "text": "Let \\(f\\) be a twice differentiable function with \\(f(-1)=1=f(1)\\) and \\(f(0)=0\\). Then the minimum number of root(s) of equation<br>\\(f(x)\\left(f'(x)\\right)^3+\\left(f(x)\\right)^2 f'(x)f''(x)-f(x)f'(x)=x\\left(f'(x)\\right)^2+x f(x)f''(x)-x\\)<br>is/(are)"
   },
   {
    "n": 2,
@@ -40,7 +41,8 @@
    ],
    "solution": [
     "s02_0.png"
-   ]
+   ],
+   "text": "Let a vector \\(\\overline{V_1}=\\overline{OP}\\), where \\(O\\) is origin and \\(P\\) is \\((2,0,2)\\). Vector \\(\\overline{V_1}\\) is rotated about origin by an angle of \\(\\dfrac{\\pi}{3}\\) in a plane which is perpendicular to \\(XOZ\\) plane to get vector \\(\\overline{V_2}\\) where \\(\\overline{V_2}\\,.\\,\\hat{j}>0\\). Again \\(\\overline{V_1}\\) is rotated about origin by right angle in \\(XOZ\\) plane to get vector \\(\\overline{V_3}\\). If \\(V\\) is volume of tetrahedron whose coterminous edges are \\(\\overline{V_1},\\overline{V_2}\\) and \\(\\overline{V_3}\\) then value of \\(\\dfrac{3V}{\\sqrt{6}}\\) is"
   },
   {
    "n": 3,
@@ -56,7 +58,8 @@
    ],
    "solution": [
     "s03_0.png"
-   ]
+   ],
+   "text": "Suppose that \\(f(x)\\) is a differentiable invertible function with \\(f(x)\\neq 0\\) and \\(h(x)=\\int_1^x f(t)\\,dt\\). Given that \\(f(1)=f'(1)=1\\) and \\(g(x)\\) is inverse of \\(f(x)\\). Let \\(G(x)=x^2 g(x)-x h(g(x))\\ \\forall\\in R\\) then \\(G''(1)=\\)"
   },
   {
    "n": 4,
@@ -72,7 +75,8 @@
    ],
    "solution": [
     "s04_0.png"
-   ]
+   ],
+   "text": "Let \\(f(x)\\) be differentiable function such that \\(f(x)=x^2+\\int_0^x e^{-t} f(x-t)\\,dt\\) then \\(6f(1)=\\)"
   },
   {
    "n": 5,
@@ -88,7 +92,8 @@
    ],
    "solution": [
     "s05_0.png"
-   ]
+   ],
+   "text": "Number of distinct real solutions of \\(\\sin\\pi x=\\left|\\ln|x|\\right|\\) is"
   },
   {
    "n": 6,
@@ -103,8 +108,10 @@
     "q06_0.png"
    ],
    "solution": [
-    "s06_0.png"
-   ]
+    "s06_0.png",
+    "s06_1.png"
+   ],
+   "text": "Number of solution(s) of the equation \\(8000\\sin^3 x+3375\\cos^3 x+1728=5400\\sin 2x\\) in \\((0,2\\pi)\\) is (are)"
   },
   {
    "n": 7,
@@ -120,7 +127,14 @@
    ],
    "solution": [
     "s07_0.png"
-   ]
+   ],
+   "text": "Each of 2010 boxes in a line contains one red marble and for \\(1\\le k\\le 2010\\), the box is the \\(k^{th}\\) position also contain \\(k\\) white marbles. A child begins at the first box and successively drawn a single marble at random from each box in order. The stops when be first draws a red marble. Let \\(p(n)\\) be the probability that he stops after drawing exactly \\(n\\) marbles. The possible value (s) of \\(n\\) for which \\(p(n)<\\dfrac{1}{2010}\\) is",
+   "options": {
+    "A": "44",
+    "B": "45",
+    "C": "46",
+    "D": "47"
+   }
   },
   {
    "n": 8,
@@ -136,7 +150,14 @@
    ],
    "solution": [
     "s08_0.png"
-   ]
+   ],
+   "text": "If \\(5x\\left(1+\\dfrac{1}{x^2+y^2}\\right)=12\\) and \\(5y\\left(1-\\dfrac{1}{x^2+y^2}\\right)=4\\), \\(x,y\\in R\\), then correct option is/are",
+   "options": {
+    "A": "\\(|x|+|y|=3\\)",
+    "B": "\\(x+y=\\dfrac{1}{5}\\)",
+    "C": "\\(|x|+|y|=\\dfrac{3}{5}\\)",
+    "D": "\\(x^2+y^2=5\\)"
+   }
   },
   {
    "n": 9,
@@ -152,7 +173,14 @@
    ],
    "solution": [
     "s09_0.png"
-   ]
+   ],
+   "text": "Let \\(A_1,A_2.....A_7\\) be a polygon and \\(a_1,a_2.....a_7\\) be the complex numbers representing vertices \\(A_1,A_2......A_7\\). If \\(|a_1|=|a_2|=......|a_7|=R\\), then \\(\\displaystyle\\sum_{1\\le i&lt;j\\le 7}\\left|a_i+a_j\\right|^2\\)",
+   "options": {
+    "A": "greater than \\(30R^2\\)",
+    "B": "has minimum value as \\(35R^2\\)",
+    "C": "has its minimum value in \\(\\left(25R^2,45R^2\\right)\\)",
+    "D": "is less than \\(45R^2\\)"
+   }
   },
   {
    "n": 10,
@@ -168,7 +196,14 @@
    ],
    "solution": [
     "s10_0.png"
-   ]
+   ],
+   "text": "If the sides \\(a,b\\ \\&\\ c\\) of \\(\\Delta ABC\\) is such that \\(\\dfrac{a}{1+\\alpha^2\\beta^2}=\\dfrac{b}{\\alpha^2+\\beta^2}=\\dfrac{c}{\\left(1-\\alpha^2\\right)\\left(1+\\beta^2\\right)}\\) then",
+   "options": {
+    "A": "\\(A=2\\tan^{-1}\\left(\\dfrac{\\alpha}{\\beta}\\right)\\)",
+    "B": "\\(B=2\\tan^{-1}\\left(\\alpha\\beta\\right)\\)",
+    "C": "area of \\(\\Delta ABC=\\dfrac{\\alpha\\beta ab}{\\alpha^2+\\beta^2}\\)",
+    "D": "area of \\(\\Delta ABC=\\dfrac{\\alpha\\beta bc}{\\alpha^2+\\beta^2}\\)"
+   }
   },
   {
    "n": 11,
@@ -184,7 +219,14 @@
    ],
    "solution": [
     "s11_0.png"
-   ]
+   ],
+   "text": "If \\(A_i\\) is the area bounded by \\(|x-a_i|+|y|=b_i, i\\in N\\), where \\(a_{i+1}=a_i+\\dfrac{3}{2}b_i\\ \\&\\ b_{i+1}=\\dfrac{b_i}{2}, a_1=0, b_1=32\\), then",
+   "options": {
+    "A": "\\(A_3=128\\)",
+    "B": "\\(A_3=256\\)",
+    "C": "\\(\\displaystyle\\lim_{n\\to\\infty}\\sum_{i=1}^{n}A_i=\\dfrac{8}{3}(32)^2\\)",
+    "D": "\\(\\displaystyle\\lim_{n\\to\\infty}\\sum_{i=1}^{n}A_i=\\dfrac{4}{3}(16)^2\\)"
+   }
   },
   {
    "n": 12,
@@ -200,7 +242,14 @@
    ],
    "solution": [
     "s12_0.png"
-   ]
+   ],
+   "text": "\\(\\bar{a}\\ \\&\\ \\bar{b}\\) be two vectors such that \\(|a|=1, |b|=4\\ \\&\\ \\bar{a}.\\bar{b}=2\\). If \\(\\bar{c}=\\left(2\\bar{a}\\times\\bar{b}\\right)-3\\bar{b}\\), then which of following is/are correct?",
+   "options": {
+    "A": "\\(\\bar{b}.\\bar{c}=48\\)",
+    "B": "\\(\\bar{b}.\\bar{c}=-48\\)",
+    "C": "Angle between \\(\\bar{b}\\ \\&\\ \\bar{c}\\) is \\(\\dfrac{5\\pi}{6}\\)",
+    "D": "Angle between \\(\\bar{b}\\ \\&\\ \\bar{c}\\) is \\(\\dfrac{\\pi}{6}\\)"
+   }
   },
   {
    "n": 13,
@@ -216,7 +265,8 @@
    ],
    "solution": [
     "s13_0.png"
-   ]
+   ],
+   "text": "An unbiased dice with numbers \\(\\{1,2,3,4,5,6\\}\\) on its faces is rolled once. An observer, \\(A\\), sees the number shown on the dice and reports it. The probability that \\(A\\) speaks the truth is \\(\\dfrac{1}{3}\\) and the probability that he lies is \\(\\dfrac{2}{3}\\). Assume that the number he reports is always from the set \\(\\{1,2,3,4,5,6\\}\\). If \\(p\\) is the probability that the actual number on the dice is even given that \\(A\\) reports that the number was 2, then \\(p\\) is equal to"
   },
   {
    "n": 14,
@@ -232,7 +282,8 @@
    ],
    "solution": [
     "s14_0.png"
-   ]
+   ],
+   "text": "If \\(a_n=\\displaystyle\\sum_{r=0}^{n}\\dfrac{1}{{}^nC_r}\\) and \\(L=\\lim_{n\\to\\infty}\\dfrac{1}{a_n}\\), then \\(L\\) is equal to"
   },
   {
    "n": 15,
@@ -248,7 +299,8 @@
    ],
    "solution": [
     "s15_0.png"
-   ]
+   ],
+   "text": "If \\(S=\\displaystyle\\sum_{k=1}^{\\infty}\\dfrac{1}{{}^{k+51}C_k}\\), then \\(S\\) is equal to"
   },
   {
    "n": 16,
@@ -264,7 +316,8 @@
    ],
    "solution": [
     "s16_0.png"
-   ]
+   ],
+   "text": "In \\(\\Delta ABC\\) let the value of \\(a^3\\cos 3B+3a^2 b\\cos(A-2B)+3ab^2\\cos(2A-B)+b^3\\cos 3A\\) is \\(l\\), then the value of \\(\\dfrac{l}{c^3}\\) is equal to ______"
   },
   {
    "n": 17,
@@ -280,7 +333,8 @@
    ],
    "solution": [
     "s17_0.png"
-   ]
+   ],
+   "text": "Let \\(P(x)\\) be a polynomial whose coefficient are integer satisfies \\(P(1)=5\\) and \\(P(2)=7\\). The smallest possible positive value of \\(P(10)\\) is equal to ______"
   },
   {
    "n": 18,
@@ -296,7 +350,14 @@
    ],
    "solution": [
     "s18_0.png"
-   ]
+   ],
+   "text": "Let &lsquo;\\(O\\)&rsquo; be centre of circle as shown in figure and \\(AE\\) be a chord from \\(A\\) the diameter \\(AP\\) is drawn and \\(M\\) is foot of perpendicular drawn from \\(E\\) on \\(AP\\). A circle is drawn such that it touches \\(EM, AP\\) at \\(D\\) and circle whose diameter is \\(AP\\), then the value of \\(\\dfrac{AE}{AD}\\) is _____",
+   "figure": {
+    "image": "f18.png",
+    "page": 6,
+    "y0": 516.3,
+    "y1": 615.1
+   }
   },
   {
    "n": 19,
@@ -312,7 +373,14 @@
    ],
    "solution": [
     "s19_0.png"
-   ]
+   ],
+   "text": "A thin uniform rod of length \\(L\\) is rigidly attached to a thin uniform semi-circular ring of same linear density to form a rigid structure as shown. The system is hinged as shown and at equilibrium the rod is horizontal. The distance of the center of mass of the system from the hinge is then \\(\\dfrac{L}{2}\\left(\\dfrac{\\pi+\\alpha}{\\pi+\\beta}\\right)\\). Find \\(\\alpha\\beta\\).",
+   "figure": {
+    "image": "f19.png",
+    "page": 7,
+    "y0": 296.6,
+    "y1": 428.8
+   }
   },
   {
    "n": 20,
@@ -328,7 +396,8 @@
    ],
    "solution": [
     "s20_0.png"
-   ]
+   ],
+   "text": "A cubical container (material of thermal conductivity \\(K\\)) of side \\(a\\) and wall thickness \\(x\\,(x\\ll a)\\) is suspended in air and filled with \\(n\\) moles of a diatomic gas (adiabatic exponent \\(\\gamma\\)) in a room of room temperature \\(T_0\\). If at time \\(t=0\\), the temperature of the diatomic gas is \\(T_1\\,(T_1>T_0)\\), then the temperature of the gas at a time \\(t\\) is given by \\[T=pT_0+(T_1-T_0)\\exp\\left[-\\dfrac{qKa^2(\\gamma+s)t}{nRx}\\right].\\ \\text{Find } p+q+s.\\]"
   },
   {
    "n": 21,
@@ -344,7 +413,14 @@
    ],
    "solution": [
     "s21_0.png"
-   ]
+   ],
+   "text": "Two bubbles contain the same ideal gas at the same temperature such that one is trapped inside the other. The system is kept in vacuum. Ratio of densities of the gas in the inner and outer bubbles is \\(x\\) and the ratio of the number of moles of the gas in the inner and outer bubbles is \\(y\\). Find \\(\\dfrac{x}{y}\\).",
+   "figure": {
+    "image": "f21.png",
+    "page": 7,
+    "y0": 657.4,
+    "y1": 772.5
+   }
   },
   {
    "n": 22,
@@ -359,8 +435,16 @@
     "q22_0.png"
    ],
    "solution": [
-    "s22_0.png"
-   ]
+    "s22_0.png",
+    "s22_1.png"
+   ],
+   "text": "\\(ABC\\) is a spherical wavefront centered at \\(O\\). It is incident on slits \\(S_1\\) and \\(S_2\\) such that \\(BS_1=3\\lambda, S_1S_2=4\\lambda; BO=6\\lambda\\) and \\(S_1E=128\\lambda\\), where \\(\\lambda\\) is the wavelength of the incident wave. A mica sheet of refractive index \\(1.5\\) is placed in front of \\(S_2\\). The minimum value of the thickness of the mica sheet such that the central maximum is formed at \\(E\\) is \\(\\dfrac{(10k+1)\\lambda}{8}\\). Find the value of \\(k\\).",
+   "figure": {
+    "image": "f22.png",
+    "page": 8,
+    "y0": 162.2,
+    "y1": 307.1
+   }
   },
   {
    "n": 23,
@@ -376,7 +460,14 @@
    ],
    "solution": [
     "s23_0.png"
-   ]
+   ],
+   "text": "\\(PQRS\\) is a square of side \\(l_0\\). \\(A,B,C\\) and \\(D\\) are four long wires carrying currents perpendicular to the plane of the paper as shown. \\(PA=QB=RC=SD=\\dfrac{l_0}{\\sqrt{5}}\\). The magnitudes of the currents in \\(A,B,C\\) and \\(D\\) are \\(i_0,2i_0,8i_0\\) and \\(4i_0\\) respectively. It is given that \\(\\int_P^Q \\vec{B}_A\\cdot\\vec{dl}=-9\\mu_0\\ \\text{Tesla meter}\\) and \\(\\int_R^S \\vec{B}_B\\cdot\\vec{dl}=5\\mu_0\\ \\text{Tesla meter}\\), where \\(\\vec{B}_A\\) and \\(\\vec{B}_B\\) are the magnetic fields due to the wires \\(A\\) and \\(B\\) respectively. The magnitude of \\(i_0\\) is \\(3p+2\\). Find the value of \\(p\\).",
+   "figure": {
+    "image": "f23.png",
+    "page": 8,
+    "y0": 465.2,
+    "y1": 597.6
+   }
   },
   {
    "n": 24,
@@ -392,7 +483,14 @@
    ],
    "solution": [
     "s24_0.png"
-   ]
+   ],
+   "text": "A uniform rod \\(AB\\) of mass \\(M\\) length \\(L\\) is fixed. A point mass is released at rest from point \\(C\\) as shown in the figure. The speed of the mass is found to be \\(v=\\sqrt{\\dfrac{xGM}{L}\\ln\\left(\\dfrac{y}{2}\\right)}\\) when the mass is at a distance of \\(\\dfrac{L}{2}\\) for the end \\(B\\) of the rod. Find \\(x+y\\).",
+   "figure": {
+    "image": "f24.png",
+    "page": 8,
+    "y0": 714.0,
+    "y1": 761.6
+   }
   },
   {
    "n": 25,
@@ -408,7 +506,20 @@
    ],
    "solution": [
     "s25_0.png"
-   ]
+   ],
+   "text": "A small ball of mass \\(m\\) is placed in a circular tube of negligible width and mass \\(M\\) and radius \\(R\\) which is kept on a smooth horizontal plane in a gravity free space. Friction is absent between the ball and the tube. The ball is given a velocity \\(v_0\\) as shown. Choose the correct option(s):",
+   "options": {
+    "A": "The path of the ball relative to the center of mass of the (ball + tube) system is circular.",
+    "B": "The path of the ball relative to the center of mass of the (ball + tube) system is elliptical",
+    "C": "Radius of curvature of the trajectory of the ball relative to the ground at the time of projection is \\(\\dfrac{MR}{m+M}\\)",
+    "D": "Normal force between the tube and the wall if \\(M=2m\\), at the time of projection of the ball is \\(\\dfrac{2mv_0^2}{3R}\\)."
+   },
+   "figure": {
+    "image": "f25.png",
+    "page": 9,
+    "y0": 329.9,
+    "y1": 444.3
+   }
   },
   {
    "n": 26,
@@ -425,7 +536,20 @@
    ],
    "solution": [
     "s26_0.png"
-   ]
+   ],
+   "text": "A tuning fork of frequency \\(1000\\,Hz\\) is sounded over a resonance tube as shown. Speed of sound is \\(320\\,m/s\\) and the area of cross section of the tube is \\(A=2000\\,cm^2\\). At a depth of \\(100\\,cm\\) a water outlet is attached which has an cross-sectional area of \\(a=1\\,cm^2\\) and is opened at \\(t=0\\,s\\). Neglect end correction.<br>(Take \\(g=10\\,m/s^{-2};\\sqrt{0.92}=0.96;\\sqrt{0.76}=0.87\\))",
+   "options": {
+    "A": "First resonance will occur when the water level goes down by \\(8\\,cm\\) from the open end.",
+    "B": "First resonance will occur when the water level goes down by \\(16\\,cm\\) from the open end.",
+    "C": "The time at which the first resonance occurs is nearly at \\(t=0.6\\,\\text{min}\\)",
+    "D": "The time difference between the first two resonances is nearly \\(\\Delta t=1.3\\,\\text{min}\\)"
+   },
+   "figure": {
+    "image": "f26.png",
+    "page": 10,
+    "y0": 54.4,
+    "y1": 214.1
+   }
   },
   {
    "n": 27,
@@ -440,8 +564,22 @@
     "q27_0.png"
    ],
    "solution": [
-    "s27_0.png"
-   ]
+    "s27_0.png",
+    "s27_1.png"
+   ],
+   "text": "A hexagonal prism wire frame is made with \\(6\\) sources of equal emf \\(\\varepsilon=5V\\) and internal resistance \\(r=1\\Omega\\). Six equal resistances each equal to \\(R=2\\Omega\\) and four capacitors of equal capacitance \\(C=2\\,\\mu F\\) are connected as shown. The correct statement(s) are",
+   "options": {
+    "A": "Value of \\(I=6\\,A\\)",
+    "B": "Value of \\(I=5\\,A\\)",
+    "C": "Value of charge on the \\(4C\\) capacitor is \\(16\\,\\mu C\\)",
+    "D": "The value of charge on the capacitor with capacitance \\(C\\) is zero"
+   },
+   "figure": {
+    "image": "f27.png",
+    "page": 10,
+    "y0": 412.8,
+    "y1": 641.9
+   }
   },
   {
    "n": 28,
@@ -457,7 +595,20 @@
    ],
    "solution": [
     "s28_0.png"
-   ]
+   ],
+   "text": "A conducting \\(Coil-I\\) named \\(ABCD\\), shown as a part of an imaginary cube, has a self-induction coefficient \\(L_1\\). Another conducting \\(Coil-II\\) named \\(EFGHIJ\\), shown as a part of an identical imaginary cube as \\(Coil-I\\), has a self-induction coefficient \\(L_2\\). \\(BKLC\\) is a neighboring surface of \\(Coil-I\\). Identify the correct statement(s): (ignore mutual induction between the coils)",
+   "options": {
+    "A": "If a current \\(i\\) flows through \\(Coil-I\\) in the indicated direction, the self-induction flux through \\(Coil-I\\) is \\(L_1 i\\)",
+    "B": "If a current \\(i\\) flows through \\(Coil-II\\) in the indicated direction, the self-induction flux through \\(Coil-II\\) is \\(L_2 i\\)",
+    "C": "If a current \\(i\\) flows through \\(Coil-I\\) in the indicated direction, the flux through the neighboring surface \\(BKLC\\) is \\(\\dfrac{L_2}{2}i\\)",
+    "D": "If a current \\(i\\) flows through \\(Coil-I\\) in the indicated direction, the flux through the neighboring surface \\(BKLC\\) is \\(\\left(\\dfrac{L_2}{2}-L_1\\right)i\\)"
+   },
+   "figure": {
+    "image": "f28.png",
+    "page": 11,
+    "y0": 148.0,
+    "y1": 294.6
+   }
   },
   {
    "n": 29,
@@ -473,7 +624,20 @@
    ],
    "solution": [
     "s29_0.png"
-   ]
+   ],
+   "text": "In a R-L-C series circuit shown, the readings of voltmeters \\(V_1\\) and \\(V_2\\) are \\(50\\sqrt{2}\\,V\\) and \\(120V\\) respectively. Choose the correct statement(s)",
+   "options": {
+    "A": "Voltage across resistor, inductor and capacitor are 50V, 50V and 170V respectively.",
+    "B": "Voltage across resistor, inductor and capacitor are 10V, 90V and 30V respectively.",
+    "C": "power factor of the circuit is \\(\\dfrac{5}{13}\\)",
+    "D": "circuit is capacitive in nature."
+   },
+   "figure": {
+    "image": "f29.png",
+    "page": 11,
+    "y0": 545.0,
+    "y1": 655.6
+   }
   },
   {
    "n": 30,
@@ -489,7 +653,20 @@
    ],
    "solution": [
     "s30_0.png"
-   ]
+   ],
+   "text": "Two small blocks of mass \\(m\\) and \\(4m\\) are connected to two springs as shown in figure. Both springs have stiffness \\(K\\) and they are in their natural length when the blocks are at point \\(O\\). Both the blocks are pushed so that both the springs get compressed by a distance \\(a\\). First the block of mass \\(m\\) is released and after it travels a distance \\(\\left(1-\\dfrac{\\sqrt{3}}{2}\\right)a\\), the second block is also released.",
+   "options": {
+    "A": "The distance from point \\(O\\) where the two blocks first collide is \\(a\\cos\\left(\\dfrac{5\\pi}{18}\\right)\\)",
+    "B": "The distance from point \\(O\\) where the two blocks first collide is \\(a\\cos\\left(\\dfrac{5\\pi}{9}\\right)\\)",
+    "C": "The time at which the two blocks collide after the block of mass \\(4m\\) is released is \\(\\dfrac{5\\pi}{9}\\sqrt{\\dfrac{m}{k}}\\)",
+    "D": "The time at which the two blocks collide after the block of mass \\(4m\\) is released is \\(\\dfrac{5\\pi}{18}\\sqrt{\\dfrac{m}{k}}\\)"
+   },
+   "figure": {
+    "image": "f30.png",
+    "page": 12,
+    "y0": 164.3,
+    "y1": 235.2
+   }
   },
   {
    "n": 31,
@@ -505,7 +682,14 @@
    ],
    "solution": [
     "s31_0.png"
-   ]
+   ],
+   "text": "A system of coordinates is drawn in a medium whose refractive index varies according to \\(\\mu=\\dfrac{2}{1+y^2};0&lt;y\\le 1\\) and \\(\\mu=1;y>1,\\) A ray of light is incident at the origin making an angle of \\(60^0\\) with the \\(y-\\)axis as shown. At point \\(P\\) the ray becomes parallel to the \\(x-\\)axis as shown at \\(y=H\\). Find \\(\\dfrac{1}{H^2}\\). (Take \\(\\sqrt{3}=1.73\\))",
+   "figure": {
+    "image": "f31.png",
+    "page": 12,
+    "y0": 638.4,
+    "y1": 765.6
+   }
   },
   {
    "n": 32,
@@ -520,8 +704,16 @@
     "q32_0.png"
    ],
    "solution": [
-    "s32_0.png"
-   ]
+    "s32_0.png",
+    "s32_1.png"
+   ],
+   "text": "A rectangular frame of negligible resistance with capacitor of capacitance \\(C=5\\mu F\\) is placed near an infinitely long wire carrying current \\(I=I_0\\sin\\left(\\omega t+\\dfrac{\\pi}{6}\\right)A\\) with the wire and the frame being in the same plane. Charge on the capacitor (in \\(\\mu C\\)) at \\(t=0s\\) is \\(\\left(\\omega=10^4\\ rad/s,\\, i_0=10^2\\,A,\\,\\sqrt{3}=1.73,\\,\\ln(2)=0.693\\right)\\)",
+   "figure": {
+    "image": "f32.png",
+    "page": 13,
+    "y0": 172.9,
+    "y1": 267.1
+   }
   },
   {
    "n": 33,
@@ -537,7 +729,14 @@
    ],
    "solution": [
     "s33_0.png"
-   ]
+   ],
+   "text": "\\(S\\) is a neutral conducting sphere. A point charge \\(q=1\\mu C\\) is placed at \\(A\\). C is the center of the sphere and \\(AB\\) is a tangent. \\(BC=3\\,m\\) and \\(AB=4\\,m\\). The electric potential at \\(B\\) due to the induced charges is \\(-x\\,kV\\). Find \\(x\\).",
+   "figure": {
+    "image": "f33.png",
+    "page": 13,
+    "y0": 354.6,
+    "y1": 474.5
+   }
   },
   {
    "n": 34,
@@ -553,7 +752,14 @@
    ],
    "solution": [
     "s34_0.png"
-   ]
+   ],
+   "text": "The length of a pencil is being measured by a Vernier caliper. The least count is \\(0.05\\) times the value of one division of the main scale. The Vernier scale has \\(n\\) divisions which coincide with \\((n-4)\\) divisions of the main scale. Also, while taking the reading it is noticed that the \\(\\left(\\dfrac{n}{5}\\right)^{th}\\) division of the Vernier scale exactly coincides with one of the main scale divisions. The length of the pencil (in \\(cm\\)) is:<br>(assume there is no zero error)",
+   "figure": {
+    "image": "f34.png",
+    "page": 13,
+    "y0": 629.9,
+    "y1": 737.1
+   }
   },
   {
    "n": 35,
@@ -568,8 +774,16 @@
     "q35_0.png"
    ],
    "solution": [
-    "s35_0.png"
-   ]
+    "s35_0.png",
+    "s35_1.png"
+   ],
+   "text": "In the photo-electric experiment, if we use monochromatic light, the I-V curve is as shown. If the work function of the metal is \\(2.35\\,eV\\), estimate the power of light used (in \\(W\\)) given the efficiency of photoemission \\(10^{-3}\\%\\).",
+   "figure": {
+    "image": "f35.png",
+    "page": 14,
+    "y0": 128.4,
+    "y1": 245.3
+   }
   },
   {
    "n": 36,
@@ -585,7 +799,14 @@
    ],
    "solution": [
     "s36_0.png"
-   ]
+   ],
+   "text": "Block \\(A\\) of mass \\(m\\) is kept on a rough horizontal surface and is connected to a dielectric slab of mass \\(\\dfrac{m}{6}\\) and dielectric constant \\(k\\) by means of a light inextensible string passing over a fixed pulley as shown. The dielectric can completely fill the space between the capacitor plates of area \\(l\\times l\\) and separation between the plates \\(d\\) kept in vertical position. Initially the switch is open and the length of the dielectric inside the capacitor is \\(b\\). The coefficient of friction between block \\(A\\) and the surface is \\(\\dfrac{1}{4}\\). The minimum value of emf \\(V\\) of the battery so that just after closing the switch block \\(A\\) begins to move is \\(V_{\\min}=\\sqrt{\\dfrac{mgd}{x\\varepsilon_0 l(k-1)}}\\). If \\(V=2V_{\\min}\\), then the speed of block \\(A\\) when the dielectric completely fills the space between the capacitor is \\(\\sqrt{yg(l-b)}\\). Find \\(xy\\).",
+   "figure": {
+    "image": "f36.png",
+    "page": 14,
+    "y0": 552.7,
+    "y1": 726.6
+   }
   },
   {
    "n": 37,
@@ -601,7 +822,8 @@
    ],
    "solution": [
     "s37_0.png"
-   ]
+   ],
+   "text": "The primary alcohol 2-methoxyethanol \\(\\ce{CH3O-CH2-CH2-OH}\\), can be oxidized to the corresponding carboxylic acid with aqueous nitric acid (\\(\\ce{HNO3}\\)). The by-product of the oxidation is nitric oxide, NO. How many moles of \\(\\ce{HNO3}\\) are required to oxidize 4.5 moles of alcohol?"
   },
   {
    "n": 38,
@@ -617,7 +839,8 @@
    ],
    "solution": [
     "s38_0.png"
-   ]
+   ],
+   "text": "A mixture of He and \\(\\ce{O2}\\) is used to inflate a balloon to a volume of 50L at 1atm and \\(27^{0}\\mathrm{C}\\). The balloon just barely rises from the table. The balloon weighs 8g and the molar mass of air is 29g. The percentage composition of He in the gas mixture used to fill balloon by weight is? (nearest integer)"
   },
   {
    "n": 39,
@@ -633,7 +856,8 @@
    ],
    "solution": [
     "s39_0.png"
-   ]
+   ],
+   "text": "How many of the following statements is/are <b>CORRECT</b> for the following sequence of reactions?<br>\\(\\text{Phenyl alanine}\\xrightarrow{\\ce{BH3}\\cdot\\ce{THF}/\\Delta}[\\mathrm{P}]\\xrightarrow{\\ce{HNO2}/\\Delta}[\\mathrm{Q}]\\xrightarrow{\\ce{Br2}/\\ce{H+}}[\\mathrm{R}]\\xrightarrow[\\ce{E2}]{\\ce{NaOEt}/\\Delta}[\\mathrm{S}]\\)<br>i) The formation of [R] from [Q] is electrophilic substitution reaction<br>ii) The conversion of [P] to [Q] involves methyl shift<br>iii) The number of \\(\\pi\\)-bonds in [S] &gt; [Q] &gt; [P]<br>iv) The compound [Q] can undergo self-aldol condensation<br>v) The compound [Q] gives yellow precipitate with sodium hypoiodite"
   },
   {
    "n": 40,
@@ -649,7 +873,8 @@
    ],
    "solution": [
     "s40_0.png"
-   ]
+   ],
+   "text": "A saturated calomel electrode is coupled through a salt bridge with a quinhydrone electrode placed in a solution containing a weak acid HA at 0.02M and NaA at 0.04M. The observed EMF at \\(25^{0}\\,\\mathrm{C}\\) is 0.158V. Given \\(\\mathrm{E}^{0}\\) of saturated calomel is 0.242V and quinhydrone electrode is 0.70V. If the dissociation constant of HA is \\(\\mathrm{P}\\times 10^{-\\mathrm{Q}}\\), then the value of (P + Q) is? \\(\\left(\\dfrac{2.303\\mathrm{RT}}{\\mathrm{F}}=0.06\\right)\\)"
   },
   {
    "n": 41,
@@ -665,7 +890,8 @@
    ],
    "solution": [
     "s41_0.png"
-   ]
+   ],
+   "text": "White phosphorus reacts with thionyl chloride and form compounds A, B and C. Chlorine is present in compounds A and B while sulphur is present in compounds B and C. If percentage by mass of sulphur is more in C than B, then how many of the following is/are <b>INCORRECT</b>?<br>i) Compound A is used in vulcanization of rubber<br>ii) Compound B is used in the conversion of alcohols into alkyl chlorides<br>iii) Total number of lone pairs per molecule of C is greater than B<br>iv) The hybridization of central atoms in A and B is same but in C is different<br>v) Same products are formed when white phosphorus reacts with sulfuryl chloride<br>vi) The number of lone pairs on the central atom of A and C is same"
   },
   {
    "n": 42,
@@ -681,7 +907,8 @@
    ],
    "solution": [
     "s42_0.png"
-   ]
+   ],
+   "text": "How many of the following bond length orders is/are <b>CORRECT</b>?<br>(a) Bond length \\(\\ce{N2+}\\) &gt; Bond length \\(\\ce{N2}\\)<br>(b) Bond length \\(\\ce{NO+}\\) &lt; Bond length of NO<br>(c) Bond length \\(\\ce{CN-}\\) &lt; Bond length of CN<br>(d) Bond length \\(\\ce{O2-}\\) &lt; Bond length of \\(\\ce{O2^{-2}}\\)<br>(e) Bond length \\(\\ce{O2}\\) &gt; Bond length of \\(\\ce{O2+}\\)<br>(f) Bond length \\(\\ce{B2}\\) &gt; Bond length of \\(\\ce{B2-}\\)"
   },
   {
    "n": 43,
@@ -697,7 +924,14 @@
    ],
    "solution": [
     "s43_0.png"
-   ]
+   ],
+   "text": "Which of the following statements is/are <b>CORRECT</b>?",
+   "options": {
+    "A": "When sulphur dioxide gas is bubbled through an aqueous solution of copper sulphate in presence of potassium thiocyanate, gives cuprous thiocyanate.",
+    "B": "Phosphorus can react with nitric acid of appropriate concentration to give equimolar ratio of nitric oxide and nitrogen dioxide.",
+    "C": "Sodium iodate on treating with sodium bisulphite(not in excess) solution, liberates iodine.",
+    "D": "Anhydrous potassium nitrate when heated with excess of metallic potassium gives nitrogen dioxide"
+   }
   },
   {
    "n": 44,
@@ -713,7 +947,14 @@
    ],
    "solution": [
     "s44_0.png"
-   ]
+   ],
+   "text": "Analyze the following data and choose the <b>CORRECT</b> option(s)<table border=\"1\" style=\"border-collapse:collapse\"><tr><th>Compound [X]</th><th>Compound [Y]</th></tr><tr><td>M.F: \\(\\ce{C4H6O}\\) (acyclic compound)</td><td>M.F: \\(\\ce{C4H6O}\\) (acyclic compound)</td></tr><tr><td>Gives positive tollens test</td><td>Gives positive tollens test</td></tr><tr><td>Gives positive bromine water test</td><td>Gives positive bromine water test</td></tr><tr><td>Can show tautomerism</td><td>Cannot show tautomerism</td></tr></table>",
+   "options": {
+    "A": "[X] &amp; [Y] are positional isomers",
+    "B": "[Y] is an aldol condensation product of acetaldehyde",
+    "C": "The number of replaceable hydrogens with deuterium, when [X] is treated with \\(\\ce{D3O+}\\) is 4",
+    "D": "[X] &amp; [Y] are chain isomers"
+   }
   },
   {
    "n": 45,
@@ -729,7 +970,14 @@
    ],
    "solution": [
     "s45_0.png"
-   ]
+   ],
+   "text": "For the first order reaction, \\(\\ce{2N2O5(g) -> 4NO2(g) + O2(g)}\\)",
+   "options": {
+    "A": "the concentration of the reactant decreases exponentially with time.",
+    "B": "the half&ndash;life of the reaction decreases with increasing temperature.",
+    "C": "the half&ndash;life of the reaction depends on the initial concentration of the reactant.",
+    "D": "the reactant proceeds to almost 99.6% completion in eight half&ndash;lives"
+   }
   },
   {
    "n": 46,
@@ -745,7 +993,14 @@
    ],
    "solution": [
     "s46_0.png"
-   ]
+   ],
+   "text": "Which of the following statement(s) is/are <b>CORRECT</b>?",
+   "options": {
+    "A": "Excess of lithium makes LiCl crystals pink due to F &ndash; centres.",
+    "B": "When silicon is doped with group-15 element n-type semiconductor is formed.",
+    "C": "\\(\\ce{H2O}\\), NaCl and \\(\\ce{C6H6}\\) are some examples of diamagnetic substances.",
+    "D": "AgBr shows both schottky and frenkel defects.."
+   }
   },
   {
    "n": 47,
@@ -761,7 +1016,14 @@
    ],
    "solution": [
     "s47_0.png"
-   ]
+   ],
+   "text": "Which of the following statements is/are <b>CORRECT</b>?",
+   "options": {
+    "A": "The contraction in transition series is attributed to the imperfect shielding of one electron by another in the same subshell",
+    "B": "The shielding of one f-electron by another is less than that of one d-electron by another with the increase in nuclear charge along the series in the same subshell",
+    "C": "The size of \\(\\ce{Ln^{+3}}\\) ions smoothly increases as their atomic number increases.",
+    "D": "As a result of Lanthanoid contraction, Zr and Hf have almost identical radii which accounts for their occurrence together in nature and for difficulty faced in their separation"
+   }
   },
   {
    "n": 48,
@@ -777,7 +1039,20 @@
    ],
    "solution": [
     "s48_0.png"
-   ]
+   ],
+   "text": "Which of the following is <b>correct</b> about the reaction:",
+   "options": {
+    "A": "&lsquo;A&rsquo; consists of mixture of oximes, which undergo rearrangement with the same rate.",
+    "B": "The rate of rearrangement of &lsquo;A&rsquo; to &lsquo;B&rsquo; is slow in \\(\\ce{D2O}\\) than in \\(\\ce{H2O}\\).",
+    "C": "When \\(\\ce{H2O^{18}}\\) is used in the rearrangement step, the amide is found to contain \\(\\ce{O^{18}}\\).",
+    "D": "&lsquo;A&rsquo; consists of two oximes, both undergo rearrangement at different rates"
+   },
+   "figure": {
+    "image": "f48.png",
+    "page": 18,
+    "y0": 596.2,
+    "y1": 659.5
+   }
   },
   {
    "n": 49,
@@ -793,7 +1068,14 @@
    ],
    "solution": [
     "s49_0.png"
-   ]
+   ],
+   "text": "In how many of the following ethers, both the hydrolysed products undergo +ve iodoform test?",
+   "figure": {
+    "image": "f49.png",
+    "page": 19,
+    "y0": 197.3,
+    "y1": 340.6
+   }
   },
   {
    "n": 50,
@@ -809,7 +1091,8 @@
    ],
    "solution": [
     "s50_0.png"
-   ]
+   ],
+   "text": "3g of 98% pure sample of \\(\\ce{K_xH(C2O4)_y}\\) is reacted with 100 ml of a 0.1M acidified \\(\\ce{KMnO4}\\) solution. The excess oxidant required 20ml of 0.5M Mohr salt solution for complete reaction. The same mass of another sample of \\(\\ce{K_xH(C2O4)_y}\\) is reacted with 0.4M NaOH. The volume of NaOH required for complete reaction in ml is?"
   },
   {
    "n": 51,
@@ -825,7 +1108,8 @@
    ],
    "solution": [
     "s51_0.png"
-   ]
+   ],
+   "text": "Loratadine, marketed as an antiallergy medication under the name Claritin, has four rings, eight double bonds and the formula \\(\\ce{C22H_nClN2O2}\\). How many hydrogen atoms are present per molecule of loratadine?"
   },
   {
    "n": 52,
@@ -841,7 +1125,8 @@
    ],
    "solution": [
     "s52_0.png"
-   ]
+   ],
+   "text": "\\(\\Delta\\mathrm{G}^{0}\\) for the reaction, \\(\\ce{CO(g) + Cl2(g) <=> COCl2(g)}\\) in cal \\(\\mathrm{mol}^{-1}\\) is given by,<br>\\(\\Delta\\mathrm{G}^{0} = -24.5\\times 10^{3} + 4\\mathrm{T}\\ln\\mathrm{T} + 3.5\\mathrm{T}\\). Assuming ideal behaviour, the magnitude of \\(\\Delta\\mathrm{H}^{0}\\) for the reaction at 400K in kcal \\(\\mathrm{mol}^{-1}\\) is? (nearest integer)"
   },
   {
    "n": 53,
@@ -857,7 +1142,8 @@
    ],
    "solution": [
     "s53_0.png"
-   ]
+   ],
+   "text": "The enthalpy of hydration of \\(\\ce{Fe^{+2}}\\) ion is 12 Kcal \\(\\mathrm{mol}^{-1}\\) higher than what would be expected if there were no crystal field stabilisation energy. The magnitude of \\(\\Delta_0\\) in kcal for \\(\\ce{[Fe(H2O)6]^{2+}}\\) is?"
   },
   {
    "n": 54,
@@ -873,7 +1159,8 @@
    ],
    "solution": [
     "s54_0.png"
-   ]
+   ],
+   "text": "A 1.60-g sample of a mixture of naphthalene (\\(\\ce{C10H8}\\)) and anthracene (\\(\\ce{C14H10}\\)) is dissolved in 20.0 g benzene (\\(\\ce{C6H6}\\)). The freezing point of the solution is \\(2.81^{0}\\mathrm{C}\\). The mass percent of naphthalene in the mixture is? The freezing point of benzene is \\(5.51^{0}\\mathrm{C}\\) and \\(\\mathrm{K_f}\\) is \\(5.12^{0}\\mathrm{C}\\) kg/mol."
   }
  ]
 }

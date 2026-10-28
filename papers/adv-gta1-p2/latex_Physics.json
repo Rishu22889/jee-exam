@@ -1,0 +1,195 @@
+[
+ {
+  "n": 19,
+  "text": "A thin uniform rod of length \\(L\\) is rigidly attached to a thin uniform semi-circular ring of same linear density to form a rigid structure as shown. The system is hinged as shown and at equilibrium the rod is horizontal. The distance of the center of mass of the system from the hinge is then \\(\\dfrac{L}{2}\\left(\\dfrac{\\pi+\\alpha}{\\pi+\\beta}\\right)\\). Find \\(\\alpha\\beta\\).",
+  "figure": {
+   "page": 7,
+   "y0": 296.6,
+   "y1": 428.8
+  }
+ },
+ {
+  "n": 20,
+  "text": "A cubical container (material of thermal conductivity \\(K\\)) of side \\(a\\) and wall thickness \\(x\\,(x\\ll a)\\) is suspended in air and filled with \\(n\\) moles of a diatomic gas (adiabatic exponent \\(\\gamma\\)) in a room of room temperature \\(T_0\\). If at time \\(t=0\\), the temperature of the diatomic gas is \\(T_1\\,(T_1>T_0)\\), then the temperature of the gas at a time \\(t\\) is given by \\[T=pT_0+(T_1-T_0)\\exp\\left[-\\dfrac{qKa^2(\\gamma+s)t}{nRx}\\right].\\ \\text{Find } p+q+s.\\]"
+ },
+ {
+  "n": 21,
+  "text": "Two bubbles contain the same ideal gas at the same temperature such that one is trapped inside the other. The system is kept in vacuum. Ratio of densities of the gas in the inner and outer bubbles is \\(x\\) and the ratio of the number of moles of the gas in the inner and outer bubbles is \\(y\\). Find \\(\\dfrac{x}{y}\\).",
+  "figure": {
+   "page": 7,
+   "y0": 657.4,
+   "y1": 772.5
+  }
+ },
+ {
+  "n": 22,
+  "text": "\\(ABC\\) is a spherical wavefront centered at \\(O\\). It is incident on slits \\(S_1\\) and \\(S_2\\) such that \\(BS_1=3\\lambda, S_1S_2=4\\lambda; BO=6\\lambda\\) and \\(S_1E=128\\lambda\\), where \\(\\lambda\\) is the wavelength of the incident wave. A mica sheet of refractive index \\(1.5\\) is placed in front of \\(S_2\\). The minimum value of the thickness of the mica sheet such that the central maximum is formed at \\(E\\) is \\(\\dfrac{(10k+1)\\lambda}{8}\\). Find the value of \\(k\\).",
+  "figure": {
+   "page": 8,
+   "y0": 162.2,
+   "y1": 307.1
+  }
+ },
+ {
+  "n": 23,
+  "text": "\\(PQRS\\) is a square of side \\(l_0\\). \\(A,B,C\\) and \\(D\\) are four long wires carrying currents perpendicular to the plane of the paper as shown. \\(PA=QB=RC=SD=\\dfrac{l_0}{\\sqrt{5}}\\). The magnitudes of the currents in \\(A,B,C\\) and \\(D\\) are \\(i_0,2i_0,8i_0\\) and \\(4i_0\\) respectively. It is given that \\(\\int_P^Q \\vec{B}_A\\cdot\\vec{dl}=-9\\mu_0\\ \\text{Tesla meter}\\) and \\(\\int_R^S \\vec{B}_B\\cdot\\vec{dl}=5\\mu_0\\ \\text{Tesla meter}\\), where \\(\\vec{B}_A\\) and \\(\\vec{B}_B\\) are the magnetic fields due to the wires \\(A\\) and \\(B\\) respectively. The magnitude of \\(i_0\\) is \\(3p+2\\). Find the value of \\(p\\).",
+  "figure": {
+   "page": 8,
+   "y0": 465.2,
+   "y1": 597.6
+  }
+ },
+ {
+  "n": 24,
+  "text": "A uniform rod \\(AB\\) of mass \\(M\\) length \\(L\\) is fixed. A point mass is released at rest from point \\(C\\) as shown in the figure. The speed of the mass is found to be \\(v=\\sqrt{\\dfrac{xGM}{L}\\ln\\left(\\dfrac{y}{2}\\right)}\\) when the mass is at a distance of \\(\\dfrac{L}{2}\\) for the end \\(B\\) of the rod. Find \\(x+y\\).",
+  "figure": {
+   "page": 8,
+   "y0": 714.0,
+   "y1": 761.6
+  }
+ },
+ {
+  "n": 25,
+  "text": "A small ball of mass \\(m\\) is placed in a circular tube of negligible width and mass \\(M\\) and radius \\(R\\) which is kept on a smooth horizontal plane in a gravity free space. Friction is absent between the ball and the tube. The ball is given a velocity \\(v_0\\) as shown. Choose the correct option(s):",
+  "figure": {
+   "page": 9,
+   "y0": 329.9,
+   "y1": 444.3
+  },
+  "options": {
+   "A": "The path of the ball relative to the center of mass of the (ball + tube) system is circular.",
+   "B": "The path of the ball relative to the center of mass of the (ball + tube) system is elliptical",
+   "C": "Radius of curvature of the trajectory of the ball relative to the ground at the time of projection is \\(\\dfrac{MR}{m+M}\\)",
+   "D": "Normal force between the tube and the wall if \\(M=2m\\), at the time of projection of the ball is \\(\\dfrac{2mv_0^2}{3R}\\)."
+  }
+ },
+ {
+  "n": 26,
+  "text": "A tuning fork of frequency \\(1000\\,Hz\\) is sounded over a resonance tube as shown. Speed of sound is \\(320\\,m/s\\) and the area of cross section of the tube is \\(A=2000\\,cm^2\\). At a depth of \\(100\\,cm\\) a water outlet is attached which has an cross-sectional area of \\(a=1\\,cm^2\\) and is opened at \\(t=0\\,s\\). Neglect end correction.<br>(Take \\(g=10\\,m/s^{-2};\\sqrt{0.92}=0.96;\\sqrt{0.76}=0.87\\))",
+  "figure": {
+   "page": 10,
+   "y0": 54.4,
+   "y1": 214.1
+  },
+  "options": {
+   "A": "First resonance will occur when the water level goes down by \\(8\\,cm\\) from the open end.",
+   "B": "First resonance will occur when the water level goes down by \\(16\\,cm\\) from the open end.",
+   "C": "The time at which the first resonance occurs is nearly at \\(t=0.6\\,\\text{min}\\)",
+   "D": "The time difference between the first two resonances is nearly \\(\\Delta t=1.3\\,\\text{min}\\)"
+  }
+ },
+ {
+  "n": 27,
+  "text": "A hexagonal prism wire frame is made with \\(6\\) sources of equal emf \\(\\varepsilon=5V\\) and internal resistance \\(r=1\\Omega\\). Six equal resistances each equal to \\(R=2\\Omega\\) and four capacitors of equal capacitance \\(C=2\\,\\mu F\\) are connected as shown. The correct statement(s) are",
+  "figure": {
+   "page": 10,
+   "y0": 412.8,
+   "y1": 641.9
+  },
+  "options": {
+   "A": "Value of \\(I=6\\,A\\)",
+   "B": "Value of \\(I=5\\,A\\)",
+   "C": "Value of charge on the \\(4C\\) capacitor is \\(16\\,\\mu C\\)",
+   "D": "The value of charge on the capacitor with capacitance \\(C\\) is zero"
+  }
+ },
+ {
+  "n": 28,
+  "text": "A conducting \\(Coil-I\\) named \\(ABCD\\), shown as a part of an imaginary cube, has a self-induction coefficient \\(L_1\\). Another conducting \\(Coil-II\\) named \\(EFGHIJ\\), shown as a part of an identical imaginary cube as \\(Coil-I\\), has a self-induction coefficient \\(L_2\\). \\(BKLC\\) is a neighboring surface of \\(Coil-I\\). Identify the correct statement(s): (ignore mutual induction between the coils)",
+  "figure": {
+   "page": 11,
+   "y0": 148.0,
+   "y1": 294.6
+  },
+  "options": {
+   "A": "If a current \\(i\\) flows through \\(Coil-I\\) in the indicated direction, the self-induction flux through \\(Coil-I\\) is \\(L_1 i\\)",
+   "B": "If a current \\(i\\) flows through \\(Coil-II\\) in the indicated direction, the self-induction flux through \\(Coil-II\\) is \\(L_2 i\\)",
+   "C": "If a current \\(i\\) flows through \\(Coil-I\\) in the indicated direction, the flux through the neighboring surface \\(BKLC\\) is \\(\\dfrac{L_2}{2}i\\)",
+   "D": "If a current \\(i\\) flows through \\(Coil-I\\) in the indicated direction, the flux through the neighboring surface \\(BKLC\\) is \\(\\left(\\dfrac{L_2}{2}-L_1\\right)i\\)"
+  }
+ },
+ {
+  "n": 29,
+  "text": "In a R-L-C series circuit shown, the readings of voltmeters \\(V_1\\) and \\(V_2\\) are \\(50\\sqrt{2}\\,V\\) and \\(120V\\) respectively. Choose the correct statement(s)",
+  "figure": {
+   "page": 11,
+   "y0": 545.0,
+   "y1": 655.6
+  },
+  "options": {
+   "A": "Voltage across resistor, inductor and capacitor are 50V, 50V and 170V respectively.",
+   "B": "Voltage across resistor, inductor and capacitor are 10V, 90V and 30V respectively.",
+   "C": "power factor of the circuit is \\(\\dfrac{5}{13}\\)",
+   "D": "circuit is capacitive in nature."
+  }
+ },
+ {
+  "n": 30,
+  "text": "Two small blocks of mass \\(m\\) and \\(4m\\) are connected to two springs as shown in figure. Both springs have stiffness \\(K\\) and they are in their natural length when the blocks are at point \\(O\\). Both the blocks are pushed so that both the springs get compressed by a distance \\(a\\). First the block of mass \\(m\\) is released and after it travels a distance \\(\\left(1-\\dfrac{\\sqrt{3}}{2}\\right)a\\), the second block is also released.",
+  "figure": {
+   "page": 12,
+   "y0": 164.3,
+   "y1": 235.2
+  },
+  "options": {
+   "A": "The distance from point \\(O\\) where the two blocks first collide is \\(a\\cos\\left(\\dfrac{5\\pi}{18}\\right)\\)",
+   "B": "The distance from point \\(O\\) where the two blocks first collide is \\(a\\cos\\left(\\dfrac{5\\pi}{9}\\right)\\)",
+   "C": "The time at which the two blocks collide after the block of mass \\(4m\\) is released is \\(\\dfrac{5\\pi}{9}\\sqrt{\\dfrac{m}{k}}\\)",
+   "D": "The time at which the two blocks collide after the block of mass \\(4m\\) is released is \\(\\dfrac{5\\pi}{18}\\sqrt{\\dfrac{m}{k}}\\)"
+  }
+ },
+ {
+  "n": 31,
+  "text": "A system of coordinates is drawn in a medium whose refractive index varies according to \\(\\mu=\\dfrac{2}{1+y^2};0&lt;y\\le 1\\) and \\(\\mu=1;y>1,\\) A ray of light is incident at the origin making an angle of \\(60^0\\) with the \\(y-\\)axis as shown. At point \\(P\\) the ray becomes parallel to the \\(x-\\)axis as shown at \\(y=H\\). Find \\(\\dfrac{1}{H^2}\\). (Take \\(\\sqrt{3}=1.73\\))",
+  "figure": {
+   "page": 12,
+   "y0": 638.4,
+   "y1": 765.6
+  }
+ },
+ {
+  "n": 32,
+  "text": "A rectangular frame of negligible resistance with capacitor of capacitance \\(C=5\\mu F\\) is placed near an infinitely long wire carrying current \\(I=I_0\\sin\\left(\\omega t+\\dfrac{\\pi}{6}\\right)A\\) with the wire and the frame being in the same plane. Charge on the capacitor (in \\(\\mu C\\)) at \\(t=0s\\) is \\(\\left(\\omega=10^4\\ rad/s,\\, i_0=10^2\\,A,\\,\\sqrt{3}=1.73,\\,\\ln(2)=0.693\\right)\\)",
+  "figure": {
+   "page": 13,
+   "y0": 172.9,
+   "y1": 267.1
+  }
+ },
+ {
+  "n": 33,
+  "text": "\\(S\\) is a neutral conducting sphere. A point charge \\(q=1\\mu C\\) is placed at \\(A\\). C is the center of the sphere and \\(AB\\) is a tangent. \\(BC=3\\,m\\) and \\(AB=4\\,m\\). The electric potential at \\(B\\) due to the induced charges is \\(-x\\,kV\\). Find \\(x\\).",
+  "figure": {
+   "page": 13,
+   "y0": 354.6,
+   "y1": 474.5
+  }
+ },
+ {
+  "n": 34,
+  "text": "The length of a pencil is being measured by a Vernier caliper. The least count is \\(0.05\\) times the value of one division of the main scale. The Vernier scale has \\(n\\) divisions which coincide with \\((n-4)\\) divisions of the main scale. Also, while taking the reading it is noticed that the \\(\\left(\\dfrac{n}{5}\\right)^{th}\\) division of the Vernier scale exactly coincides with one of the main scale divisions. The length of the pencil (in \\(cm\\)) is:<br>(assume there is no zero error)",
+  "figure": {
+   "page": 13,
+   "y0": 629.9,
+   "y1": 737.1
+  }
+ },
+ {
+  "n": 35,
+  "text": "In the photo-electric experiment, if we use monochromatic light, the I-V curve is as shown. If the work function of the metal is \\(2.35\\,eV\\), estimate the power of light used (in \\(W\\)) given the efficiency of photoemission \\(10^{-3}\\%\\).",
+  "figure": {
+   "page": 14,
+   "y0": 128.4,
+   "y1": 245.3
+  }
+ },
+ {
+  "n": 36,
+  "text": "Block \\(A\\) of mass \\(m\\) is kept on a rough horizontal surface and is connected to a dielectric slab of mass \\(\\dfrac{m}{6}\\) and dielectric constant \\(k\\) by means of a light inextensible string passing over a fixed pulley as shown. The dielectric can completely fill the space between the capacitor plates of area \\(l\\times l\\) and separation between the plates \\(d\\) kept in vertical position. Initially the switch is open and the length of the dielectric inside the capacitor is \\(b\\). The coefficient of friction between block \\(A\\) and the surface is \\(\\dfrac{1}{4}\\). The minimum value of emf \\(V\\) of the battery so that just after closing the switch block \\(A\\) begins to move is \\(V_{\\min}=\\sqrt{\\dfrac{mgd}{x\\varepsilon_0 l(k-1)}}\\). If \\(V=2V_{\\min}\\), then the speed of block \\(A\\) when the dielectric completely fills the space between the capacitor is \\(\\sqrt{yg(l-b)}\\). Find \\(xy\\).",
+  "figure": {
+   "page": 14,
+   "y0": 552.7,
+   "y1": 726.6
+  }
+ }
+]

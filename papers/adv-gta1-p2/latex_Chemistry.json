@@ -1,0 +1,120 @@
+[
+ {
+  "n": 37,
+  "text": "The primary alcohol 2-methoxyethanol \\(\\ce{CH3O-CH2-CH2-OH}\\), can be oxidized to the corresponding carboxylic acid with aqueous nitric acid (\\(\\ce{HNO3}\\)). The by-product of the oxidation is nitric oxide, NO. How many moles of \\(\\ce{HNO3}\\) are required to oxidize 4.5 moles of alcohol?"
+ },
+ {
+  "n": 38,
+  "text": "A mixture of He and \\(\\ce{O2}\\) is used to inflate a balloon to a volume of 50L at 1atm and \\(27^{0}\\mathrm{C}\\). The balloon just barely rises from the table. The balloon weighs 8g and the molar mass of air is 29g. The percentage composition of He in the gas mixture used to fill balloon by weight is? (nearest integer)"
+ },
+ {
+  "n": 39,
+  "text": "How many of the following statements is/are <b>CORRECT</b> for the following sequence of reactions?<br>\\(\\text{Phenyl alanine}\\xrightarrow{\\ce{BH3}\\cdot\\ce{THF}/\\Delta}[\\mathrm{P}]\\xrightarrow{\\ce{HNO2}/\\Delta}[\\mathrm{Q}]\\xrightarrow{\\ce{Br2}/\\ce{H+}}[\\mathrm{R}]\\xrightarrow[\\ce{E2}]{\\ce{NaOEt}/\\Delta}[\\mathrm{S}]\\)<br>i) The formation of [R] from [Q] is electrophilic substitution reaction<br>ii) The conversion of [P] to [Q] involves methyl shift<br>iii) The number of \\(\\pi\\)-bonds in [S] &gt; [Q] &gt; [P]<br>iv) The compound [Q] can undergo self-aldol condensation<br>v) The compound [Q] gives yellow precipitate with sodium hypoiodite"
+ },
+ {
+  "n": 40,
+  "text": "A saturated calomel electrode is coupled through a salt bridge with a quinhydrone electrode placed in a solution containing a weak acid HA at 0.02M and NaA at 0.04M. The observed EMF at \\(25^{0}\\,\\mathrm{C}\\) is 0.158V. Given \\(\\mathrm{E}^{0}\\) of saturated calomel is 0.242V and quinhydrone electrode is 0.70V. If the dissociation constant of HA is \\(\\mathrm{P}\\times 10^{-\\mathrm{Q}}\\), then the value of (P + Q) is? \\(\\left(\\dfrac{2.303\\mathrm{RT}}{\\mathrm{F}}=0.06\\right)\\)"
+ },
+ {
+  "n": 41,
+  "text": "White phosphorus reacts with thionyl chloride and form compounds A, B and C. Chlorine is present in compounds A and B while sulphur is present in compounds B and C. If percentage by mass of sulphur is more in C than B, then how many of the following is/are <b>INCORRECT</b>?<br>i) Compound A is used in vulcanization of rubber<br>ii) Compound B is used in the conversion of alcohols into alkyl chlorides<br>iii) Total number of lone pairs per molecule of C is greater than B<br>iv) The hybridization of central atoms in A and B is same but in C is different<br>v) Same products are formed when white phosphorus reacts with sulfuryl chloride<br>vi) The number of lone pairs on the central atom of A and C is same"
+ },
+ {
+  "n": 42,
+  "text": "How many of the following bond length orders is/are <b>CORRECT</b>?<br>(a) Bond length \\(\\ce{N2+}\\) &gt; Bond length \\(\\ce{N2}\\)<br>(b) Bond length \\(\\ce{NO+}\\) &lt; Bond length of NO<br>(c) Bond length \\(\\ce{CN-}\\) &lt; Bond length of CN<br>(d) Bond length \\(\\ce{O2-}\\) &lt; Bond length of \\(\\ce{O2^{-2}}\\)<br>(e) Bond length \\(\\ce{O2}\\) &gt; Bond length of \\(\\ce{O2+}\\)<br>(f) Bond length \\(\\ce{B2}\\) &gt; Bond length of \\(\\ce{B2-}\\)"
+ },
+ {
+  "n": 43,
+  "text": "Which of the following statements is/are <b>CORRECT</b>?",
+  "options": {
+   "A": "When sulphur dioxide gas is bubbled through an aqueous solution of copper sulphate in presence of potassium thiocyanate, gives cuprous thiocyanate.",
+   "B": "Phosphorus can react with nitric acid of appropriate concentration to give equimolar ratio of nitric oxide and nitrogen dioxide.",
+   "C": "Sodium iodate on treating with sodium bisulphite(not in excess) solution, liberates iodine.",
+   "D": "Anhydrous potassium nitrate when heated with excess of metallic potassium gives nitrogen dioxide"
+  }
+ },
+ {
+  "n": 44,
+  "text": "Analyze the following data and choose the <b>CORRECT</b> option(s)<table border=\"1\" style=\"border-collapse:collapse\"><tr><th>Compound [X]</th><th>Compound [Y]</th></tr><tr><td>M.F: \\(\\ce{C4H6O}\\) (acyclic compound)</td><td>M.F: \\(\\ce{C4H6O}\\) (acyclic compound)</td></tr><tr><td>Gives positive tollens test</td><td>Gives positive tollens test</td></tr><tr><td>Gives positive bromine water test</td><td>Gives positive bromine water test</td></tr><tr><td>Can show tautomerism</td><td>Cannot show tautomerism</td></tr></table>",
+  "options": {
+   "A": "[X] &amp; [Y] are positional isomers",
+   "B": "[Y] is an aldol condensation product of acetaldehyde",
+   "C": "The number of replaceable hydrogens with deuterium, when [X] is treated with \\(\\ce{D3O+}\\) is 4",
+   "D": "[X] &amp; [Y] are chain isomers"
+  }
+ },
+ {
+  "n": 45,
+  "text": "For the first order reaction, \\(\\ce{2N2O5(g) -> 4NO2(g) + O2(g)}\\)",
+  "options": {
+   "A": "the concentration of the reactant decreases exponentially with time.",
+   "B": "the half&ndash;life of the reaction decreases with increasing temperature.",
+   "C": "the half&ndash;life of the reaction depends on the initial concentration of the reactant.",
+   "D": "the reactant proceeds to almost 99.6% completion in eight half&ndash;lives"
+  }
+ },
+ {
+  "n": 46,
+  "text": "Which of the following statement(s) is/are <b>CORRECT</b>?",
+  "options": {
+   "A": "Excess of lithium makes LiCl crystals pink due to F &ndash; centres.",
+   "B": "When silicon is doped with group-15 element n-type semiconductor is formed.",
+   "C": "\\(\\ce{H2O}\\), NaCl and \\(\\ce{C6H6}\\) are some examples of diamagnetic substances.",
+   "D": "AgBr shows both schottky and frenkel defects.."
+  }
+ },
+ {
+  "n": 47,
+  "text": "Which of the following statements is/are <b>CORRECT</b>?",
+  "options": {
+   "A": "The contraction in transition series is attributed to the imperfect shielding of one electron by another in the same subshell",
+   "B": "The shielding of one f-electron by another is less than that of one d-electron by another with the increase in nuclear charge along the series in the same subshell",
+   "C": "The size of \\(\\ce{Ln^{+3}}\\) ions smoothly increases as their atomic number increases.",
+   "D": "As a result of Lanthanoid contraction, Zr and Hf have almost identical radii which accounts for their occurrence together in nature and for difficulty faced in their separation"
+  }
+ },
+ {
+  "n": 48,
+  "text": "Which of the following is <b>correct</b> about the reaction:",
+  "options": {
+   "A": "&lsquo;A&rsquo; consists of mixture of oximes, which undergo rearrangement with the same rate.",
+   "B": "The rate of rearrangement of &lsquo;A&rsquo; to &lsquo;B&rsquo; is slow in \\(\\ce{D2O}\\) than in \\(\\ce{H2O}\\).",
+   "C": "When \\(\\ce{H2O^{18}}\\) is used in the rearrangement step, the amide is found to contain \\(\\ce{O^{18}}\\).",
+   "D": "&lsquo;A&rsquo; consists of two oximes, both undergo rearrangement at different rates"
+  },
+  "figure": {
+   "page": 18,
+   "y0": 596.2,
+   "y1": 659.5
+  }
+ },
+ {
+  "n": 49,
+  "text": "In how many of the following ethers, both the hydrolysed products undergo +ve iodoform test?",
+  "figure": {
+   "page": 19,
+   "y0": 197.3,
+   "y1": 340.6
+  }
+ },
+ {
+  "n": 50,
+  "text": "3g of 98% pure sample of \\(\\ce{K_xH(C2O4)_y}\\) is reacted with 100 ml of a 0.1M acidified \\(\\ce{KMnO4}\\) solution. The excess oxidant required 20ml of 0.5M Mohr salt solution for complete reaction. The same mass of another sample of \\(\\ce{K_xH(C2O4)_y}\\) is reacted with 0.4M NaOH. The volume of NaOH required for complete reaction in ml is?"
+ },
+ {
+  "n": 51,
+  "text": "Loratadine, marketed as an antiallergy medication under the name Claritin, has four rings, eight double bonds and the formula \\(\\ce{C22H_nClN2O2}\\). How many hydrogen atoms are present per molecule of loratadine?"
+ },
+ {
+  "n": 52,
+  "text": "\\(\\Delta\\mathrm{G}^{0}\\) for the reaction, \\(\\ce{CO(g) + Cl2(g) <=> COCl2(g)}\\) in cal \\(\\mathrm{mol}^{-1}\\) is given by,<br>\\(\\Delta\\mathrm{G}^{0} = -24.5\\times 10^{3} + 4\\mathrm{T}\\ln\\mathrm{T} + 3.5\\mathrm{T}\\). Assuming ideal behaviour, the magnitude of \\(\\Delta\\mathrm{H}^{0}\\) for the reaction at 400K in kcal \\(\\mathrm{mol}^{-1}\\) is? (nearest integer)"
+ },
+ {
+  "n": 53,
+  "text": "The enthalpy of hydration of \\(\\ce{Fe^{+2}}\\) ion is 12 Kcal \\(\\mathrm{mol}^{-1}\\) higher than what would be expected if there were no crystal field stabilisation energy. The magnitude of \\(\\Delta_0\\) in kcal for \\(\\ce{[Fe(H2O)6]^{2+}}\\) is?"
+ },
+ {
+  "n": 54,
+  "text": "A 1.60-g sample of a mixture of naphthalene (\\(\\ce{C10H8}\\)) and anthracene (\\(\\ce{C14H10}\\)) is dissolved in 20.0 g benzene (\\(\\ce{C6H6}\\)). The freezing point of the solution is \\(2.81^{0}\\mathrm{C}\\). The mass percent of naphthalene in the mixture is? The freezing point of benzene is \\(5.51^{0}\\mathrm{C}\\) and \\(\\mathrm{K_f}\\) is \\(5.12^{0}\\mathrm{C}\\) kg/mol."
+ }
+]

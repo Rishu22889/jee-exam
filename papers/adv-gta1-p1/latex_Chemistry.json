@@ -1,0 +1,181 @@
+[
+ {
+  "n": 37,
+  "text": "The heating of \\(\\ce{NH4NO2}\\) at \\(60-70^\\circ\\mathrm{C}\\) and \\(\\ce{NH4NO3}\\) at \\(200-250^\\circ\\mathrm{C}\\) is associated with the formation of nitrogen containing compounds X and Y , respectively. The only correct statement regarding “X” &amp; “Y” is",
+  "options": {
+   "A": "N – N bond order in Y is less than 2",
+   "B": "N – N bond order in X is 2",
+   "C": "“X” and “Y” have equal number of lone pair of electrons",
+   "D": "Both “X” and “Y” are diamagnetic"
+  }
+ },
+ {
+  "n": 38,
+  "text": "Select the <b>INCORRECT</b> option regarding the given molecules [P] &amp; [Q]",
+  "options": {
+   "A": "Conjugate base of [Q] is aromatic, where as conjugate based of [P] is antiaromatic",
+   "B": "\\(\\mathrm{pK_a}\\) of [P] is more than [Q]",
+   "C": "Dissociation constant of [P] is less than [Q]",
+   "D": "All"
+  },
+  "figure": {
+   "page": 15,
+   "y0": 335.5,
+   "y1": 465.4
+  }
+ },
+ {
+  "n": 39,
+  "text": "A closed vessel contains 10g of an ideal gas X at 300 K, which exerts 2 atm pressure. At the same temperature, 80 g of another ideal gas Y is added to it and the pressure becomes 6 atm. The ratio of most probable velocities of Y and X at 300 K is",
+  "options": {
+   "A": "\\(2\\sqrt{2}:\\sqrt{3}\\)",
+   "B": "\\(2\\sqrt{2}:1\\)",
+   "C": "\\(1:2\\)",
+   "D": "\\(2:1\\)"
+  }
+ },
+ {
+  "n": 40,
+  "text": "<br>\\(\\ce{Z ->[H2O2/OH^{\\ominus}] }\\) Yellow solution<br>‘X’, ‘Y’ and Z respectively are :",
+  "options": {
+   "A": "'X' \\(\\Rightarrow\\) \\(\\ce{K4[Fe(CN)6]}\\); 'Y' \\(\\Rightarrow\\) \\(\\ce{K3[Fe(CN)6]}\\); Z = \\(\\ce{CrCl3}\\)",
+   "B": "'X' \\(\\Rightarrow\\) \\(\\ce{CrCl3}\\); 'Y' \\(\\Rightarrow\\) \\(\\ce{CrO4^{2-}}\\); Z = \\(\\ce{Cr(OH)3}\\)",
+   "C": "'X' \\(\\Rightarrow\\) \\(\\ce{MnCl2}\\); 'Y' \\(\\Rightarrow\\) \\(\\ce{MnO2.xH2O}\\); Z = \\(\\ce{Mn(OH)2}\\)",
+   "D": "'X' \\(\\Rightarrow\\) \\(\\ce{Ag}\\); 'Y' \\(\\Rightarrow\\) \\(\\ce{Ag2O}\\); Z = \\(\\ce{AgOH}\\)"
+  },
+  "figure": {
+   "page": 15,
+   "y0": 656.0,
+   "y1": 737.8
+  }
+ },
+ {
+  "n": 41,
+  "text": "In the extraction of Aluminium metal, one of the process is summarized as follows :\\[\\underset{\\text{(bauxite Impure)}}{\\ce{Al2O3.3H2O}}\\xrightarrow[\\text{conc.'A'}]{\\text{hot}}\\underset{\\text{(aqueous solution)}}{\\text{Product 'B'}}\\xrightarrow[\\text{to change pH}]{\\text{bubble gas 'C'}}\\text{Pure almunia}\\xrightarrow{\\text{mix with 'D' melt at }1000^\\circ\\text{C}}\\]\\[\\xrightarrow[\\text{with carbon electrodes}]{\\text{electrolyse molten material}}\\]Aluminium at ‘E’, select the best combination for A to E.",
+  "options": {
+   "A": "A: \\(\\ce{NaOH}\\), B: \\(\\ce{Al^{3+}}\\), C: \\(\\ce{HF}\\), D: \\(\\ce{Na3AlF6}\\), E: Cathode",
+   "B": "A: \\(\\ce{NaOH}\\), B: \\(\\ce{NaAlO2}\\), C: \\(\\ce{CO2}\\), D: \\(\\ce{NaF}\\), E: Anode",
+   "C": "A: \\(\\ce{H2SO4}\\), B: \\(\\ce{Al2(SO4)3}\\), C: \\(\\ce{NH3}\\), D: \\(\\ce{Na3AlF6}\\), E: Cathode",
+   "D": "A: \\(\\ce{NaOH}\\), B: \\(\\ce{NaAlO2}\\), C: \\(\\ce{CO2}\\), D: \\(\\ce{Na3AlF6}\\), E: Cathode"
+  }
+ },
+ {
+  "n": 42,
+  "text": "Which of the following Newman projection is <b>not</b> a structural isomer with given compound [<b>X</b>]",
+  "options": {
+   "A": "(Newman projection shown in figure)",
+   "B": "(Newman projection shown in figure)",
+   "C": "(Newman projection shown in figure)",
+   "D": "All"
+  },
+  "figure": {
+   "page": 16,
+   "y0": 362.6,
+   "y1": 534.2
+  }
+ },
+ {
+  "n": 43,
+  "text": "Compound [<b>P</b>] \\(\\ce{C9H10O3}\\), (can show optical isomerism) gives a positive \\(\\ce{CrO3/H2SO4}\\) test and is oxidized by hot \\(\\ce{KMnO4}\\) to benzoic acid. [<b>P</b>] is converted by the following sequence of reactions into [<b>R</b>]:\\[\\underset{\\ce{C9H10O3}}{[\\mathbf{P}]}\\xrightarrow{\\ce{HBr}}\\ce{C9H9O2Br}\\xrightarrow{\\ce{OH-}}\\underset{\\substack{[\\mathbf{Q}]\\\\ \\text{(cannot show}\\\\ \\text{geometrical isomerism)}}}{\\ce{C9H8O2}}\\xrightarrow{\\ce{H2}\\,|\\,\\ce{Ni}}\\underset{\\ce{C9H10O2}}{[\\mathbf{R}]}\\]Choose the <b>CORRECT</b> option(s)",
+  "options": {
+   "A": "[<b>P</b>] on heating with con \\(\\ce{H3PO4}\\) gives [<b>Q</b>] acid",
+   "B": "[<b>R</b>] can show optical isomerism",
+   "C": "[<b>P</b>] can give neutral \\(\\ce{FeCl3}\\) test",
+   "D": "[<b>P</b>] and [<b>R</b>] can show diastereomerism"
+  }
+ },
+ {
+  "n": 44,
+  "text": "The graph given below shows the molar entropy change \\((\\mathrm{S_m})\\) v/s temperature (T) for a substance undergoing solid – liquid phase transition at its normal melting point \\(\\mathrm{T_m}=300\\mathrm{K}\\). {Given \\(\\Delta\\mathrm{H_{fusion}}=6\\mathrm{kJ/mol}\\)} Which of the following statements are <b>CORRECT</b>.",
+  "options": {
+   "A": "The entropy change during the fusion at \\(\\mathrm{T_m}\\) is 20 J \\(\\mathrm{mol^{-1}K^{-1}}\\)",
+   "B": "Entropy change associated with heating the solid isobarically from 250 K to 300 K \\(\\Delta S=\\displaystyle\\int_{250}^{300}\\dfrac{\\mathrm{Cp_{(s)}}}{\\mathrm{T}}\\mathrm{dT}\\)",
+   "C": "At 300 K substance exist in liquid state only",
+   "D": "At \\(\\mathrm{T_m}\\), \\(\\Delta\\mathrm{H}=\\mathrm{T}\\Delta\\mathrm{S}\\) for melting of solid"
+  },
+  "figure": {
+   "page": 17,
+   "y0": 352.3,
+   "y1": 493.3
+  }
+ },
+ {
+  "n": 45,
+  "text": "<b>CORRECT</b> statement(s) about solubility of \\(\\ce{AgCl(s)}\\) is/are ?<br>\\(\\mathrm{K_{SP}}\\) of \\(\\ce{AgCl}=10^{-10}\\mathrm{M^2}\\), \\(\\mathrm{K_f}\\) of \\(\\ce{[Ag(NH3)2]^+_{(aq)}}=10^{8}\\)",
+  "options": {
+   "A": "Solubility in pure water is \\(10^{-5}\\mathrm{M}\\)",
+   "B": "Solubility of AgCl is more in aqueous \\(\\ce{AgNO3}\\) solution than in water",
+   "C": "Solubility of AgCl in 2M \\(\\ce{NH3(aq)}\\) solution is approximately 0.166 M",
+   "D": "Solubility of AgCl is lesser in aqueous NaCl solution than in water"
+  }
+ },
+ {
+  "n": 46,
+  "text": "Find <b>CORRECT</b> statements for coordination compounds",
+  "options": {
+   "A": "\\(\\ce{[PtCl2(NH3)2]}\\) &amp; \\(\\ce{[Cu(NH3)4]^{2+}}\\) are square planar complexes",
+   "B": "In \\(\\ce{[Fe(C2O4)3]^{3-}}\\), geometrical isomerism does not exist while optical isomerism exists",
+   "C": "CO bond order : \\(\\ce{[Ni(CO)4]} > \\ce{[Co(CO)4]^-} > \\ce{[Fe(CO)4]^{2-}}\\)",
+   "D": "\\(\\ce{[NiCl2(PPh3)2]}\\) has two geometrical isomers"
+  }
+ },
+ {
+  "n": 47,
+  "text": "For reaction \\(\\ce{2N2O5(g) -> 4NO2 + O2(g)}\\) and \\(\\mathrm{t_{90\\%}}=10\\) sec then select the correct options. (Use log (2) = 0.3010)",
+  "options": {
+   "A": "Reaction is of 1<sup>st</sup> order",
+   "B": "Time to complete 50% reaction is 3.01 sec",
+   "C": "Time to complete definite fraction of reaction is independent of initial concentration of reactant",
+   "D": "\\(\\mathrm{t_{15/16}}=2\\mathrm{t_{3/4}}\\)"
+  },
+  "figure": {
+   "page": 18,
+   "y0": 279.7,
+   "y1": 397.8
+  }
+ },
+ {
+  "n": 48,
+  "text": "Select <b>CORRECT</b> statement(s) about [P]",
+  "options": {
+   "A": "L isomer of [P] is essential amino acid",
+   "B": "[P] can give positive carbylamine test",
+   "C": "[P] on reaction with \\(\\ce{HNO2}\\) liberate \\(\\ce{N2}\\) gas",
+   "D": "[P] is having two chiral centers."
+  },
+  "figure": {
+   "page": 18,
+   "y0": 557.9,
+   "y1": 635.0
+  }
+ },
+ {
+  "n": 49,
+  "text": "Adsorption of phenol from its aqueous solution on to fly ash obeys Freundlich isotherm. At a given temperature, from \\(10\\,\\mathrm{mg\\,g^{-1}}\\) and \\(16\\,\\mathrm{mg\\,g^{-1}}\\) aqueous phenol solutions, the concentrations of adsorbed phenol are measured to be \\(4\\,\\mathrm{mg\\,g^{-1}}\\) and \\(10\\,\\mathrm{mg\\,g^{-1}}\\), respectively. At this temperature, the concentration \\(\\left(\\text{in }\\mathrm{mg\\,g^{-1}}\\right)\\) of adsorbed phenol from 32 mg \\(\\mathrm{g^{-1}}\\) aqueous solution of phenol will be \\(10^{x}\\), then ‘x’ is<br>Use : \\(\\log_{10}2=0.3\\)"
+ },
+ {
+  "n": 50,
+  "text": "Vessel – 1 contains \\(\\mathrm{w_2}\\)g of a non-volatile solute X dissolved in \\(\\mathrm{w_1}\\) g of water. Vessel – 2 contains \\(\\mathrm{w_2}\\) g of another non-volatile solute Y dissolved in \\(\\mathrm{w_1}\\) g of water. Both the vessels are at the same temperature and pressure. The molar mass of X is 60% of that of Y. The van’t Hoff factor for X is 20% more than that of Y for their respective concentrations.<br>The elevation of boiling point for solution in Vessel – 1 is ……% of the solution in Vessel – 2"
+ },
+ {
+  "n": 51,
+  "text": "Some reactions are given below (correct / incorrect included) for slag formation in metallurgy. Identify the value of {(X – Y) × Z} where<br>X = sum of “correct” reaction tags which include acidic impurity<br>Y = sum of “correct” reaction tags which include basic impurity<br>Z = sum of “incorrect” reaction tags combination(s) ?<br>(For example, if (1), (4) and (5) are correct then X = 1 + 4 + 5 = 10)<br><table><tr><td></td><td>Impurity</td><td></td><td>Flux</td><td>Slag</td></tr><tr><td>1)</td><td>\\(\\ce{CaO}\\)</td><td>+</td><td>\\(\\ce{SiO2 ->}\\)</td><td>Calcium silicate</td></tr><tr><td>2)</td><td>\\(\\ce{FeO}\\)</td><td>+</td><td>\\(\\ce{SiO2 ->}\\)</td><td>Iron silicate</td></tr><tr><td>3)</td><td>\\(\\ce{SiO2}\\)</td><td>+</td><td>\\(\\ce{CaCO3 ->}\\)</td><td>Calcium silicate + \\(\\ce{CO2}\\)</td></tr><tr><td>4)</td><td>\\(\\ce{SiO2}\\)</td><td>+</td><td>\\(\\ce{MgCO3 ->}\\)</td><td>Magnesium silicate + \\(\\ce{CO2}\\)</td></tr><tr><td>5)</td><td>\\(\\ce{P4O10}\\)</td><td>+</td><td>\\(\\ce{SiO2 ->}\\)</td><td>Phospho silicate</td></tr><tr><td>6)</td><td>\\(\\ce{P4O10}\\)</td><td>+</td><td>\\(\\ce{CaCO3 ->}\\)</td><td>Clacium phosphate + \\(\\ce{CO2}\\)</td></tr></table>"
+ },
+ {
+  "n": 52,
+  "text": "During hydrolysis of ester is acidic medium \\(\\ce{ester + H2O ->[H+] acid + alcohol}\\) rate law is given as r = k[ester] \\(\\left[\\ce{H+}\\right]\\) and volume of base used at different time intervals is given as at pH = 3<br><table><tr><td>t (in sec)</td><td>0</td><td>10</td><td>\\(\\infty\\)</td></tr><tr><td>\\(\\mathrm{v_b}\\)(in mL)</td><td>50</td><td>100</td><td>150</td></tr></table>Value of rate constant at ‘k’ will be (in units of \\(\\mathrm{M^{1-n}\\,sec^{-1}}\\)) where n = order of the reaction"
+ },
+ {
+  "n": 53,
+  "text": "Lithium borohydride (\\(\\ce{LiBH4}\\)) is a useful reducing agent, as it is more selective than \\(\\ce{LAlH4}\\) but less selective than \\(\\ce{NaBH4}\\). Unlike the later, \\(\\ce{LiBH4}\\) will reduce esters. However, it will not reduce amides. This selectivity is frequently employed by synthetic organic chemists. In the following reaction sequence, 50.6gm of product (3) is obtained with yield of 65% and 75% respectively in 1st and 2nd steps. Find the number of moles of reactant used in this reaction? (C=12, O=16, N=14, H=1)",
+  "figure": {
+   "page": 20,
+   "y0": 334.6,
+   "y1": 493.5
+  }
+ },
+ {
+  "n": 54,
+  "text": "Treatment of ter-butyl benzene with CO/HCl in the presence of anhydrous \\(\\ce{AlCl3/CuCl}\\) followed by heating with \\(\\ce{CH3CHO}\\)/dil NaOH gives compound [<b>P</b>] as a major product. Compound [<b>P</b>] up on reaction with tollens reagent followed by esterification with methyl alcohol and then hydrogenation gives [<b>Q</b>]. Reaction of [<b>Q</b>] with \\(\\ce{CH3MgBr}\\) (excess) followed by addition of \\(\\ce{H2O}\\) gives [<b>R</b>]. Compound [<b>R</b>] on treatment with \\(\\ce{H2SO4}\\) at 0º C followed by treatment with succinic anhydride/\\(\\ce{AlCl3}\\) gives [<b>S</b>]. The reaction of compound [<b>S</b>] with Zn–Hg + Con. HCl followed by treatment with con \\(\\ce{H3PO4}\\) (cat) gives [<b>T</b>]. Reaction of [<b>T</b>] with \\(\\ce{CH3MgBr}\\) followed by heating with con \\(\\ce{H2SO4}\\)(cat) gives corresponding [<b>U</b>]<br>Number of methyl groups in [<b>U</b>] is?"
+ }
+]

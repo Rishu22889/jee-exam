@@ -1,0 +1,206 @@
+[
+ {
+  "n": 19,
+  "text": "A parallel beam of light of intensity I is incident normally on a plane surface A which absorbs 50% of the incident light. The reflected light falls on B which is perfect reflector, the light reflected by B is again partly reflected and partly absorbed and this process continues. For any light incident on A, absorption coefficient and reflection coefficient are both 0.5. The pressure experienced by A due to light is",
+  "options": {
+   "A": "\\(\\dfrac{1.5I}{c}\\)",
+   "B": "\\(\\dfrac{I}{c}\\)",
+   "C": "\\(\\dfrac{3I}{2c}\\)",
+   "D": "\\(\\dfrac{3I}{c}\\)"
+  },
+  "figure": {
+   "page": 8,
+   "y0": 275.4,
+   "y1": 350.3
+  }
+ },
+ {
+  "n": 20,
+  "text": "Two carnot engines A and B are operated in series. The first one A receives heat at 1200K and rejects to a reservoir at T K. The second engine B receives the heat rejected by the first engine and in turn rejects to a heat reservoir at 300 K. Calculate the value of T, when work outputs of the two engines are equal",
+  "options": {
+   "A": "600 K",
+   "B": "750 K",
+   "C": "450 K",
+   "D": "900 K"
+  }
+ },
+ {
+  "n": 21,
+  "text": "Consider the electrical circuit given below : initially chargeless capactitors \\(C_1\\) and \\(C_2\\) were connected to a battery and at certain moment, the key K will be closed. After the moment, current and voltage will start oscillating. For these oscillations",
+  "options": {
+   "A": "When charge on \\(C_2\\) is maximum, current through \\(C_1\\) is same as current in L",
+   "B": "When charge on \\(C_1\\) is maximum, power delivered by battery is positive",
+   "C": "Charge on \\(C_2\\) is maximum when current through L is maximum",
+   "D": "None of these"
+  },
+  "figure": {
+   "page": 8,
+   "y0": 570.6,
+   "y1": 668.0
+  }
+ },
+ {
+  "n": 22,
+  "text": "Two underdamped oscillators are known to have the same natural frequency \\(\\omega_0\\). The mass and damping coefficient of the first oscillator are \\(m_1\\) and \\(b_1\\), and the mass and damping coefficient of the second oscillator are \\(m_2\\) and \\(b_2\\), respectively. A sinusoidal driving force of \\(F_{ext}=F_0\\cos\\omega t\\) is applied to each oscillator. Starting with \\(\\omega\\) far from \\(\\omega_0\\) the driving force is tuned in order to observe resonant behavior. If \\(m_1=4m_2\\) and \\(b_1=2b_2\\), then which one of the following statements concerning the driven oscillations is <b>CORRECT</b>?",
+  "options": {
+   "A": "The resonant peak of the first driven oscillator is higher and narrower than that of the second oscillator",
+   "B": "The resonant peak of the first oscillator is higher and wider than that of the second oscillator",
+   "C": "The resonant peak of the first driven oscillator is lower and wider than that of the second oscillator",
+   "D": "The resonant peak of the first driven oscillator is lower and narrower than that of the second oscillator"
+  }
+ },
+ {
+  "n": 23,
+  "text": "A rope hangs from a rigid support. A pulse is set by jiggling the bottom end. We want to design a rope in which velocity v of pulse is independent of z, the distance of the pulse from fixed end of the rope. If the rope is very long the desired function for mass per unit length \\(\\mu(z)\\) in terms of \\(\\mu_0\\) (mass per unit length of the rope at the top (z = 0), g, v and z is",
+  "options": {
+   "A": "\\(\\mu(z)=\\mu_0 e^{-\\left[g/v^2\\right]z}\\)",
+   "B": "\\(\\mu(z)=\\mu_0 e^{-\\left[g/2v^2\\right]z}\\)",
+   "C": "\\(\\mu(z)=\\mu_0\\log_e\\left(\\dfrac{g}{v^2}\\right)z\\)",
+   "D": "\\(\\mu(z)=\\mu_0 e+\\left(\\dfrac{v^2}{g}\\right)z\\)"
+  },
+  "figure": {
+   "page": 9,
+   "y0": 441.9,
+   "y1": 550.3
+  }
+ },
+ {
+  "n": 24,
+  "text": "In single slit Fraunhofer diffraction pattern, resultant amplitude at the center of central maxima is \\(A_0\\) and it is A at an angular position of \\(30^\\circ\\) (with respect to central axis). Then \\(\\dfrac{A}{A_0}\\) will be [Slit width a = \\(\\lambda\\)]",
+  "options": {
+   "A": "\\(\\dfrac{\\pi}{2}\\)",
+   "B": "\\(\\dfrac{2}{\\pi}\\)",
+   "C": "\\(\\dfrac{\\pi}{4}\\)",
+   "D": "\\(\\dfrac{4}{\\pi}\\)"
+  }
+ },
+ {
+  "n": 25,
+  "text": "A clean surface of a metal in a vacuum tube is irradiated with a monochromatic light of wavelength 500 nm and the resulting photoelectric current is measured by the ammeter A, as shown in the circuit. It is found that if the voltmeter (V) reading is greater than 0.8 V, the ammeter shows zero reading. Now, with a second source of light, the ammeter reading becomes zero when the voltmeter reading is gradually increased to 1.2 V. Then choose the <b>CORRECT</b> option(s), [Battery B with rheostat R makes a potential divider circuit] [Given: \\(h = 6.6\\times10^{-34}\\,\\mathrm{Js}\\,c = 3\\times10^{8}\\,\\mathrm{ms^{-1}}\\), \\(e = 1.6\\times10^{-19}\\,\\mathrm{C}\\)]",
+  "options": {
+   "A": "the frequency of second source is \\(6.97\\times10^{14}\\,\\mathrm{Hz}\\)",
+   "B": "the kinetic energy of photoelectrons due to first source is less than or equal to 0.8 eV",
+   "C": "the work function of emitting surface is 1.68 eV",
+   "D": "the kinetic energy of photoelectrons due to second source is less than or equal to 1.2eV"
+  },
+  "figure": {
+   "page": 10,
+   "y0": 366.4,
+   "y1": 483.4
+  }
+ },
+ {
+  "n": 26,
+  "text": "A partition divides a container having insulated walls into two compartments I and II. The same gas fills the two compartments whose initial parameters are given in the figure. The partition is a conducting wall which can move freely without friction. Which of the following statement(s) is/are <b>CORRECT</b>, with reference to the final equilibrium position ?",
+  "options": {
+   "A": "The pressure in the two compartments are equal",
+   "B": "Volume of compartment I is \\(\\dfrac{3V}{5}\\)",
+   "C": "Volume of compartment II is \\(\\dfrac{3V}{5}\\)",
+   "D": "Final pressure in compartment I is \\(\\dfrac{5P}{3}\\)"
+  },
+  "figure": {
+   "page": 10,
+   "y0": 679.6,
+   "y1": 743.4
+  }
+ },
+ {
+  "n": 27,
+  "text": "There exists a uniform electric field \\(E\\hat{j}\\) and a uniform magnetic field \\(B\\hat{k}\\) and no gravitational field in region of space. A particle at origin of mass m, charge +q is given velocity \\(\\vec{v}_1=+\\dfrac{E\\hat{i}}{B}\\) or \\(\\vec{v}_2=\\dfrac{+\\sqrt{3}E\\hat{j}}{B}\\) at t = 0. Then choose the <b>CORRECT</b> option(s)",
+  "options": {
+   "A": "For particle velocity \\(\\vec{v}_1=+\\dfrac{E\\hat{i}}{B}\\), electric force is balanced by magnetic force.",
+   "B": "For particle velocity \\(\\vec{v}_2\\), particle will attain maximum y – coordinate for the first time at \\(\\dfrac{2\\pi m}{3qB}\\)",
+   "C": "For particle velocity \\(\\vec{v}_2\\), maximum y – coordinate is \\(\\dfrac{3mE}{qB^2}\\).",
+   "D": "For particle velocity \\(\\vec{v}_2\\), minimum y – coordinate is \\(\\dfrac{-mE}{qB^2}\\)"
+  }
+ },
+ {
+  "n": 28,
+  "text": "Two parallel resistance less rails are connected by an inductor of inductance L at one end as shown in the figure. A magnetic field B exists in the space which is perpendicular to the plane of the rails. Now a conductor of length \\(\\ell\\) and mass m is placed transverse on the rails and given an impulse J towards the rightward direction. Then choose the <b>CORRECT</b> option (s)",
+  "options": {
+   "A": "Velocity of the conductor is half of the initial velocity after a displacement of the conductor \\(d=\\sqrt{\\dfrac{3J^2L}{4B^2\\ell^2 m}}\\)",
+   "B": "Current flowing through the inductor at the instant when velocity of the conductor is half of the initial velocity is \\(i=\\sqrt{\\dfrac{3J^2}{4Lm}}\\)",
+   "C": "Velocity of the conductor is half of the initial velocity after a displacement of the conductor \\(d=\\sqrt{\\dfrac{3J^2L}{B^2\\ell^2 m}}\\)",
+   "D": "Current flowing through the inductor at the instant when velocity of the conductor is half of the initial velocity is \\(i=\\sqrt{\\dfrac{3J^2}{mL}}\\)"
+  },
+  "figure": {
+   "page": 11,
+   "y0": 563.5,
+   "y1": 655.0
+  }
+ },
+ {
+  "n": 29,
+  "text": "A vessel containing water is kept on an inclined plane of coefficient of friction \\(\\mu\\). The angle made by the free surface of liquid with horizontal as shown in steady state is \\(\\theta\\). If surface is as shown in figure (a), mark the angle \\(\\theta\\) as positive and if it is as shown in figure (b) mark the angle \\(\\theta\\) as negative. Then choose the <b>CORRECT</b> option(s)",
+  "options": {
+   "A": "If \\(\\mu=1.2\\), then \\(\\theta=0^\\circ\\)",
+   "B": "If \\(\\mu=0\\), then \\(\\theta=45^\\circ\\)",
+   "C": "If \\(\\mu=\\dfrac{3}{4}\\), then \\(\\theta=15^\\circ\\)",
+   "D": "If \\(\\mu=\\dfrac{3}{4}\\), then \\(\\theta=-15^\\circ\\)"
+  },
+  "figure": {
+   "page": 12,
+   "y0": 271.3,
+   "y1": 395.0
+  }
+ },
+ {
+  "n": 30,
+  "text": "At the equator on a spherical planet a body weighs one third of that at the pole. Radius of planet is R. The time period of revolution of the planet around its axis is equal to T = 60 min. Then choose the <b>CORRECT</b> option(s) (Take : \\(G=\\dfrac{20}{3}\\times10^{-11}\\,\\mathrm{Nm^2/kg^2}\\))",
+  "options": {
+   "A": "The average density \\(\\rho\\) of the planet is \\(\\dfrac{\\pi}{192}\\times10^{6}\\,\\mathrm{kg/m^3}\\)",
+   "B": "The height of geostationary satellite from the surface of planet is \\(\\left(\\sqrt[3]{\\dfrac{3}{2}}-1\\right)R\\)",
+   "C": "At a latitude of \\(60^\\circ\\), the weight of the body is half the weight at pole",
+   "D": "The geostationary satellite can be in a plane passing through the poles"
+  }
+ },
+ {
+  "n": 31,
+  "text": "A ring of mass m connecting freely two identical thin hoops of mass M each starts sliding down. The hoops move apart over a rough horizontal surface. Determine the acceleration a (in \\(\\mathrm{m/s^2}\\)) of the ring at the initial instant if \\(\\angle AO_1O_2=60^\\circ\\) (Figure), neglecting the friction between the ring and the hoops (given m = 2M &amp; g = 10 \\(\\mathrm{m/s^2}\\)) (There is no slipping between hoop and ground)",
+  "figure": {
+   "page": 13,
+   "y0": 250.4,
+   "y1": 318.6
+  }
+ },
+ {
+  "n": 32,
+  "text": "The resistance of each resistor in the circuit diagram shown in figure is the same and equal to R. The voltage across the terminals is U. The current I in the leads if their resistance can be neglected is given by \\(\\dfrac{xU}{R}\\). Find the value of ‘x’.",
+  "figure": {
+   "page": 13,
+   "y0": 387.4,
+   "y1": 506.2
+  }
+ },
+ {
+  "n": 33,
+  "text": "In the arrangement shown in figure, weight A possesses mass m, a symmetric pulley B possesses mass M. Also known are the moment of inertia I of the pulley relative to its axis and the radii of the pulley R and 2R. The mass of the threads is negligible. The acceleration of the weight A after the system is set free from rest is given by \\(a=\\dfrac{3g\\left(pM+qm\\right)}{\\left(rM+sm+\\dfrac{I}{R^2}\\right)}\\). Where p,q,r,s are integers. Find the value of <b>p + q + r + s</b>.",
+  "figure": {
+   "page": 13,
+   "y0": 628.4,
+   "y1": 771.4
+  }
+ },
+ {
+  "n": 34,
+  "text": "Find the time period (in sec) of small oscillations of a mathematical pendulum of length \\(\\ell\\) if its point of suspension O moves relative to the Earth’s surface in an arbitrary direction with a constant acceleration w (figure). It is given that \\(\\ell\\) = 21 cm, w = \\(\\dfrac{g}{2}\\), and the angle between the vectors \\(\\vec{w}\\) and \\(\\vec{g}\\) equals \\(\\beta=120^\\circ\\). (Take g = \\(10\\,\\mathrm{m/s^2}\\))",
+  "figure": {
+   "page": 14,
+   "y0": 153.8,
+   "y1": 286.5
+  }
+ },
+ {
+  "n": 35,
+  "text": "In accordance with classical electrodynamics an electron moving with acceleration \\(\\vec{w}\\) loses its energy due to radiation as \\(\\dfrac{dE}{dt}=-\\dfrac{2e^2}{3c^3}w_{avg.}^2\\), where e is the electron charge, c is the speed of light, \\(w_{avg.}\\) is the average of magnitude of acceleration of the electron. The time during which the energy of an electron of mass m performing almost harmonic oscillations with frequency \\(\\omega\\) becomes \\(\\dfrac{1}{\\eta}\\) times is given by \\(\\dfrac{xmc^y}{2e^2\\omega^z}\\ln\\left(\\eta\\right)\\) where x, y, z are integers. Find the value of \\(\\dfrac{xy}{z}\\)."
+ },
+ {
+  "n": 36,
+  "text": "A uniform rod of mass M and length L is hinged at its lower end on a table. The rod can rotate freely in vertical plane and there is no friction at the hinge. A solid spherical ball of mass M and radius \\(R=\\dfrac{L}{3}\\) is placed in contact with the vertical rod and a horizontal force F is applied at the upper end of the rod. The horizontal component of hinge force acting on the rod immediately after force F starts acting is \\(\\dfrac{xF}{y}\\). Where x, y are co-primes. Find the value of x + y.<br>(Assume floor is sufficiently rough and the rod is smooth)",
+  "figure": {
+   "page": 14,
+   "y0": 657.9,
+   "y1": 746.4
+  }
+ }
+]

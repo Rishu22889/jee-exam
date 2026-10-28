@@ -1,0 +1,187 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Upload a paper</title><link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script></head><body>
+<div class="top"><b>Upload a paper</b><a href="index.html" style="color:#fff">Home</a></div>
+<div class="wrap">
+ <div class="card">
+  <p>Works with text-based PDFs in the Narayana format: question numbers like <b>12.</b> at the left margin and headings like <b>SECTION – 1 (Maximum Marks: 18)</b>. Everything runs in this browser; the paper is saved in this browser only.</p>
+  <p><label>Question paper PDF <input type="file" id="qp" accept="application/pdf"></label></p>
+  <p><label>Key &amp; solutions PDF (optional) <input type="file" id="sol" accept="application/pdf"></label></p>
+  <p><label>Title <input id="title" placeholder="JEE Advanced 2026 Paper 1" style="width:320px;padding:6px"></label>
+     <label style="margin-left:12px">Duration (min) <input id="dur" type="number" value="180" style="width:70px;padding:6px"></label></p>
+  <p><label>Pattern <select id="preset">
+    <option value="single:3:1:6,multi:4:2:6,numeric:4:0:6">JEE Advanced P1 style: 6 single +3/-1, 6 multi +4/-2, 6 numeric +4/0</option>
+    <option value="integer:3:1:6,multi:4:2:6,numeric:4:0:6">JEE Advanced P2 style: 6 integer +3/-1, 6 multi +4/-2, 6 numeric +4/0</option>
+    <option value="single:4:1:20,numeric:4:1:5">JEE Main: 20 single +4/-1, 5 numeric +4/-1</option>
+    <option value="custom">Custom…</option></select></label>
+   <input id="custom" class="hidden" placeholder="type:+marks:-marks:count,... per subject" style="width:420px;padding:6px"></p>
+  <button class="btn primary" id="go">Read PDFs</button> <span id="status" class="muted"></span>
+ </div>
+ <div class="card hidden" id="step2">
+  <h3 style="margin-top:0">Check the answer key</h3>
+  <p class="muted">One line per question: <code>n answer</code>. Multi-correct as <code>BCD</code>, ranges as <code>0.78 TO 0.82</code>. Parsed from page 1 of the key PDF; fix anything wrong.</p>
+  <textarea id="key" rows="12" style="width:100%;font-family:monospace"></textarea>
+  <p><button class="btn green" id="save">Save paper</button> <span id="status2" class="muted"></span></p>
+ </div>
+ <div class="card hidden" id="preview"><h3 style="margin-top:0">Preview</h3><div id="pv"></div></div>
+</div>
+<script src="app.js"></script>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+const $ = id => document.getElementById(id);
+const DPI = 150, SCALE = DPI / 72, X0 = 22, X1 = 573, PAD = 8, SUBJECTS = ['Mathematics', 'Physics', 'Chemistry'];
+const SECTION_RE = /^SECTION\b.*Max/i, FOOTER_RE = /Page\.?\s*No|Pg\.?\s*No|^SR[._]/i;
+const HEADER_RE = /Narayana|GTA|Rankers|JAYATHE|GROUP|MAX\.MARKS|^(MATHEMATICS|PHYSICS|CHEMISTRY)$|For More Join|Page\.? ?No|^SR[._]/i;
+$('preset').onchange = () => $('custom').classList.toggle('hidden', $('preset').value !== 'custom');
+
+// ---- text lines per page: [{y0, y1, x, text}] in pt, y from the top (same shape as pdftotext -bbox-layout)
+async function pageLines(pdf, p) {
+  const page = await pdf.getPage(p), H = page.getViewport({ scale: 1 }).height;
+  const items = (await page.getTextContent()).items.filter(i => i.str.trim()).map(i => ({ x: i.transform[4], y: H - i.transform[5], h: i.height || 10, w: i.width, s: i.str }));
+  items.sort((a, b) => a.y - b.y || a.x - b.x);
+  const lines = [];
+  for (const it of items) {
+    const L = lines.find(l => Math.abs(l.base - it.y) < 3 && it.x - l.endX < 2 * it.h + 2 && it.x >= l.endX - 2);
+    if (L) { L.text += (it.x - L.endX > 0.3 * it.h ? ' ' : '') + it.s; L.endX = it.x + it.w; L.h = Math.max(L.h, it.h); }
+    else lines.push({ base: it.y, x: it.x, endX: it.x + it.w, h: it.h, text: it.s });
+  }
+  return lines.map(l => ({ y0: l.base - l.h, y1: l.base + 0.25 * l.h, x: l.x, text: l.text.trim() })).sort((a, b) => a.y0 - b.y0);
+}
+
+// ---- port of tools/build_paper.py find_blocks
+function findBlocks(pages, firstPage, expectN, tolerance = 10, inkRows = {}) {
+  const starts = [], seen = new Set(), cuts = {}, tops = {}, textLines = {}, sections = [];
+  for (const [p, lines] of pages) {
+    if (p < firstPage) continue;
+    cuts[p] = []; tops[p] = 50; textLines[p] = lines.filter(l => !HEADER_RE.test(l.text));
+    for (const l of lines) {
+      if (l.y0 < 50 && /Narayana|GTA/.test(l.text)) tops[p] = Math.max(tops[p], l.y1 + 1);
+      const m = l.text.match(/^(\d+)\.(\s|$)/);
+      if (m && l.x < 60 && +m[1] >= 1 && +m[1] <= expectN && !seen.has(+m[1])) { seen.add(+m[1]); starts.push([p, l.y0, +m[1]]); }
+      else if (SECTION_RE.test(l.text)) { cuts[p].push(l.y0); sections.push([p, l.y0 - 2]); }
+      else if (SUBJECTS.map(s => s.toUpperCase()).includes(l.text) || FOOTER_RE.test(l.text)) { if (l.y0 > 60) cuts[p].push(l.y0); }
+      if (l.text.includes('For More Join') && l.y0 > 700) cuts[p].push(l.y0);
+    }
+  }
+  const missing = []; for (let n = 1; n <= expectN; n++) if (!seen.has(n)) missing.push(n);
+  if (missing.length > expectN / tolerance) throw new Error(`question numbers not found: ${missing.join(', ')}. Is this PDF in the supported format?`);
+  const topOf = (p, y) => { // previous block's body text ends at B; cut in the first blank band (>=3pt) scanning up from the label
+    const above = textLines[p].filter(l => l.y1 <= y + 2), body = above.filter(l => l.x <= 90).map(l => l.y1);
+    const B = body.length ? Math.max(...body) : tops[p];
+    const rows = inkRows[p];
+    if (rows) { let run = 0; for (let r = Math.floor(y) + 5; r > B; r--) { run = rows[r] ? 0 : run + 1; if (run >= 3) return Math.max(tops[p], Math.min(y, r + run / 2)); } } // scan from a little below the label's line box
+    return Math.max(tops[p], (B + y) / 2);
+  };
+  const lastPage = Math.max(...Object.keys(cuts).map(Number)), blocks = {};
+  starts.forEach(([p, y, n], i) => {
+    const nxt = starts[i + 1], segs = [];
+    let page = p, y0 = topOf(p, y);
+    for (;;) {
+      const ends = cuts[page].filter(c => c > y0 + 2);
+      if (nxt && nxt[0] === page) ends.push(topOf(page, nxt[1]));
+      const end = ends.length ? Math.min(...ends) : 800;
+      segs.push([page, y0, end]);
+      if (end >= 700 && page < lastPage && (!nxt || nxt[0] > page)) {
+        page++; y0 = tops[page];
+        if (sections.some(([sp, sy]) => sp === page && sy < y0 + 25)) break; // next page opens with a section heading
+        const firstCut = Math.min(...cuts[page].filter(c => c > y0), nxt && nxt[0] === page ? topOf(page, nxt[1]) : 9e9);
+        if (!textLines[page].some(l => y0 < l.y0 && l.y1 < firstCut && l.x <= 90)) break; // only math fragments: next question's overhang
+        continue;
+      }
+      break;
+    }
+    blocks[n] = segs;
+  });
+  for (const n of missing) blocks[n] = blocks[n - 1] || blocks[n + 1];
+  blocks.sections = sections.map(([p, y]) => { const after = starts.filter(s => s[0] === p && s[1] > y).map(s => topOf(p, s[1])); return [[p, y, after.length ? Math.min(...after) : 800]]; });
+  return { blocks, missing };
+}
+
+const pageCanvas = {};
+async function renderPage(pdf, p) {
+  if (pageCanvas[pdf.id]?.[p]) return pageCanvas[pdf.id][p];
+  const page = await pdf.getPage(p), vp = page.getViewport({ scale: SCALE });
+  const c = document.createElement('canvas'); c.width = vp.width; c.height = vp.height;
+  await page.render({ canvasContext: c.getContext('2d'), viewport: vp }).promise;
+  (pageCanvas[pdf.id] ??= {})[p] = c; return c;
+}
+async function pageInk(pdf, p) { // per-pt rows: true if any pixel row inside that pt has ink within the crop width
+  const c = await renderPage(pdf, p), ctx = c.getContext('2d'), x0 = Math.round((X0 + 18) * SCALE), w = Math.round((X1 - X0 - 36) * SCALE); // inside the page's vertical border lines
+  const d = ctx.getImageData(x0, 0, w, c.height).data, pxRows = new Uint8Array(c.height);
+  for (let y = 0; y < c.height; y++) { let n = 0; for (let i = y * w * 4; i < (y + 1) * w * 4; i += 4) if (d[i] * 0.3 + d[i + 1] * 0.59 + d[i + 2] * 0.11 < 170 && ++n >= 2) { pxRows[y] = 1; break; } }
+  const rows = []; for (let y = 0; y < 842; y++) { let ink = false; for (let r = Math.floor(y * SCALE); r < Math.floor((y + 1) * SCALE) && r < c.height; r++) if (pxRows[r]) { ink = true; break; } rows.push(ink); }
+  return rows;
+}
+async function crop(pdf, segs, prefix, blobs) {
+  const files = [];
+  for (const [k, [p, yA, yB]] of segs.entries()) {
+    const y0 = Math.max(0, yA - PAD), y1 = Math.min(842, yB + PAD); // pad: a sliver of the neighbour beats a clipped line
+    const src = await renderPage(pdf, p), c = document.createElement('canvas');
+    const sx = X0 * SCALE, sy = y0 * SCALE, sw = (X1 - X0) * SCALE, sh = Math.max(4, (y1 - y0) * SCALE);
+    c.width = sw; c.height = sh; c.getContext('2d').drawImage(src, sx, sy, sw, sh, 0, 0, sw, sh);
+    const name = `${prefix}_${k}.png`; blobs[name] = await new Promise(r => c.toBlob(r, 'image/png')); files.push(name);
+  }
+  return files;
+}
+
+// ---- key sheet: numbers 1..N appear in order; the answer is the cell just to the right (ranges stack vertically)
+async function parseKey(pdf, N) {
+  const page = await pdf.getPage(1), H = page.getViewport({ scale: 1 }).height;
+  const items = (await page.getTextContent()).items.filter(i => i.str.trim()).map(i => ({ x: i.transform[4], y: H - i.transform[5], s: i.str.trim() }));
+  items.sort((a, b) => Math.round(a.y / 6) - Math.round(b.y / 6) || a.x - b.x);
+  const key = {}; let want = 1;
+  for (const it of items) {
+    if (it.s !== String(want)) continue;
+    const cell = items.filter(o => o.x > it.x + 3 && o.x < it.x + 80 && Math.abs(o.y - it.y) < 14).sort((a, b) => a.y - b.y).map(o => o.s).join(' ');
+    if (/^(-?[\d.]+ TO -?[\d.]+|[A-D]{1,4}|-?[\d.]+)$/.test(cell)) { key[want] = cell; want++; }
+  }
+  return key;
+}
+
+let built = null;
+$('go').onclick = async () => {
+  const status = m => $('status').textContent = m;
+  try {
+    const qpFile = $('qp').files[0]; if (!qpFile) return status('choose the question paper PDF');
+    const spec = $('preset').value === 'custom' ? $('custom').value : $('preset').value;
+    const layout = spec.split(',').map(x => x.split(':')).map(([t, p, m, c]) => ({ type: t, marks: +p, neg: +m, count: +c }));
+    if (layout.some(l => !['single', 'multi', 'integer', 'numeric'].includes(l.type) || !(l.count > 0) || Number.isNaN(l.marks + l.neg))) return status('bad pattern spec');
+    const N = layout.reduce((s, l) => s + l.count, 0) * SUBJECTS.length;
+    status('reading question paper…');
+    const qp = await pdfjsLib.getDocument({ data: await qpFile.arrayBuffer() }).promise; qp.id = 'qp';
+    const qpages = [], qink = {}; for (let p = 1; p <= qp.numPages; p++) { status(`reading page ${p} / ${qp.numPages}…`); qpages.push([p, await pageLines(qp, p)]); qink[p] = await pageInk(qp, p); }
+    const q = findBlocks(qpages, 1, N, 10, qink);
+    let sol = null, s = null, key = {};
+    if ($('sol').files[0]) {
+      status('reading key & solutions…');
+      sol = await pdfjsLib.getDocument({ data: await $('sol').files[0].arrayBuffer() }).promise; sol.id = 'sol';
+      const spages = [], sink = {}; for (let p = 2; p <= sol.numPages; p++) { spages.push([p, await pageLines(sol, p)]); sink[p] = await pageInk(sol, p); }
+      try { s = findBlocks(spages, 2, N, 3, sink); } catch (e) { status('solutions skipped: ' + e.message); }
+      key = await parseKey(sol, N);
+    }
+    status('cropping images…');
+    const blobs = {}, questions = [];
+    const secImgs = q.blocks.sections.length === layout.length * SUBJECTS.length ? await Promise.all(q.blocks.sections.map((segs, k) => crop(qp, segs, `sec${k}`, blobs).then(f => f[0]))) : [];
+    let n = 1;
+    for (const [si, subject] of SUBJECTS.entries()) for (const [li, L] of layout.entries()) for (let i = 0; i < L.count; i++, n++) {
+      status(`cropping question ${n} / ${N}…`);
+      questions.push({ n, subject, section: li + 1, type: L.type, marks: L.marks, neg: L.neg, answer: '', sectionImage: secImgs[si * layout.length + li] || null,
+        images: await crop(qp, q.blocks[n], `q${n}`, blobs), solution: s ? await crop(sol, s.blocks[n], `s${n}`, blobs) : [] });
+    }
+    const id = 'up-' + ($('title').value.trim() || qpFile.name.replace(/\.pdf$/i, '')).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    built = { id, blobs, paper: { id, exam: 'Uploaded', title: $('title').value.trim() || qpFile.name, duration: +$('dur').value * 60, maxMarks: layout.reduce((a, l) => a + l.marks * l.count, 0) * SUBJECTS.length, subjects: SUBJECTS, questions } };
+    $('key').value = Array.from({ length: N }, (_, i) => `${i + 1} ${key[i + 1] || ''}`).join('\n');
+    $('step2').classList.remove('hidden'); $('preview').classList.remove('hidden');
+    $('pv').innerHTML = questions.map(x => `<p><b>Q${x.n}</b> (${x.subject}, ${x.type})</p>` + x.images.map(f => `<img src="${URL.createObjectURL(blobs[f])}" style="max-width:100%;border:1px solid #ddd">`).join('')).join('');
+    status(`done: ${N} questions${q.missing.length ? `; number labels missing for Q ${q.missing.join(', ')} (they share the previous crop)` : ''}. Check the key below, then save.`);
+  } catch (e) { status('failed: ' + e.message); console.error(e); }
+};
+$('save').onclick = async () => {
+  const key = {}; for (const line of $('key').value.split('\n')) { const m = line.trim().match(/^(\d+)\s+(.+)$/); if (m) key[+m[1]] = m[2].trim().toUpperCase(); }
+  const missing = built.paper.questions.filter(x => !key[x.n]).map(x => x.n);
+  if (missing.length) return $('status2').textContent = `key missing for Q ${missing.join(', ')}`;
+  for (const x of built.paper.questions) x.answer = key[x.n];
+  await JEE.db.put(built);
+  $('status2').innerHTML = `saved. <a href="exam.html?p=${encodeURIComponent(built.id)}">Start this paper</a> or go <a href="index.html">home</a>.`;
+};
+</script></body></html>

@@ -1,5 +1,6 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>JEE Exam</title><link rel="stylesheet" href="style.css"></head><body>
+<title>JEE Exam</title><link rel="stylesheet" href="style.css">
+<script>MathJax={loader:{load:["[tex]/mhchem"]},tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],packages:{"[+]":["mhchem"]}}};</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-chtml.js"></script></head><body>
 <div class="top"><b id="title">Loading…</b><span><span id="candTop"></span> &nbsp; Time Left: <span class="timer" id="timer">--:--:--</span></span></div>
 
 <div id="instr" class="wrap hidden">
@@ -58,7 +59,7 @@
  const $ = id => document.getElementById(id);
  const pid = new URLSearchParams(location.search).get('p');
  const paper = await JEE.loadPaper(pid);
- const img = f => `papers/${pid}/${f}`;
+ const img = paper.src;
  const KEY = 'jee.live.' + pid;
  document.title = paper.title; $('title').textContent = paper.title;
  let state = null; try { state = JSON.parse(localStorage.getItem(KEY)); } catch {}
@@ -107,15 +108,15 @@
   $('qno').textContent = `Question No. ${q.n}`;
   $('qmeta').textContent = `${q.subject} · Section ${q.section} · ${JEE.typeLabel[q.type]} · Marks +${q.marks} / ${q.neg ? '-' + q.neg : '0'}`;
   let html = q.sectionImage ? `<details class="sec"><summary>Section instructions</summary><img src="${img(q.sectionImage)}" alt="section instructions"></details>` : '';
-  html += q.images.map(f => `<img src="${img(f)}" alt="question ${q.n}">`).join('');
+  html += JEE.bodyHtml(q, img);
   if (q.type === 'single' || q.type === 'multi') {
    const t = q.type === 'single' ? 'radio' : 'checkbox';
-   html += `<div class="opts">` + ['A', 'B', 'C', 'D'].map(o => `<label><input type="${t}" name="opt" value="${o}" ${(q.type === 'single' ? draft === o : (draft || []).includes(o)) ? 'checked' : ''}> ${o}</label>`).join('') + `</div>`;
+   html += `<div class="opts">` + ['A', 'B', 'C', 'D'].map(o => `<label><input type="${t}" name="opt" value="${o}" ${(q.type === 'single' ? draft === o : (draft || []).includes(o)) ? 'checked' : ''}> <span><b>${o})</b> ${q.options?.[o] ?? ''}</span></label>`).join('') + `</div>`;
   } else {
    const keys = q.type === 'integer' ? ['7','8','9','4','5','6','1','2','3','0'] : ['7','8','9','4','5','6','1','2','3','.','0','-'];
    html += `<div style="margin-top:12px"><div class="numbox" id="numbox">${JEE.esc(draft ?? '')}</div><div class="keypad">` + keys.map(k => `<button data-k="${k}">${k}</button>`).join('') + `<button data-k="bs">⌫</button><button data-k="clr" class="wide">Clear All</button></div></div>`;
   }
-  $('qbody').innerHTML = html; $('qbody').scrollTop = 0;
+  $('qbody').innerHTML = html; $('qbody').scrollTop = 0; JEE.typeset($('qbody'));
   $('qbody').querySelectorAll('input[name=opt]').forEach(i => i.onchange = () => {
    draft = q.type === 'single' ? i.value : [...$('qbody').querySelectorAll('input[name=opt]:checked')].map(x => x.value);
   });

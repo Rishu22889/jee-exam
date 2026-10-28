@@ -1,5 +1,6 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Result Analysis</title><link rel="stylesheet" href="style.css"></head><body>
+<title>Result Analysis</title><link rel="stylesheet" href="style.css">
+<script>MathJax={loader:{load:["[tex]/mhchem"]},tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],packages:{"[+]":["mhchem"]}}};</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-chtml.js"></script></head><body>
 <div class="top"><b id="title">Analysis</b><a href="index.html" style="color:#fff">Home</a></div>
 <div class="wrap">
  <div class="card"><div id="head"></div><div class="stats" id="stats"></div></div>
@@ -18,7 +19,7 @@
  const a = JEE.attempts().find(x => x.id === aid);
  if (!a) { document.body.innerHTML = '<div class="wrap"><div class="card">Attempt not found in this browser. <a href="index.html">Home</a></div></div>'; return; }
  const paper = await JEE.loadPaper(a.paperId);
- const img = f => `papers/${a.paperId}/${f}`;
+ const img = paper.src;
  const an = JEE.analyse(paper, a.responses);
  const T = an.total, pct = x => Math.round(100 * x);
  const acc = s => (s.correct + s.partial + s.wrong) ? pct(s.correct / (s.correct + s.partial + s.wrong)) + '%' : '–';
@@ -42,7 +43,9 @@
   if (open) return;
   const q = paper.questions.find(x => x.n === +tr.dataset.n);
   const sol = (q.solution || []).map(f => `<img src="${img(f)}" alt="solution">`).join('') || '<p class="muted">No solution image.</p>';
-  tr.insertAdjacentHTML('afterend', `<tr class="detail"><td colspan="8"><b>Question</b>${q.images.map(f => `<img src="${img(f)}" alt="question">`).join('')}<b>Solution</b>${sol}</td></tr>`);
+  const opts = q.options ? `<div class="opts">${Object.entries(q.options).map(([o, t]) => `<div class="${q.answer.includes(o) ? 'v-correct' : ''}"><b>${o})</b> ${t}</div>`).join('')}</div>` : '';
+  tr.insertAdjacentHTML('afterend', `<tr class="detail"><td colspan="8"><b>Question ${q.n}</b>${JEE.bodyHtml(q, img)}${opts}<b>Solution</b>${sol}</td></tr>`);
+  JEE.typeset(tr.nextElementSibling);
  };
 
  // takeaways: simple rules, no magic

@@ -1,0 +1,146 @@
+[
+ {
+  "n": 1,
+  "text": "&ldquo;Sudheer has 7 friends. He writes 7 letters, each uniquely meant for one friend, and places them randomly into 7 addressed envelopes, each bearing the specific name of the intended friend.<br>Out of the seven friends :<br>1) Two of them are brothers and live at the same address.<br>2) The other five friends live at five different addresses.<br>Find the number of ways Sudheer can place the letters into the addressed envelopes such that none of the friends receives the letter meant for them.&rdquo;<br>(Assume that letters received at the two brothers address are received by both)",
+  "options": {
+   "A": "1280",
+   "B": "1368",
+   "C": "684",
+   "D": "640"
+  }
+ },
+ {
+  "n": 2,
+  "text": "If the area bounded by \\(x=\\sqrt{r^2-y^2}\\) and \\(|y|=\\left|\\tan\\theta\\,(x+r)\\right|\\) is \\(\\dfrac{1}{2}\\pi r^2\\) then (where \\(r\\in R^+\\) and \\(0<\\theta<\\dfrac{\\pi}{2}\\))",
+  "options": {
+   "A": "\\(2\\theta-\\sin 2\\theta=\\dfrac{\\pi}{2}\\)",
+   "B": "\\(\\sin\\theta=\\theta\\)",
+   "C": "\\(2\\theta+\\sin 2\\theta=\\dfrac{\\pi}{2}\\)",
+   "D": "\\(\\sin 2\\theta+2\\theta=\\pi\\)"
+  }
+ },
+ {
+  "n": 3,
+  "text": "\\(\\displaystyle\\int_1^2 \\dfrac{x(x+1)\\,dx}{\\left(2x^3+3x^2-1\\right)\\left(4x^6+12x^5+9x^4-6x^3-9x^2+2\\right)^{\\frac12}}=\\)",
+  "options": {
+   "A": "\\(\\dfrac{2\\sqrt{78}+9\\sqrt3}{54}\\)",
+   "B": "\\(\\dfrac{2\\sqrt{78}-9\\sqrt3}{54}\\)",
+   "C": "\\(\\dfrac{9\\sqrt3-2\\sqrt{78}}{54}\\)",
+   "D": "\\(\\dfrac{2\\sqrt{26}-3\\sqrt3}{18}\\)"
+  }
+ },
+ {
+  "n": 4,
+  "text": "Let \\(f:R\\to R\\) be a differentiable function such that \\(\\displaystyle\\int_0^x \\left(t.f(x)-x.f(t)\\right)t\\,dt=0,\\ \\forall x\\in R\\) and \\(f(2)=\\dfrac{-1}{3}\\) then",
+  "options": {
+   "A": "\\(f(0)=-1\\)",
+   "B": "\\(f(0)=1\\)",
+   "C": "\\(f(3)=-2\\)",
+   "D": "\\(f(6)=-1\\)"
+  }
+ },
+ {
+  "n": 5,
+  "text": "Let \\(A=\\begin{bmatrix}\\cos\\left(\\dfrac{\\pi}{5}\\right) & -\\sin\\left(\\dfrac{\\pi}{5}\\right)\\\\[2ex] \\sin\\left(\\dfrac{\\pi}{5}\\right) & \\cos\\left(\\dfrac{\\pi}{5}\\right)\\end{bmatrix}\\) and \\(B=\\begin{bmatrix}0 & -1\\\\ 1 & 0\\end{bmatrix}\\)<br>If \\(\\displaystyle\\sum_{r=1}^{4}\\left(B^2-B.A^{9r}-A^r.B+A^{10r}\\right)=\\begin{bmatrix}a & b\\\\ c & d\\end{bmatrix}\\), then \\(a^{10}+b^{10}+c^{10}+d^{10}=\\)",
+  "options": {
+   "A": "0",
+   "B": "\\(2\\left(\\cos^{10}\\left(\\dfrac{\\pi}{5}\\right)+\\sin^{10}\\left(\\dfrac{\\pi}{5}\\right)\\right)\\)",
+   "C": "4",
+   "D": "2"
+  }
+ },
+ {
+  "n": 6,
+  "text": "Sudheer has 3 identical white cubes and wants to turn them into dice. For each of the three cubes, he will make two independent decisions :<br>1. The colour : He will use either a Red or a Blue marker.<br>2. The Pattern : He will use either Dots or Digits.<br>For each cube, he flips a fair coin to decide the colour and another fair coin to decide the pattern (resulting in 6 coin flips in total to create the set of 3 dice).<br>After making the dice, Sudheer places all 3 dice into a bag. Renuka then randomly selects one die from the bag and notes its colour and pattern.<br>Consider the following events :<br>a. Event A : The die Renuka selects is Red.<br>b. Event B : The die Renuka selects is Dotted.<br>The probability that the events A and B are independent is",
+  "options": {
+   "A": "\\(\\dfrac{7}{16}\\)",
+   "B": "\\(\\dfrac{21}{64}\\)",
+   "C": "\\(\\dfrac{15}{32}\\)",
+   "D": "0"
+  }
+ },
+ {
+  "n": 7,
+  "text": "Which of the following is/are odd functions ? (where [.] denotes G.I.F)",
+  "options": {
+   "A": "\\(f:R\\to R\\) such that \\(f(x)=\\dfrac{|x|.x}{1+x+x^2}\\)",
+   "B": "\\(f:Z\\to R\\) such that \\(f(x)=\\dfrac{x.[x].\\tan x}{x^4+x^2+1}\\)",
+   "C": "\\(f:R-Q\\to R\\) such that \\(f(x)=\\sin\\left(\\dfrac{\\pi}{2}\\left[x+\\dfrac12\\right]\\right)\\)",
+   "D": "\\(f:\\left\\{4k\\pm\\dfrac12:k\\in Z\\right\\}\\to R\\) such that \\(f(x)=\\sin\\left(\\dfrac{\\pi}{2}\\left[x+\\dfrac12\\right]\\right)-\\dfrac12\\)"
+  }
+ },
+ {
+  "n": 8,
+  "text": "Let \\(f:R^+\\to R\\) be a twice differentiable function such that \\(f''(x)>0\\), for all \\(x>0\\) and \\(f(x+1)-f(x)\\) is a positive integer for all positive integral values of \\(x\\).<br>If \\(f(2025)=f(2026)-2027\\) and \\(f(1)=\\dfrac12\\) then \\(f(3)\\) can be",
+  "options": {
+   "A": "9.5",
+   "B": "8.5",
+   "C": "7.5",
+   "D": "6.5"
+  }
+ },
+ {
+  "n": 9,
+  "text": "Let M be a point on the ellipse \\(\\dfrac{x^2}{2}+\\dfrac{y^2}{1}=1\\). Let normal at M meets the ellipse at N. Tangents drawn to the ellipse at M and N intersect at \\(S(\\alpha,\\beta)\\) such that \\(\\alpha\\) and \\(\\beta\\) are both integers. Then",
+  "options": {
+   "A": "\\(\\dfrac{8}{\\alpha^2}+\\dfrac{1}{\\beta^2}=1\\)",
+   "B": "\\(\\dfrac{3}{\\alpha^2}+\\dfrac{6}{\\beta^2}=1\\)",
+   "C": "Number of such possible points of S is 4",
+   "D": "\\(\\tan(\\angle MNS)=\\dfrac32\\)"
+  }
+ },
+ {
+  "n": 10,
+  "text": "If \\(f:[0,1]\\to(0,\\infty)\\) is a continuous function such that \\(\\displaystyle\\int_0^1 f(x)\\,dx=1\\) then which of the following is/are always <b>TRUE</b>?",
+  "options": {
+   "A": "\\(\\left(\\displaystyle\\int_0^1\\sqrt[3]{f(x)}\\,dx\\right).\\left(\\displaystyle\\int_0^1\\sqrt[5]{f(x)}.dx\\right)\\le 1\\)",
+   "B": "\\(\\displaystyle\\int_0^1\\dfrac{f(x)}{1+2f(x)}\\,dx\\le\\dfrac13\\)",
+   "C": "\\(\\left(\\displaystyle\\int_0^1\\sqrt[4]{f(x)}\\,dx\\right)^2\\ge 1\\)",
+   "D": "There exists \\(c\\in(0,1)\\ni f(c)=1\\)"
+  }
+ },
+ {
+  "n": 11,
+  "text": "Let S be the set of all points in three dimensional space whose position vector, \\(\\vec r\\) satisfies \\(\\vec r.\\hat i=0\\) and \\(\\left|\\vec r.\\left(\\hat j-2\\hat k\\right)\\right|=\\left|\\vec r.\\left(2\\hat j+\\hat k\\right)\\right|\\) then",
+  "options": {
+   "A": "Number of points in &lsquo;S&rsquo;, whose distance from origin is 1, is 4",
+   "B": "Number of points in &lsquo;S&rsquo;, whose distance from origin is 1, is infinite",
+   "C": "Let P, Q be two points which belongs to set S such that OP = OQ = \\(\\sqrt{10}\\) and O, P, Q are non collinear, where O is origin. Then mid point of P, Q can be (0, 1, -2)",
+   "D": "Let P, Q be two points which belongs to set S such that OP = OQ = \\(\\sqrt{10}\\) and O, P, Q are non collinear, where O is origin. Then mid point of P, Q can be (0, 2, -1)"
+  }
+ },
+ {
+  "n": 12,
+  "text": "Let S be the set of all possible value of &lsquo;n&rsquo; for which the following list of &lsquo;3n&rsquo; numbers has unique mode<br>1, 2, 3, &hellip;., n, \\(1^2,2^2,3^2,\\ldots..,\\ n^2,1^3,2^3,3^3,....,n^3\\)<br>Let &lsquo;k&rsquo; be the median of the following list of 4052 numbers<br>1, 2, 3, &hellip;.,2026, \\(1^2,2^2,3^2,....,2026^2\\)<br>then which of the following options is/are <b>CORRECT</b>?",
+  "options": {
+   "A": "The sum of elements in the set S is equal to 2016",
+   "B": "The sum of elements in the set S is greater than 2026",
+   "C": "k = 1982.5",
+   "D": "k = 1981.5"
+  }
+ },
+ {
+  "n": 13,
+  "text": "Let \\(f:[1,\\infty)\\to[1,\\infty)\\) be a function such that<br>\\[f(x)=\\begin{cases}2n.\\left(\\dfrac{2n-1}{2n}\\right)^{x-2n+1} & ;2n-1\\le x\\le 2n;\\forall n\\in N\\\\ (2n+1)\\left(\\dfrac{2n}{2n+1}\\right)^{x-2n} & ;2n\\lt x\\lt 2n+1;\\forall n\\in N\\end{cases}\\]Then the number of values of &lsquo;x&rsquo; in [1, 5] for which \\(f(x)=f^{-1}(x)\\) is"
+ },
+ {
+  "n": 14,
+  "text": "Let \\(f(x)=\\displaystyle\\lim_{n\\to\\infty}\\left[\\dfrac{12xn^2+84x^2-12x}{n^2+10x^2}\\right]\\); where [.] denotes G.I.F then number of positive integers, &lsquo;m&rsquo; which satisfy the equation \\(f\\left(\\dfrac1m\\right)-\\dfrac{12}{m}=0\\) is"
+ },
+ {
+  "n": 15,
+  "text": "Let \\(z_1,z_2,z_3\\) are three distinct complex numbers such that \\(|z_1|=|z_2|=|z_3|=4\\) and \\(\\left|z_1.\\left(\\overline{z_2-z_3}\\right)-\\overline{z_1}.(z_2-z_3)+z_2\\overline{z_3}-z_3\\overline{z_2}\\right|=48\\) then<br>\\(\\left|(z_1-z_2)(z_2-z_3)(z_3-z_1)\\right|\\) is equal to"
+ },
+ {
+  "n": 16,
+  "text": "Let \\(b>a>0\\) and \\(A_1,H_1\\) be arithmetic mean and Harmonic mean of &lsquo;a&rsquo; and &lsquo;b&rsquo; respectively. Let \\(A_n,H_n\\) be respectively arithmetic mean and Harmonic mean of &lsquo;a&rsquo; and \\(A_{n-1}\\) for all \\(n\\ge 2\\), where \\(n\\in N\\). If \\(A_{2025}=H_{2024}\\) then number of divisors of \\(\\left(\\dfrac{b-a}{a}\\right)\\) that are less than 2025 is"
+ },
+ {
+  "n": 17,
+  "text": "Let A, B be variable points on the parabola \\(y^2=12x\\) and foot of perpendiculars drawn from A, B on to directrix of the parabola be N, K respectively. Let S be the focus of the parabola. Then the locus of circumcentre of \\(\\Delta NSK\\), as A, B varies on the parabola such that \\(\\angle NSK=60^\\circ\\), is a conic whose eccentricity is &lsquo;e&rsquo;. The value of \\((e-2)^2\\) is"
+ },
+ {
+  "n": 18,
+  "text": "The straight lines \\(2x-3y-18=0\\) and \\(3x+2y-1=0\\) intersects the circle \\(x^2+y^2-6x+8y+k=0\\) at {A, B} and {C, D} respectively. Let P be a point on the circle such that PA.PB = 14 and PC.PD = 48 then the value of &lsquo;k&rsquo; is"
+ }
+]

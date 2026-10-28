@@ -13,6 +13,7 @@ import argparse, json, os, re, subprocess, sys, xml.etree.ElementTree as ET
 DPI = 150
 SCALE = DPI / 72
 X0, X1 = 22, 573          # crop width in pt (A4 = 595 wide)
+PAD = 8                   # pt added above and below each crop: a sliver of the neighbour beats a clipped line
 SUBJECTS = ["Mathematics", "Physics", "Chemistry"]
 FOOTER_RE = re.compile(r"Page\.?\s*No|Pg\.?\s*No|^SR[._]", re.I)
 SECTION_RE = re.compile(r"^SECTION\b.*Max", re.I)
@@ -27,6 +28,20 @@ LAYOUTS = {
 
 def run(*cmd):
     return subprocess.run(cmd, check=True, capture_output=True).stdout
+
+def ink_rows(pdf, page):
+    """list indexed by y (pt): True if any pixel row inside that pt has ink within the crop width.
+    Rendered at DPI so thin drawing lines stay dark (at 72 dpi they fade to light grey)."""
+    import tempfile
+    with tempfile.TemporaryDirectory() as d:
+        run("pdftoppm", "-gray", "-r", str(DPI), "-f", str(page), "-l", str(page), "-singlefile", pdf, f"{d}/p")
+        data = open(f"{d}/p.pgm", "rb").read()
+    parts = data.split(maxsplit=4); w, h = int(parts[1]), int(parts[2])   # P5 header: magic width height maxval
+    table = bytes(1 if v < 170 else 0 for v in range(256))
+    px = parts[4].translate(table)
+    x0, x1 = int((X0 + 18) * SCALE), int((X1 - 18) * SCALE)  # inside the page's vertical border lines
+    rows = [px[r * w + x0:r * w + x1].count(b"\x01") >= 2 for r in range(h)]
+    return [any(rows[int(y * SCALE):int((y + 1) * SCALE)]) for y in range(842)]
 
 def page_lines(pdf):
     """[(page, [(yMin, yMax, xMin, text), ...]), ...] sorted by y."""
@@ -43,7 +58,7 @@ def page_lines(pdf):
         out.append((i, lines))
     return out
 
-def find_blocks(pages, first_page, expect_n):
+def find_blocks(pages, first_page, expect_n, tolerance=10, pdf=None):
     """Locate numbered blocks 1..expect_n (any order). Returns {n: [(page, y0, y1), ...]}.
     A block whose number label is missing from the text layer gets the previous block's images."""
     starts = []  # (page, y, n) in document order
@@ -71,20 +86,27 @@ def find_blocks(pages, first_page, expect_n):
             if "For More Join" in text and y0 > 700:
                 cuts[p].append(y0)
     missing = sorted(set(range(1, expect_n + 1)) - seen)
-    if len(missing) > expect_n // 10:
+    if len(missing) > expect_n // tolerance:
         sys.exit(f"too many blocks missing: {missing}")
     if missing:
         print(f"warning: number labels not found for {missing}; they share the previous block's crop", file=sys.stderr)
+    ink = {}
     def top_of(p, y):
-        """y where the block labelled at y really starts: math (integral limits, fraction numerators)
-        often sits above the label line, so climb through lines that touch, then cut mid-gap."""
-        cur = y
-        for l in sorted((l for l in text_lines[p] if l[0] < y - 1), key=lambda l: -l[1]):
-            if cur - l[1] < 7 and l[2] > 55:  # indented line touching the block (section instructions start at the margin)
-                cur = min(cur, l[0])
-            else:
-                return max(cur - 24, (l[1] + cur) / 2, tops[p])
-        return max(cur - 20, tops[p])
+        """y where the block labelled at y really starts. The previous block's body text (label x~32, text x~68)
+        ends at B. Between B and the label there may be drawings or math belonging to either side, so cut in the
+        first blank band (>= 3pt of white in the rendered page) found scanning upward from the label; with no
+        such band, cut midway."""
+        above = [l for l in text_lines[p] if l[1] <= y + 2]
+        body = [l[1] for l in above if l[2] <= 90]
+        B = max(body) if body else tops[p]
+        if pdf:
+            if p not in ink: ink[p] = ink_rows(pdf, p)
+            rows = ink[p]; r = int(y) + 6; run = 0   # the label's line box starts above its glyphs: scan from a little below
+            while r > B:
+                r -= 1
+                run = run + 1 if not rows[r] else 0
+                if run >= 3: return max(tops[p], min(y, r + run / 2))
+        return max(tops[p], (B + y) / 2)
     blocks = {}
     last_page = max(cuts)
     for i, (p, y, n) in enumerate(starts):
@@ -100,8 +122,11 @@ def find_blocks(pages, first_page, expect_n):
             # continue onto the next page only if this page ended at its footer and the next block is on a later page
             if end >= 700 and page < last_page and (nxt is None or nxt[0] > page):
                 page += 1; y0 = tops[page]
+                if any(sp == page and sy < y0 + 25 for sp, sy in sections):  # next page opens with a section heading
+                    break
                 first_cut = min([c for c in cuts.get(page, []) if c > y0] + [top_of(page, nxt[1]) if nxt and nxt[0] == page else 9e9])
-                if not any(y0 < l[0] < first_cut for l in text_lines[page]):  # nothing but a header
+                # body text starts at x~68; a band holding only math fragments (x>90) is the next question's overhang
+                if not any(y0 < l[0] and l[1] < first_cut and l[2] <= 90 for l in text_lines[page]):
                     break
                 continue
             break
@@ -118,6 +143,7 @@ def find_blocks(pages, first_page, expect_n):
 def crop(pdf, segs, prefix):
     files = []
     for k, (page, y0, y1) in enumerate(segs):
+        y0, y1 = max(0, y0 - PAD), min(842, y1 + PAD)
         out = f"{prefix}_{k}"
         run("pdftoppm", "-f", str(page), "-l", str(page), "-r", str(DPI), "-png", "-singlefile",
             "-x", str(int(X0 * SCALE)), "-y", str(int(y0 * SCALE)),
@@ -153,8 +179,8 @@ def main():
     if missing: sys.exit(f"key missing for questions {missing}")
 
     outdir = os.path.join(a.out, a.id); os.makedirs(outdir, exist_ok=True)
-    qblocks = find_blocks(page_lines(a.qp), 1, total)
-    sblocks = find_blocks(page_lines(a.sol), a.sol_first_page, total) if a.sol else {}
+    qblocks = find_blocks(page_lines(a.qp), 1, total, pdf=a.qp)
+    sblocks = find_blocks(page_lines(a.sol), a.sol_first_page, total, tolerance=3, pdf=a.sol) if a.sol else {}  # solution labels are often images
 
     sec_imgs = [crop(a.qp, segs, os.path.join(outdir, f"sec{k:02d}"))[0] for k, segs in enumerate(qblocks["sections"])]
     if len(sec_imgs) != len(layout) * len(SUBJECTS):
