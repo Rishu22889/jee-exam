@@ -125,16 +125,26 @@ async function crop(pdf, segs, prefix, blobs) {
   return files;
 }
 
-// ---- key sheet: numbers 1..N appear in order; the answer is the cell just to the right (ranges stack vertically)
+// ---- key sheet: numbers 1..N appear in reading order; the answer is the cell just to the right (ranges stack vertically).
+// Watermark text overlapping the table is ignored; a cell that cannot be read is left blank and the scan moves on.
 async function parseKey(pdf, N) {
   const page = await pdf.getPage(1), H = page.getViewport({ scale: 1 }).height;
   const items = (await page.getTextContent()).items.filter(i => i.str.trim()).map(i => ({ x: i.transform[4], y: H - i.transform[5], s: i.str.trim() }));
   items.sort((a, b) => Math.round(a.y / 6) - Math.round(b.y / 6) || a.x - b.x);
+  const TOKEN = /^([A-D]{1,4}|-?\d+(\.\d+)?|TO)$/, ANSWER = /^(-?[\d.]+ TO -?[\d.]+|[A-D]{1,4}|-?[\d.]+)$/;
   const key = {}; let want = 1;
+  const cellOf = it => items.filter(o => o.x > it.x + 3 && o.x < it.x + 80 && Math.abs(o.y - it.y) < 18 && TOKEN.test(o.s)).sort((a, b) => a.y - b.y).map(o => o.s).join(' ');
+  // number cells sit in fixed columns: learn their x from the first row (number, answer, number, answer, ...)
+  const one = items.find(i => i.s === '1' && ANSWER.test(cellOf(i)));
+  const row1 = one ? items.filter(o => Math.abs(o.y - one.y) < 6 && TOKEN.test(o.s)).sort((a, b) => a.x - b.x) : [];
+  const cols = row1.filter((_, i) => i % 2 === 0).map(o => o.x);
+  const isNumberCell = it => !cols.length || cols.some(c => Math.abs(c - it.x) < 6);
   for (const it of items) {
+    if (want > N) break;
+    if (!isNumberCell(it)) continue;
+    if (it.s === String(want + 1)) want++;              // cell for `want` was unreadable: leave it blank
     if (it.s !== String(want)) continue;
-    const cell = items.filter(o => o.x > it.x + 3 && o.x < it.x + 80 && Math.abs(o.y - it.y) < 14).sort((a, b) => a.y - b.y).map(o => o.s).join(' ');
-    if (/^(-?[\d.]+ TO -?[\d.]+|[A-D]{1,4}|-?[\d.]+)$/.test(cell)) { key[want] = cell; want++; }
+    const cell = cellOf(it); if (ANSWER.test(cell)) key[want] = cell; want++;
   }
   return key;
 }
