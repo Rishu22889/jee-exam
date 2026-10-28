@@ -15,14 +15,26 @@
   async function pageLines(page) {
     const vp = page.getViewport({ scale: 1 }), H = vp.height;
     const items = (await page.getTextContent()).items.filter(i => i.str.trim()).map(i => ({ x: i.transform[4], y: H - i.transform[5], h: i.height || 10, w: i.width, s: i.str }));
-    items.sort((a, b) => a.y - b.y || a.x - b.x);
+    return { W: vp.width, H, items, lines: toLines(items) };
+  }
+  function toLines(items) {
+    items = [...items].sort((a, b) => a.y - b.y || a.x - b.x);
     const lines = [];
     for (const it of items) {
       const L = lines.find(l => Math.abs(l.base - it.y) < 3 && it.x - l.endX < 2 * it.h + 2 && it.x >= l.endX - 2);
       if (L) { L.text += (it.x - L.endX > 0.3 * it.h ? ' ' : '') + it.s; L.endX = it.x + it.w; L.h = Math.max(L.h, it.h); }
       else lines.push({ base: it.y, x: it.x, endX: it.x + it.w, h: it.h, text: it.s });
     }
-    return { W: vp.width, H, items, lines: lines.map(l => ({ y0: l.base - l.h, y1: l.base + 0.25 * l.h, x: l.x, x1: l.endX, text: l.text.trim() })).sort((a, b) => a.y0 - b.y0 || a.x - b.x) };
+    return lines.map(l => ({ y0: l.base - l.h, y1: l.base + 0.25 * l.h, x: l.x, x1: l.endX, text: l.text.trim() })).sort((a, b) => a.y0 - b.y0 || a.x - b.x);
+  }
+  // English and Hindi side by side (Allen JEE Main): Hindi text only ever in the right half -> x where the Hindi half starts, else null.
+  // Papers with Hindi mixed into both columns (Allen Advanced) are left alone.
+  const HINDI = /[\u0900-\u097F]/;
+  function hindiHalf(pages) {
+    const hi = pages.flatMap(pg => (pg.items || []).filter(i => HINDI.test(i.s)).map(i => ({ i, W: pg.W })));
+    const pagesWith = pages.filter(pg => (pg.items || []).filter(i => HINDI.test(i.s)).length >= 5).length;
+    if (pagesWith < Math.max(2, 0.3 * pages.length) || hi.some(({ i, W }) => i.x < W * 0.45)) return null;
+    return Math.min(...hi.map(({ i }) => i.x)) - 4;
   }
 
   const subjectOf = t => { const m = t.length < 32 && t.match(SUBJECT_RE); return m ? SUBJECT_NAME[m[1][0].toUpperCase()] : null; };
@@ -45,6 +57,8 @@
   // pages: [{p, W, H, lines}] from pageLines. opts.ink(p, x0, x1) -> boolean rows per pt (optional, makes cuts land in white space).
   async function analyse(pages, opts = {}) {
     const N = pages.length;
+    const hindiAt = hindiHalf(pages);
+    if (hindiAt) for (const pg of pages) pg.lines = toLines(pg.items.filter(i => i.x < hindiAt)); // English half only
     // 1. classify lines
     const norm = t => t.replace(/[\d\s]+/g, ' ').trim().toLowerCase(), at = l => norm(l.text) + '@' + Math.round(l.y0 / 15);
     const seen = new Map(), bump = k => seen.set(k, (seen.get(k) || 0) + 1);
@@ -66,7 +80,9 @@
       const mark = (ls, inBand) => { for (const l of ls) { if (!inBand(l)) break; if (!isRun(l)) break; if (l.kind === 'text') l.kind = 'chrome'; l.edge = true; } };
       const sorted = [...pg.lines].sort((a, b) => a.y0 - b.y0);
       mark(sorted, l => l.y0 < pg.H * 0.12);
-      mark(sorted.reverse(), l => l.y0 > pg.H * 0.85);
+      // footers sit in the bottom 15%, or higher (Allen Main: 78%) when the line repeats at the same spot on many pages
+      const samePlace = l => l.kind === 'cut' || l.kind === 'chrome' || (norm(l.text) ? repeated(at(l)) : repeated(slot(l)));
+      mark(sorted.reverse(), l => l.y0 > pg.H * 0.85 || (l.y0 > pg.H * 0.75 && samePlace(l)));
     }
     // 2. content starts at the first subject or section heading (skips the instruction page's own numbered list)
     let started = false;
@@ -79,13 +95,13 @@
     const split = twoCol ? Math.min(...right.map(c => c.l.x)) - 6 : Infinity;
     const vps = [];
     for (const pg of pages) {
-      const head = pg.lines.filter(l => l.edge && l.kind === 'chrome' && l.y0 < pg.H * 0.12), foot = pg.lines.filter(l => l.edge && l.kind === 'chrome' && l.y0 > pg.H * 0.85);
+      const head = pg.lines.filter(l => l.edge && l.kind === 'chrome' && l.y0 < pg.H * 0.12), foot = pg.lines.filter(l => l.edge && l.kind === 'chrome' && l.y0 > pg.H * 0.75);
       const top = head.length ? Math.max(...head.map(l => l.y1)) + 1 : pg.H * 0.05, bottom = foot.length ? Math.min(...foot.map(l => l.y0)) : pg.H * 0.97;
-      const cols = twoCol ? [[pg.W * 0.03, split], [split, pg.W * 0.97]] : [[pg.W * 0.03, pg.W * 0.97]];
+      const cols = twoCol ? [[pg.W * 0.03, split], [split, pg.W * 0.97]] : [[pg.W * 0.03, hindiAt ?? pg.W * 0.97]];
       // two columns that begin under a full-width part (title, key table): columns start below the last line crossing the gutter
       const firstLabel = Math.min(...pg.lines.filter(l => l.live && l.kind === 'cand').map(l => l.y0));
       const colTop = twoCol ? Math.max(top, ...pg.lines.filter(l => l.x < split - 10 && l.x1 > split + 10 && l.y1 < firstLabel).map(l => l.y1 + 1)) : top;
-      cols.forEach(([x0, x1], c) => vps.push({ p: pg.p, c, x0, x1, W: pg.W, H: pg.H, top: colTop, bottom, lines: pg.lines.filter(l => ((l.x < split ? 0 : 1) === c || !twoCol) && l.y0 >= colTop - 2) }));
+      cols.forEach(([x0, x1], c) => vps.push({ p: pg.p, c, x0, x1, W: pg.W, H: pg.H, top: colTop, bottom, lines: pg.lines.filter(l => ((l.x < split ? 0 : 1) === c || !twoCol) && l.y1 > colTop) })); // by bottom edge: a heading may touch the header line (Narayana)
     }
     // 4. label column and body text column per column index
     const labelX = [0, 1].map(c => mode(cands.filter(({ l }) => (l.x < split ? 0 : 1) === c).map(({ l }) => l.x)));
@@ -101,7 +117,7 @@
     vps.forEach((v, vi) => v.lines.forEach(l => {
       if (!l.live) return;
       v.cuts ??= [];
-      if (l.kind === 'subject') { if (l.subject !== subject) { subject = l.subject; sec = -1; } v.cuts.push(l.y0); fresh = true; psg = null; return; }
+      if (l.kind === 'subject') { if (l.subject !== subject) { subject = l.subject; sec = -1; v.newSubject ??= l.y0; } v.cuts.push(l.y0); fresh = true; psg = null; return; }
       if (l.kind === 'section') { sections.push({ subject, title: l.text, info: '', vi, y: l.y0, count: 0 }); sec = sections.length - 1; v.cuts.push(l.y0); fresh = true; psg = null; return; }
       if (l.kind === 'cut') { v.cuts.push(l.y0); return; }
       if (l.kind === 'passage') { const r = l.text.match(/(\d+)\D+?(\d+)/); psg = passages.length; passages.push({ vi, y: l.y0, range: r ? [+r[1], +r[2]] : null }); starts.push({ vi, y: l.y0, kind: 'p', idx: psg }); return; }
@@ -151,6 +167,7 @@
         if (end >= v.bottom - 9 && vi < vps.length - 1 && (!nxt || nxt.vi > vi)) {
           vi++; const w = vps[vi]; y0 = w.top;
           const firstCut = Math.min(...w.cuts.filter(c => c > y0 - 8), nxt && nxt.vi === vi ? await topOf(vi, nxt.y) : Infinity);
+          if (w.newSubject === firstCut) break; // a page opening a new subject: lines above its heading are a title ("Topic : Full Syllabus")
           if (!textOf(w).some(l => l.y0 > y0 && l.y1 < firstCut && isBody(l, w.c))) break; // nothing of ours on the next page
           continue;
         }
@@ -177,7 +194,7 @@
       s.neg = own.neg ?? (own.marks == null && cv ? cv.neg : null);
     }
     const kept = sections.filter(s => s.count), idx = sections.map(s => kept.indexOf(s));
-    return { questions: qs.map(({ line, ...q }) => ({ ...q, sec: idx[q.sec], label: line })), sections: kept, passages, missing: missing.map(i => i + 1), twoCol, labelX, bodyMax };
+    return { questions: qs.map(({ line, ...q }) => ({ ...q, sec: idx[q.sec], label: line })), sections: kept, passages, missing: missing.map(i => i + 1), twoCol, hindiAt, labelX, bodyMax };
   }
 
   // ---- marking scheme printed once on the cover: rows "Section–A (Single Correct): …", "Full Marks : +3", "Negative Marks : –1"

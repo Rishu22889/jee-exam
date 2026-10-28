@@ -18,7 +18,7 @@ window.__run = (async () => {
     key = Cutter.readKey(solAn, spages, an.questions.length, q.get('prefer'));
   }
   const result = {
-    n: an.questions.length, missing: an.missing, twoCol: an.twoCol, labelX: an.labelX, bodyMax: an.bodyMax,
+    n: an.questions.length, missing: an.missing, twoCol: an.twoCol, hindiAt: an.hindiAt, labelX: an.labelX, bodyMax: an.bodyMax,
     sections: an.sections.map(s => `${s.subject} | ${s.title} | ${s.count} | ${s.type} | +${s.marks} / -${s.neg}`),
     passages: an.passages.map(p => p.range), withPassage: an.questions.filter(x => x.passage != null).map((x, i) => an.questions.indexOf(x) + 1),
     solN: solAn?.questions.length, solMissing: solAn?.missing, keyFormat: key?.format, keyFound: key?.found, key: key?.answers,
