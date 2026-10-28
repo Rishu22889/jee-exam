@@ -1,4 +1,23 @@
 [
- {"id": "adv-gta1-p1", "exam": "JEE Advanced", "title": "JEE Advanced GTA-1 Paper 1", "duration": 180, "maxMarks": 198},
- {"id": "adv-gta1-p2", "exam": "JEE Advanced", "title": "JEE Advanced GTA-1 Paper 2", "duration": 180, "maxMarks": 198}
+ {
+  "id": "adv-gta1-p1",
+  "exam": "JEE Advanced",
+  "title": "JEE Advanced GTA-1 Paper 1",
+  "duration": 180,
+  "maxMarks": 198
+ },
+ {
+  "id": "adv-gta1-p2",
+  "exam": "JEE Advanced",
+  "title": "JEE Advanced GTA-1 Paper 2",
+  "duration": 180,
+  "maxMarks": 198
+ },
+ {
+  "id": "up-jee-advanced-paper-1",
+  "exam": "Uploaded",
+  "title": "Jee Advanced Paper 1",
+  "duration": 180,
+  "maxMarks": 198
+ }
 ]
