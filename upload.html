@@ -1,6 +1,8 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Upload a paper</title><link rel="stylesheet" href="style.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script></head><body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>MathJax={loader:{load:["[tex]/mhchem"]},tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],packages:{"[+]":["mhchem"]}}};</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-chtml.js"></script>
+<style>.ed{border:1px solid #cfd5de;border-radius:6px;padding:10px;margin-bottom:14px}.ed img{max-width:100%;display:block;border:1px solid #ddd}.ed .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0}.ed input,.ed select,.ed textarea{padding:4px;font:inherit}.ed textarea{width:100%;font-family:monospace}.ed .opt{width:100%}.bad{border:2px solid #c0392b !important}</style></head><body>
 <div class="top"><b>Upload a paper</b><a href="index.html" style="color:#fff">Home</a></div>
 <div class="wrap">
  <div class="card">
@@ -18,12 +20,11 @@
   <button class="btn primary" id="go">Read PDFs</button> <span id="status" class="muted"></span>
  </div>
  <div class="card hidden" id="step2">
-  <h3 style="margin-top:0">Check the answer key</h3>
-  <p class="muted">One line per question: <code>n answer</code>. Multi-correct as <code>BCD</code>, ranges as <code>0.78 TO 0.82</code>. Parsed from page 1 of the key PDF; fix anything wrong.</p>
-  <textarea id="key" rows="12" style="width:100%;font-family:monospace"></textarea>
+  <h3 style="margin-top:0">Check and edit every question, then save</h3>
+  <p class="muted">Crop wrong? Use the ▲▼ buttons to move the top or bottom edge of the crop (8pt a step). Answer: single/multi as letters (<code>BCD</code>), numbers as printed, ranges as <code>0.78 TO 0.82</code>. Typed text is optional: HTML with <code>\( \)</code> math; when filled it replaces the crop in the exam.</p>
+  <div id="ed"></div>
   <p><button class="btn green" id="save">Save paper</button> <span id="status2" class="muted"></span></p>
  </div>
- <div class="card hidden" id="preview"><h3 style="margin-top:0">Preview</h3><div id="pv"></div></div>
 </div>
 <script src="app.js"></script>
 <script>
@@ -165,23 +166,64 @@ $('go').onclick = async () => {
     let n = 1;
     for (const [si, subject] of SUBJECTS.entries()) for (const [li, L] of layout.entries()) for (let i = 0; i < L.count; i++, n++) {
       status(`cropping question ${n} / ${N}…`);
-      questions.push({ n, subject, section: li + 1, type: L.type, marks: L.marks, neg: L.neg, answer: '', sectionImage: secImgs[si * layout.length + li] || null,
-        images: await crop(qp, q.blocks[n], `q${n}`, blobs), solution: s ? await crop(sol, s.blocks[n], `s${n}`, blobs) : [] });
+      questions.push({ n, subject, section: li + 1, type: L.type, marks: L.marks, neg: L.neg, answer: key[n] || '', sectionImage: secImgs[si * layout.length + li] || null,
+        images: await crop(qp, q.blocks[n], `q${n}`, blobs), solution: s ? await crop(sol, s.blocks[n], `s${n}`, blobs) : [], segs: q.blocks[n].map(x => [...x]) });
     }
     const id = 'up-' + ($('title').value.trim() || qpFile.name.replace(/\.pdf$/i, '')).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-    built = { id, blobs, paper: { id, exam: 'Uploaded', title: $('title').value.trim() || qpFile.name, duration: +$('dur').value * 60, maxMarks: layout.reduce((a, l) => a + l.marks * l.count, 0) * SUBJECTS.length, subjects: SUBJECTS, questions } };
-    $('key').value = Array.from({ length: N }, (_, i) => `${i + 1} ${key[i + 1] || ''}`).join('\n');
-    $('step2').classList.remove('hidden'); $('preview').classList.remove('hidden');
-    $('pv').innerHTML = questions.map(x => `<p><b>Q${x.n}</b> (${x.subject}, ${x.type})</p>` + x.images.map(f => `<img src="${URL.createObjectURL(blobs[f])}" style="max-width:100%;border:1px solid #ddd">`).join('')).join('');
-    status(`done: ${N} questions${q.missing.length ? `; number labels missing for Q ${q.missing.join(', ')} (they share the previous crop)` : ''}. Check the key below, then save.`);
+    built = { id, blobs, qp, paper: { id, exam: 'Uploaded', title: $('title').value.trim() || qpFile.name, duration: +$('dur').value * 60, maxMarks: 0, subjects: SUBJECTS, questions } };
+    renderEditor();
+    $('step2').classList.remove('hidden');
+    status(`done: ${N} questions${q.missing.length ? `; number labels missing for Q ${q.missing.join(', ')} (they share the previous crop)` : ''}. Check every question below, then save.`);
   } catch (e) { status('failed: ' + e.message); console.error(e); }
 };
+const TYPES = ['single', 'multi', 'integer', 'numeric'];
+function renderEditor() {
+  const e = JEE.esc;
+  $('ed').innerHTML = built.paper.questions.map(x => `<div class="ed" data-n="${x.n}">
+   <div class="row"><b>Q${x.n}</b> <span class="muted">${x.subject} · Section ${x.section}</span>
+    <label>type <select name="type">${TYPES.map(t => `<option ${t === x.type ? 'selected' : ''}>${t}</option>`).join('')}</select></label>
+    <label>+<input name="marks" type="number" value="${x.marks}" style="width:50px"></label> <label>−<input name="neg" type="number" value="${x.neg}" style="width:50px"></label>
+    <label>answer <input name="answer" value="${e(x.answer)}" style="width:120px"></label></div>
+   <div class="row"><span class="muted">top edge</span> <button class="btn" data-a="top:-8">▲</button><button class="btn" data-a="top:8">▼</button> &nbsp; <span class="muted">bottom edge</span> <button class="btn" data-a="bot:-8">▲</button><button class="btn" data-a="bot:8">▼</button></div>
+   <div class="imgs">${x.images.map(f => `<img src="${URL.createObjectURL(built.blobs[f])}">`).join('')}</div>
+   <details><summary class="muted" style="cursor:pointer">Typed text (optional)</summary>
+    <textarea name="text" rows="3" placeholder="Question text, HTML + \\( math \\)">${e(x.text || '')}</textarea>
+    ${['A', 'B', 'C', 'D'].map(o => `<div class="row"><b>${o})</b> <input class="opt" name="opt${o}" value="${e(x.options?.[o] || '')}"></div>`).join('')}
+    <button class="btn" data-a="preview">Preview</button><div class="pv" style="font-size:16px"></div></details>
+  </div>`).join('');
+}
+$('ed').onclick = async ev => {
+  const b = ev.target.closest('button[data-a]'); if (!b) return;
+  const card = b.closest('.ed'), x = built.paper.questions.find(q => q.n === +card.dataset.n);
+  if (b.dataset.a === 'preview') {
+    const f = readCard(card, x); const opts = x.options ? Object.entries(x.options).map(([o, t]) => `<div><b>${o})</b> ${t}</div>`).join('') : '';
+    const pv = card.querySelector('.pv'); pv.innerHTML = `<div>${x.text || ''}</div>${opts}`; JEE.typeset(pv); return;
+  }
+  const [edge, d] = b.dataset.a.split(':'); const segs = x.segs;
+  if (edge === 'top') segs[0][1] = Math.max(0, segs[0][1] + +d); else segs[segs.length - 1][2] = Math.min(842, segs[segs.length - 1][2] + +d);
+  if (segs[0][1] >= segs[0][2]) return;
+  x.images = await crop(built.qp, segs, `q${x.n}`, built.blobs);
+  card.querySelector('.imgs').innerHTML = x.images.map(f => `<img src="${URL.createObjectURL(built.blobs[f])}">`).join('');
+};
+function readCard(card, x) { // DOM -> question; returns the first invalid field name or null
+  const v = n => card.querySelector(`[name=${n}]`).value.trim();
+  x.type = v('type'); x.marks = +v('marks'); x.neg = +v('neg'); x.answer = v('answer').toUpperCase();
+  x.text = v('text') || undefined; if (!x.text) delete x.text;
+  const opts = Object.fromEntries(['A', 'B', 'C', 'D'].map(o => [o, v('opt' + o)]).filter(([, t]) => t));
+  if (Object.keys(opts).length) x.options = opts; else delete x.options;
+  const ok = x.type === 'single' ? /^[A-D]$/ : x.type === 'multi' ? /^[A-D]{1,4}$/ : x.type === 'integer' ? /^\d$/ : /^(-?[\d.]+( TO -?[\d.]+)?)$/;
+  return ok.test(x.answer) ? null : 'answer';
+}
 $('save').onclick = async () => {
-  const key = {}; for (const line of $('key').value.split('\n')) { const m = line.trim().match(/^(\d+)\s+(.+)$/); if (m) key[+m[1]] = m[2].trim().toUpperCase(); }
-  const missing = built.paper.questions.filter(x => !key[x.n]).map(x => x.n);
-  if (missing.length) return $('status2').textContent = `key missing for Q ${missing.join(', ')}`;
-  for (const x of built.paper.questions) x.answer = key[x.n];
-  await JEE.db.put(built);
+  const bad = [];
+  for (const card of $('ed').querySelectorAll('.ed')) {
+    const x = built.paper.questions.find(q => q.n === +card.dataset.n), f = readCard(card, x);
+    card.querySelector('[name=answer]').classList.toggle('bad', !!f); if (f) bad.push(x.n);
+  }
+  if (bad.length) return $('status2').textContent = `fix the answer for Q ${bad.join(', ')} (marked red)`;
+  built.paper.maxMarks = built.paper.questions.reduce((a, q) => a + q.marks, 0);
+  for (const q of built.paper.questions) delete q.segs;
+  await JEE.db.put({ id: built.id, blobs: built.blobs, paper: built.paper });
   $('status2').innerHTML = `saved. <a href="exam.html?p=${encodeURIComponent(built.id)}">Start this paper</a> or go <a href="index.html">home</a>.`;
 };
 </script></body></html>
