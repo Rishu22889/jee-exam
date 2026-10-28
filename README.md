@@ -1,18 +1,38 @@
 # JEE mock exam site
 
-Static site: no server, no database, no cost. Results are stored in the browser's localStorage.
+Static site: no server, no database, no cost. Papers and reports are files in this repository, written through the GitHub API.
 
 ## Run locally
     python3 -m http.server 8000     # then open http://localhost:8000
 
-## Deploy (Vercel, free)
-    npx vercel --prod
+## Deploy
+GitHub Pages (Settings → Pages → Deploy from branch `main`, folder `/`). The site is plain static files, so Vercel also works
+(`npx vercel --prod`) but changes nothing; on Vercel the repository name is not guessed and must be typed on the upload page.
 
 ## Two links
-- Exam site (for the student): `https://<user>.github.io/jee-exam/` — lists bundled papers and papers published from the upload page. No upload link on it.
-- Upload page (for you): `https://<user>.github.io/jee-exam/upload.html` — reads the PDFs in the browser, lets you check and edit every question, then either
-  saves the paper in that browser only, or **publishes** it: one commit into this repository through the GitHub API (needs a fine-grained personal
-  access token for this repo with Contents read/write). GitHub Pages rebuilds in about a minute and the exam site shows the paper.
+- Exam site (for the student): `https://<user>.github.io/jee-exam/`. Dashboard (score trend, subject strength, best score per
+  paper), papers, past tests and their analysis.
+- Upload page (for you): `https://<user>.github.io/jee-exam/upload.html`.
+  - **GitHub connection**: repository + a fine-grained personal access token for this repo only, Contents read/write, kept in that browser.
+  - **Tests**: every published test and every test saved only in that browser; publish or delete them. Delete removes the
+    paper's files and its index entry in one commit; reports of its attempts stay.
+  - **Reports**: every test taken on a linked device, with the same dashboard and the full analysis.
+  - **Add a test**: reads the PDFs in the browser, you check and edit every question, then **Publish to exam site**
+    (one commit; Pages rebuilds in about a minute) or save on that laptop only (other devices do not see it).
+
+## Reports from the student's device
+Open *Link a device* on the upload page and scan the QR code with the student's phone or tablet. The link carries the repo and
+token in the URL hash (never sent to a server); the exam site stores them and strips the hash. After every test the result is
+written to `results/<attempt id>.json`; a failed upload is retried on the next page load. Without linking, results stay on that device.
+The repository is public (GitHub Pages free plan), so these result files are public too: they hold the name typed on the
+instructions page, answers, times and scores.
+
+Every result and every publish is a commit, so pull before pushing from your own clone: `git pull --rebase && git push`.
+
+## One sitting
+The clock is wall-clock time: closing the page, switching apps or locking the screen does not stop it, and the paper resumes
+with the time that is left. The exam asks for full screen, warns before closing, keeps the Back button inside the test, and
+records every time the student leaves the window (count and time away) and leaves full screen. The report shows both.
 
 ## How the upload page reads a paper (cutter.js)
 No fixed pattern. From the PDF's own text it finds subject headings (PHYSICS / PART-1 : PHYSICS / Physics), SECTION headings,

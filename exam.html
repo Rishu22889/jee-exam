@@ -1,9 +1,9 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!doctype html><html lang="en" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>JEE Exam</title><link rel="stylesheet" href="style.css">
 <script>MathJax={loader:{load:["[tex]/mhchem"]},tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],packages:{"[+]":["mhchem"]}}};</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-chtml.js"></script></head><body>
-<div class="top"><b id="title">Loading…</b><span><span id="candTop"></span> &nbsp; Time Left: <span class="timer" id="timer">--:--:--</span></span></div>
+<div class="top"><b id="title" style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Loading…</b><span><span id="candTop"></span> &nbsp; Time Left: <span class="timer" id="timer">--:--:--</span></span></div>
 
-<div id="instr" class="wrap hidden">
+<div id="instr" class="wrap instr hidden">
  <div class="card">
   <h2 style="margin-top:0">General Instructions</h2>
   <ol>
@@ -13,11 +13,13 @@
    <li>Click a question number in the palette to go to that question directly. This does NOT save the answer to the current question.</li>
    <li>Click <b>Save &amp; Next</b> to save your answer and go to the next question. Click <b>Mark for Review &amp; Next</b> to save and mark it for review. Click <b>Clear Response</b> to deselect your answer.</li>
    <li>For numerical value questions, enter the answer using the on-screen keypad (or keyboard). Enter the value truncated/rounded off to two decimal places where required.</li>
-   <li>Answers to questions marked for review are also evaluated. Do not refresh or close the page; the test resumes from where you left if you reopen it before time runs out.</li>
+   <li>Answers to questions marked for review are also evaluated.</li>
+   <li><b>The test runs in one sitting. There is no pause.</b> The clock keeps running if you switch apps, leave full screen, lock the screen, or close the page. If the page closes by accident, open the paper again to continue with the time that is left.</li>
+   <li>The exam opens in full screen. Every time you leave the exam window it is recorded, and the count and time away appear in your report.</li>
   </ol>
   <h3>Paper pattern and marking scheme</h3>
-  <table id="scheme"><tr><th>Subject</th><th>Section</th><th>Question type</th><th>Questions</th><th>Full marks</th><th>Negative</th></tr></table>
-  <p style="margin-top:16px"><label>Candidate name: <input id="name" placeholder="Your name" style="padding:6px;font-size:14px"></label></p>
+  <div class="tablewrap"><table id="scheme"><tr><th>Subject</th><th>Section</th><th>Question type</th><th>Questions</th><th>Full marks</th><th>Negative</th></tr></table></div>
+  <p style="margin-top:16px"><label>Candidate name: <input id="name" placeholder="Your name"></label></p>
   <p><label><input type="checkbox" id="agree"> I have read and understood the instructions. I declare that I will not use any unfair means during the examination.</label></p>
   <button class="btn primary" id="begin" disabled>I am ready to begin</button>
  </div>
@@ -26,7 +28,7 @@
 <div id="exam" class="exam hidden">
  <div class="main">
   <div class="tabs" id="tabs"></div>
-  <div class="qhead"><b id="qno"></b><span id="qmeta" class="muted"></span></div>
+  <div class="qhead"><b id="qno"></b><span id="qmeta" class="muted"></span><button class="btn small" id="palBtn">Questions ☰</button></div>
   <div class="qbody" id="qbody"></div>
   <div class="actions">
    <button class="btn green" id="saveNext">Save &amp; Next</button>
@@ -38,7 +40,7 @@
   </div>
  </div>
  <div class="side">
-  <div class="cand">Candidate: <b id="cand"></b></div>
+  <div class="cand"><span>Candidate: <b id="cand"></b></span><button class="btn small" id="palClose">Close ✕</button></div>
   <div class="legend"><span><i class="s-nv"></i>Not Visited</span><span><i class="s-na"></i>Not Answered</span><span><i class="s-a"></i>Answered</span><span><i class="s-mr"></i>Marked</span><span><i class="s-amr"></i>Ans &amp; Marked</span></div>
   <div class="palhead" id="palhead">Choose a question</div>
   <div class="pal" id="pal"></div>
@@ -48,9 +50,15 @@
 
 <div id="modal" class="modal hidden"><div class="card">
  <h3 style="margin-top:0">Exam summary</h3>
- <table id="sumTable"><tr><th>Subject</th><th>Questions</th><th>Answered</th><th>Not answered</th><th>Marked</th><th>Ans &amp; marked</th><th>Not visited</th></tr></table>
+ <div class="tablewrap"><table id="sumTable"><tr><th>Subject</th><th>Questions</th><th>Answered</th><th>Not answered</th><th>Marked</th><th>Ans &amp; marked</th><th>Not visited</th></tr></table></div>
  <p>Are you sure you want to submit? You cannot change answers after this.</p>
  <button class="btn primary" id="confirmSubmit">Yes, submit</button> <button class="btn" id="cancelSubmit">No, go back</button>
+</div></div>
+
+<div id="away" class="modal hidden"><div class="card">
+ <h3 style="margin-top:0" id="awayHead">You left the exam window</h3>
+ <p>The clock did not stop. Leaving the test is recorded in your report: <b id="awayCount"></b> so far.</p>
+ <button class="btn primary" id="awayBack">Back to the test</button>
 </div></div>
 
 <script src="app.js"></script>
@@ -64,6 +72,8 @@
  document.title = paper.title; $('title').textContent = paper.title;
  let state = null; try { state = JSON.parse(localStorage.getItem(KEY)); } catch {}
  const save = () => localStorage.setItem(KEY, JSON.stringify(state));
+ const fullscreen = () => { const d = document.documentElement, f = d.requestFullscreen || d.webkitRequestFullscreen; try { f && Promise.resolve(f.call(d)).catch(() => {}); } catch {} };
+ const resumed = !!state;
 
  // ---------- instructions ----------
  if (!state) {
@@ -76,14 +86,36 @@
   $('agree').onchange = $('name').oninput = check;
   await new Promise(res => $('begin').onclick = res);
   const now = Date.now();
-  state = { paperId: pid, name: $('name').value.trim(), startedAt: now, endsAt: now + paper.duration * 1000, cur: 1, responses: {}, enteredAt: now };
-  save();
+  state = { paperId: pid, name: $('name').value.trim(), startedAt: now, endsAt: now + paper.duration * 1000, cur: 1, responses: {}, enteredAt: now, seenAt: now, away: { count: 0, secs: 0, fs: 0 } };
+  save(); fullscreen();
   $('instr').classList.add('hidden');
  }
 
  // ---------- exam ----------
  $('exam').classList.remove('hidden');
  state.enteredAt = Date.now(); // resume: do not count time the tab was closed against the question
+
+ // ---------- one sitting: the clock never stops; leaving the window is counted and shown in the report ----------
+ state.away ??= { count: 0, secs: 0, fs: 0 };
+ let finishing = false;
+ const showAway = head => { $('awayHead').textContent = head; $('awayCount').textContent = `left ${state.away.count} time${state.away.count === 1 ? '' : 's'}, ${JEE.fmtTime(state.away.secs)} away`; $('away').classList.remove('hidden'); };
+ const leftFor = since => { state.away.count++; state.away.secs += Math.max(0, (Date.now() - since) / 1000); save(); };
+ if (resumed && state.seenAt && Date.now() < state.endsAt) { leftFor(state.seenAt); showAway('The test page was closed or reloaded'); }
+ $('awayBack').onclick = () => { $('away').classList.add('hidden'); fullscreen(); };
+ document.addEventListener('visibilitychange', () => {
+  if (finishing) return;
+  if (document.hidden) { state.hiddenAt = Date.now(); save(); }
+  else if (state.hiddenAt) { leftFor(state.hiddenAt); state.hiddenAt = null; save(); showAway('You left the exam window'); }
+ });
+ const fsEl = () => document.fullscreenElement || document.webkitFullscreenElement;
+ const onFs = () => { if (!fsEl() && !finishing && !document.hidden) { state.away.fs++; save(); showAway('You left full screen'); } };
+ document.addEventListener('fullscreenchange', onFs); document.addEventListener('webkitfullscreenchange', onFs);
+ const warnClose = e => { e.preventDefault(); e.returnValue = ''; };
+ window.addEventListener('beforeunload', warnClose);
+ history.pushState(null, '', location.href); window.addEventListener('popstate', () => history.pushState(null, '', location.href)); // Back button stays in the test
+ // palette drawer on phones and tablets
+ $('palBtn').onclick = () => $('exam').querySelector('.side').classList.add('open');
+ $('palClose').onclick = () => $('exam').querySelector('.side').classList.remove('open');
  $('cand').textContent = $('candTop').textContent = state.name;
  const Q = Object.fromEntries(paper.questions.map(q => [q.n, q]));
  const N = paper.questions.length;
@@ -152,11 +184,12 @@
   $('palhead').textContent = q.subject;
   $('pal').innerHTML = paper.questions.filter(x => x.subject === q.subject).map(x => `<button class="s-${resp(x.n).status} ${x.n === state.cur ? 'cur' : ''}" data-n="${x.n}">${x.n}</button>`).join('');
  }
- $('pal').onclick = e => { const n = +e.target.dataset.n; if (n) goTo(n); };
+ $('pal').onclick = e => { const n = +e.target.dataset.n; if (n) { goTo(n); $('exam').querySelector('.side').classList.remove('open'); } };
 
  // ---------- timer / submit ----------
  const tick = () => {
   const left = (state.endsAt - Date.now()) / 1000;
+  if (!document.hidden) { state.seenAt = Date.now(); if (Math.round(left) % 5 === 0) save(); } // heartbeat: tells a reopened page how long it was closed
   $('timer').textContent = JEE.fmtTime(left); $('timer').classList.toggle('low', left < 300);
   if (left <= 0) finish(true);
  };
@@ -174,10 +207,13 @@
  $('confirmSubmit').onclick = () => finish(false);
 
  function finish(auto) {
-  clearInterval(timer); leaveCurrent();
+  if (finishing) return; finishing = true;
+  clearInterval(timer); leaveCurrent(); window.removeEventListener('beforeunload', warnClose);
+  if (state.hiddenAt) { leftFor(state.hiddenAt); state.hiddenAt = null; }
+  try { (document.exitFullscreen || document.webkitExitFullscreen)?.call(document)?.catch?.(() => {}); } catch {}
   const an = JEE.analyse(paper, state.responses);
   const id = `${pid}-${state.startedAt}`;
-  JEE.saveAttempt({ id, paperId: pid, title: paper.title, name: state.name, startedAt: state.startedAt, submittedAt: Date.now(), autoSubmitted: auto, responses: state.responses, score: an.total.score, max: an.total.max });
+  JEE.saveAttempt({ id, paperId: pid, title: paper.title, name: state.name, startedAt: state.startedAt, submittedAt: Date.now(), autoSubmitted: auto, responses: state.responses, score: an.total.score, max: an.total.max, exam: paper.exam, duration: paper.duration, away: state.away, subjects: JEE.subjectSummary(an) });
   localStorage.removeItem(KEY);
   location.replace(`result.html?a=${encodeURIComponent(id)}`);
  }

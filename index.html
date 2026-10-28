@@ -1,21 +1,45 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>JEE Mock Exams</title><link rel="stylesheet" href="style.css"></head><body>
-<div class="top"><b>JEE Mock Exam Portal</b><span>Computer Based Test practice</span></div>
+<div class="top"><b>JEE Mock Exam Portal</b><span id="sync" class="badge" style="background:transparent;color:#fff;border-color:rgba(255,255,255,.5)">…</span></div>
 <div class="wrap">
- <div class="card"><h2 style="margin-top:0">Available papers</h2><table id="papers"><tr><th>Exam</th><th>Paper</th><th>Duration</th><th>Max marks</th><th></th></tr></table></div>
- <div class="card"><h2 style="margin-top:0">Your attempts</h2><table id="attempts"><tr><th>Date</th><th>Paper</th><th>Name</th><th>Score</th><th></th></tr></table><p id="noatt" class="muted">No attempts yet. Results are stored in this browser only.</p></div>
+ <div id="linked" class="card hidden" style="border-color:var(--good)"></div>
+ <div id="dash"><div class="empty">Loading…</div></div>
+ <div class="card"><h3>Papers</h3><div class="papers" id="papers"></div></div>
+ <div class="card"><h3>Your tests</h3><div id="attempts"></div></div>
+ <div class="card" id="linkCard">
+  <details><summary style="cursor:pointer"><b>Send results to the upload page</b> <span class="muted">(link this device)</span></summary>
+   <p class="muted">Scan the QR code shown on the upload page under <b>Link a device</b>. Or type the repository and token here. Results then go to GitHub after every test.</p>
+   <div class="row"><label>repo <input id="lRepo" placeholder="username/jee-exam"></label><label>token <input id="lToken" type="password" placeholder="github_pat_…"></label>
+    <button class="btn primary" id="lSave">Link</button><button class="btn" id="lOff">Unlink</button><span id="lMsg" class="muted"></span></div>
+  </details>
+ </div>
 </div>
-<script src="app.js"></script>
+<script src="app.js"></script><script src="dash.js"></script>
 <script>
 (async () => {
+  const $ = id => document.getElementById(id);
+  window.addEventListener('hashchange', () => { if (/^#link=/.test(location.hash)) location.reload(); }); // link opened on an already open page
+  if (JEE.gh.acceptLink()) { $('linked').classList.remove('hidden'); $('linked').innerHTML = '<b>This device is linked.</b> Results of every test now also go to the upload page.'; }
+  const showSync = () => { const c = JEE.gh.cfg(); $('sync').textContent = JEE.gh.linked() ? `results sync: on` : 'results: this device only'; $('lRepo').value = c.repo; };
+  showSync();
+  $('lSave').onclick = () => { const repo = $('lRepo').value.trim(), token = $('lToken').value.trim(); if (!/^[\w.-]+\/[\w.-]+$/.test(repo) || !token) return $('lMsg').textContent = 'enter repo as username/name and the token'; JEE.gh.save({ repo, branch: JEE.gh.cfg().branch, token }); $('lToken').value = ''; $('lMsg').textContent = 'linked'; showSync(); refresh(); };
+  $('lOff').onclick = () => { localStorage.removeItem('gh.token'); $('lMsg').textContent = 'unlinked: results stay on this device'; showSync(); };
+
   const papers = await JEE.loadIndex();
-  const live = id => localStorage.getItem('jee.live.' + id);
-  document.getElementById('papers').insertAdjacentHTML('beforeend', papers.map(p => `<tr><td>${JEE.esc(p.exam)}</td><td>${JEE.esc(p.title)}</td><td>${p.duration} min</td><td>${p.maxMarks}</td>
-   <td><a class="btn primary" href="exam.html?p=${encodeURIComponent(p.id)}">${live(p.id) ? 'Resume' : 'Start'}</a> ${p.local ? `<button class="btn del" data-id="${JEE.esc(p.id)}">Delete</button>` : ''}</td></tr>`).join(''));
-  document.getElementById('papers').onclick = async e => { const id = e.target.dataset.id; if (id && confirm(`Delete uploaded paper "${id}"?`)) { await JEE.db.del(id); location.reload(); } };
-  const at = JEE.attempts();
-  document.getElementById('noatt').classList.toggle('hidden', at.length > 0);
-  document.getElementById('attempts').insertAdjacentHTML('beforeend', at.map(a => `<tr><td>${new Date(a.submittedAt).toLocaleString()}</td><td>${JEE.esc(a.title)}</td><td>${JEE.esc(a.name)}</td><td><b>${a.score}</b> / ${a.max}</td>
-   <td><a class="btn" href="result.html?a=${encodeURIComponent(a.id)}">Analysis</a></td></tr>`).join(''));
+  async function refresh() {
+    await JEE.syncAttempts().catch(() => {});
+    const atts = await Dash.render($('dash'), await JEE.allAttempts());
+    const live = id => { try { return JSON.parse(localStorage.getItem('jee.live.' + id)); } catch { return null; } };
+    $('papers').innerHTML = papers.map(p => {
+      const mine = atts.filter(a => a.paperId === p.id), best = mine.reduce((b, a) => (!b || a.score > b.score ? a : b), null), L = live(p.id);
+      const left = L ? Math.max(0, (L.endsAt - Date.now()) / 1000) : 0;
+      return `<div class="paper"><div class="row" style="justify-content:space-between"><span class="badge">${JEE.esc(p.exam)}</span>${p.local ? '<span class="badge warn" title="saved in this browser only: publish it from the upload page to see it on other devices">this device only</span>' : ''}</div>
+        <h4>${JEE.esc(p.title)}</h4><div class="meta">${p.duration} min · ${p.maxMarks} marks${p.questions ? ` · ${p.questions} questions` : ''}</div>
+        ${best ? `<div><div class="row" style="justify-content:space-between;font-size:12px"><span>Best ${best.score} / ${best.max}</span><span class="muted">${mine.length} attempt${mine.length > 1 ? 's' : ''}</span></div><div class="meter"><i style="width:${Math.max(0, Dash.pct(best.score, best.max))}%"></i></div></div>` : '<div class="meta">Not attempted yet</div>'}
+        <div class="acts"><a class="btn primary" href="exam.html?p=${encodeURIComponent(p.id)}">${L ? (left > 0 ? `Resume · ${JEE.fmtTime(left)} left` : 'Submit (time over)') : best ? 'Take again' : 'Start'}</a></div></div>`;
+    }).join('') || '<div class="empty">No papers yet. Add one from the upload page.</div>';
+    $('attempts').innerHTML = Dash.table(atts);
+  }
+  refresh();
 })();
 </script></body></html>

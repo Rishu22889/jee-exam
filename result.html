@@ -1,23 +1,28 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Result Analysis</title><link rel="stylesheet" href="style.css">
 <script>MathJax={loader:{load:["[tex]/mhchem"]},tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],packages:{"[+]":["mhchem"]}}};</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-chtml.js"></script></head><body>
-<div class="top"><b id="title">Analysis</b><a href="index.html" style="color:#fff">Home</a></div>
+<div class="top"><b id="title">Analysis</b><nav><a href="index.html" id="homeLink">Home</a></nav></div>
 <div class="wrap">
  <div class="card"><div id="head"></div><div class="stats" id="stats"></div></div>
- <div class="card"><h3 style="margin-top:0">Subject-wise</h3><table id="subj"><tr><th>Subject</th><th>Score</th><th>Correct</th><th>Partial</th><th>Wrong</th><th>Skipped</th><th>Accuracy</th><th>Time</th><th></th></tr></table></div>
- <div class="card"><h3 style="margin-top:0">Section-wise</h3><table id="sect"><tr><th>Section</th><th>Score</th><th>Correct</th><th>Partial</th><th>Wrong</th><th>Skipped</th><th>Time</th></tr></table></div>
+ <div class="card"><h3>Questions by result, per subject</h3>
+  <div class="legend-row"><span><i class="c-good"></i>Correct</span><span><i class="c-warn"></i>Partial</span><span><i class="c-bad"></i>Wrong</span><span><i style="background:var(--line-2)"></i>Skipped</span></div>
+  <div class="hbars" id="stackChart"></div></div>
+ <div class="card"><h3 style="margin-top:0">Subject-wise</h3><div class="tablewrap"><table id="subj"><tr><th>Subject</th><th>Score</th><th>Correct</th><th>Partial</th><th>Wrong</th><th>Skipped</th><th>Accuracy</th><th>Time</th><th></th></tr></table></div></div>
+ <div class="card"><h3 style="margin-top:0">Section-wise</h3><div class="tablewrap"><table id="sect"><tr><th>Section</th><th>Score</th><th>Correct</th><th>Partial</th><th>Wrong</th><th>Skipped</th><th>Time</th></tr></table></div></div>
  <div class="card"><h3 style="margin-top:0">Question-wise <span class="muted" style="font-weight:normal">(click a row for the question and solution)</span></h3>
   <p>Show: <label><input type="radio" name="f" value="all" checked> all</label> <label><input type="radio" name="f" value="wrong"> wrong</label> <label><input type="radio" name="f" value="partial"> partial</label> <label><input type="radio" name="f" value="skipped"> skipped</label></p>
-  <table id="qs"><tr><th>Q</th><th>Subject</th><th>Type</th><th>Your answer</th><th>Key</th><th>Result</th><th>Marks</th><th>Time</th></tr></table></div>
+  <div class="tablewrap"><table id="qs"><tr><th>Q</th><th>Subject</th><th>Type</th><th>Your answer</th><th>Key</th><th>Result</th><th>Marks</th><th>Time</th></tr></table></div></div>
  <div class="card"><h3 style="margin-top:0">Takeaways</h3><ul id="tips"></ul></div>
 </div>
-<script src="app.js"></script>
+<script src="app.js"></script><script src="dash.js"></script>
 <script>
 (async () => {
  const $ = id => document.getElementById(id);
- const aid = new URLSearchParams(location.search).get('a');
- const a = JEE.attempts().find(x => x.id === aid);
- if (!a) { document.body.innerHTML = '<div class="wrap"><div class="card">Attempt not found in this browser. <a href="index.html">Home</a></div></div>'; return; }
+ const qs = new URLSearchParams(location.search), aid = qs.get('a');
+ if (qs.get('from') === 'upload') { $('homeLink').href = 'upload.html'; $('homeLink').textContent = 'Back to upload page'; }
+ JEE.syncAttempts().catch(() => {});   // a just-finished test goes to GitHub now (if this device is linked)
+ const a = await JEE.findAttempt(aid);
+ if (!a) { document.querySelector('.wrap').innerHTML = '<div class="card">Report not found. It is on the device the test was taken on, or on GitHub if that device is linked. <a href="index.html">Home</a></div>'; return; }
  const paper = await JEE.loadPaper(a.paperId);
  const img = paper.src;
  const an = JEE.analyse(paper, a.responses);
@@ -25,7 +30,13 @@
  const acc = s => (s.correct + s.partial + s.wrong) ? pct(s.correct / (s.correct + s.partial + s.wrong)) + '%' : '–';
  const attempted = s => s.correct + s.partial + s.wrong;
  document.title = $('title').textContent = `${paper.title} – Analysis`;
- $('head').innerHTML = `<p><b>${JEE.esc(a.name)}</b> · ${new Date(a.submittedAt).toLocaleString()} ${a.autoSubmitted ? '· <span class="red">auto-submitted when time ran out</span>' : ''} · time used ${JEE.fmtTime((a.submittedAt - a.startedAt) / 1000)} of ${JEE.fmtTime(paper.duration)}</p>`;
+ $('head').innerHTML = `<p><b>${JEE.esc(a.name)}</b> · ${new Date(a.submittedAt).toLocaleString()} ${a.autoSubmitted ? '· <span class="red">auto-submitted when time ran out</span>' : ''} · time used ${JEE.fmtTime((a.submittedAt - a.startedAt) / 1000)} of ${JEE.fmtTime(paper.duration)}</p>
+  ${a.away ? `<p>${a.away.count || a.away.fs ? `<span class="badge warn">Left the exam window ${a.away.count} time${a.away.count === 1 ? '' : 's'} (${JEE.fmtTime(a.away.secs)} away)${a.away.fs ? `, left full screen ${a.away.fs} time${a.away.fs === 1 ? '' : 's'}` : ''}</span>` : '<span class="badge">Taken in one sitting: never left the exam window</span>'}</p>` : ''}`;
+ $('stackChart').innerHTML = an.subjects.map(s => {
+  const seg = (n, c, k) => n ? `<i class="${c}" style="width:${100 * n / s.count}%" data-tip="${s.key}: ${n} ${k} of ${s.count}"></i>` : '';
+  return `<div class="hbar"><span class="lab">${s.key}</span><div class="stack" data-tip="${s.key}: ${s.correct} correct, ${s.partial} partial, ${s.wrong} wrong, ${s.skipped} skipped">${seg(s.correct, 'c-good', 'correct')}${seg(s.partial, 'c-warn', 'partial')}${seg(s.wrong, 'c-bad', 'wrong')}</div><span class="val">${s.correct}/${s.count}</span></div>`;
+ }).join('');
+ Dash.tips($('stackChart'));
  $('stats').innerHTML = [['Score', `${T.score} / ${T.max}`], ['Percentage', pct(T.score / T.max) + '%'], ['Attempted', `${attempted(T)} / ${T.count}`], ['Correct', T.correct], ['Partial', T.partial], ['Wrong', T.wrong], ['Accuracy', acc(T)], ['Negative marks', an.rows.reduce((s, r) => s + (r.marks < 0 ? -r.marks : 0), 0)]]
   .map(([k, v]) => `<div class="stat"><b>${v}</b>${k}</div>`).join('');
  $('subj').insertAdjacentHTML('beforeend', an.subjects.map(s => `<tr><td>${s.key}</td><td><b>${s.score}</b> / ${s.max}</td><td>${s.correct}</td><td>${s.partial}</td><td>${s.wrong}</td><td>${s.skipped}</td><td>${acc(s)}</td><td>${JEE.fmtTime(s.time)}</td><td style="min-width:120px"><div class="bar"><i style="width:${pct(Math.max(0, s.score) / s.max)}%"></i></div></td></tr>`).join(''));
@@ -62,6 +73,7 @@
  if (unvisited) tips.push(`${unvisited} questions were never opened. Plan time: about ${Math.round(paper.duration / 60 / paper.questions.length * 10) / 10} min per question.`);
  const partialMulti = an.rows.filter(r => r.verdict === 'partial');
  if (partialMulti.length) tips.push(`${partialMulti.length} multi-correct questions got partial marks: check every option, not only the first correct one.`);
+ if (a.away?.count) tips.push(`Left the exam window ${a.away.count} time${a.away.count === 1 ? '' : 's'} for ${JEE.fmtTime(a.away.secs)} in total. In the real exam there is no break: practise the full ${paper.duration / 3600} hours in one sitting.`);
  $('tips').innerHTML = tips.map(t => `<li>${t}</li>`).join('');
 })();
 </script></body></html>
