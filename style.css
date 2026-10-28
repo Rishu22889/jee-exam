@@ -74,3 +74,6 @@ details.sec summary{cursor:pointer;color:#1a56b0;margin-bottom:8px}
 .detail td{background:#fafbfd}
 .detail img{max-width:100%;border:1px solid #ddd;display:block;margin-bottom:6px}
 @media (max-width:800px){.exam{grid-template-columns:1fr;height:auto}.side{border-left:0;border-top:1px solid #cfd5de}.qbody{max-height:60vh}}
+
+.passage{background:#f6f8fb;border:1px solid #d6dbe3;border-radius:4px;padding:6px;margin-bottom:10px}
+.passage b{display:block;font-size:12px;color:#555;margin-bottom:4px}

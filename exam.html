@@ -109,16 +109,16 @@
   $('qmeta').textContent = `${q.subject} · Section ${q.section} · ${JEE.typeLabel[q.type]} · Marks +${q.marks} / ${q.neg ? '-' + q.neg : '0'}`;
   let html = q.sectionImage ? `<details class="sec"><summary>Section instructions</summary><img src="${img(q.sectionImage)}" alt="section instructions"></details>` : '';
   html += JEE.bodyHtml(q, img);
-  if (q.type === 'single' || q.type === 'multi') {
-   const t = q.type === 'single' ? 'radio' : 'checkbox';
-   html += `<div class="opts">` + ['A', 'B', 'C', 'D'].map(o => `<label><input type="${t}" name="opt" value="${o}" ${(q.type === 'single' ? draft === o : (draft || []).includes(o)) ? 'checked' : ''}> <span><b>${o})</b> ${q.options?.[o] ?? ''}</span></label>`).join('') + `</div>`;
+  if (JEE.isChoice(q)) {
+   const one = q.type !== 'multi', t = one ? 'radio' : 'checkbox';
+   html += `<div class="opts">` + ['A', 'B', 'C', 'D'].map(o => `<label><input type="${t}" name="opt" value="${o}" ${(one ? draft === o : (draft || []).includes(o)) ? 'checked' : ''}> <span><b>${o})</b> ${q.options?.[o] ?? ''}</span></label>`).join('') + `</div>`;
   } else {
    const keys = q.type === 'integer' ? ['7','8','9','4','5','6','1','2','3','0'] : ['7','8','9','4','5','6','1','2','3','.','0','-'];
    html += `<div style="margin-top:12px"><div class="numbox" id="numbox">${JEE.esc(draft ?? '')}</div><div class="keypad">` + keys.map(k => `<button data-k="${k}">${k}</button>`).join('') + `<button data-k="bs">⌫</button><button data-k="clr" class="wide">Clear All</button></div></div>`;
   }
   $('qbody').innerHTML = html; $('qbody').scrollTop = 0; JEE.typeset($('qbody'));
   $('qbody').querySelectorAll('input[name=opt]').forEach(i => i.onchange = () => {
-   draft = q.type === 'single' ? i.value : [...$('qbody').querySelectorAll('input[name=opt]:checked')].map(x => x.value);
+   draft = q.type !== 'multi' ? i.value : [...$('qbody').querySelectorAll('input[name=opt]:checked')].map(x => x.value);
   });
   $('qbody').querySelectorAll('.keypad button').forEach(b => b.onclick = () => keyIn(q, b.dataset.k));
   renderPalette();

@@ -15,4 +15,8 @@ t(int, '5', 3, 'correct'); t(int, '4', -1, 'wrong'); t(mains, '25', 4, 'correct'
 const paper = { questions: [{ ...single, n: 1, subject: 'Mathematics', section: 1 }, { ...multi, n: 2, subject: 'Physics', section: 2 }] };
 const an = JEE.analyse(paper, { 1: { ans: 'B', time: 10 }, 2: { ans: ['A'], time: 5 } });
 assert.strictEqual(an.total.score, 4); assert.strictEqual(an.total.max, 7); assert.strictEqual(an.subjects.length, 2);
+const match = { type: 'matching', marks: 3, neg: 1, answer: 'C' };
+t(match, 'C', 3, 'correct'); t(match, 'A', -1, 'wrong');
+const strict = { ...multi, partial: false };
+t(strict, ['A', 'C'], -2, 'wrong'); t(strict, ['A', 'C', 'D'], 4, 'correct');
 console.log('all score tests pass');

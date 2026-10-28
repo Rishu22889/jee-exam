@@ -2,29 +2,30 @@
 <title>Upload a paper</title><link rel="stylesheet" href="style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>MathJax={loader:{load:["[tex]/mhchem"]},tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]],packages:{"[+]":["mhchem"]}}};</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-chtml.js"></script>
-<style>.ed{border:1px solid #cfd5de;border-radius:6px;padding:10px;margin-bottom:14px}.ed img{max-width:100%;display:block;border:1px solid #ddd}.ed .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0}.ed input,.ed select,.ed textarea{padding:4px;font:inherit}.ed textarea{width:100%;font-family:monospace}.ed .opt{width:100%}.bad{border:2px solid #c0392b !important}</style></head><body>
+<style>#scheme input[type=number]{width:56px}#scheme select{padding:3px}.ed .psg{opacity:.85;border-left:4px solid #9aa5b5;padding-left:6px;margin-bottom:6px}.warn{color:#b8860b;font-weight:bold}.ed{border:1px solid #cfd5de;border-radius:6px;padding:10px;margin-bottom:14px}.ed img{max-width:100%;display:block;border:1px solid #ddd}.ed .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0}.ed input,.ed select,.ed textarea{padding:4px;font:inherit}.ed textarea{width:100%;font-family:monospace}.ed .opt{width:100%}.bad{border:2px solid #c0392b !important}</style></head><body>
 <div class="top"><b>Upload a paper</b><a href="index.html" style="color:#fff">Home</a></div>
 <div class="wrap">
  <div class="card">
-  <p>Works with text-based PDFs in the Narayana format: question numbers like <b>12.</b> at the left margin and headings like <b>SECTION – 1 (Maximum Marks: 18)</b>. Everything runs in this browser; the paper is saved in this browser only.</p>
+  <p>Reads text-based question papers from Narayana, Allen, FIITJEE and similar formats: sections, question counts, question types, marks, paragraphs and the answer key are taken from the PDFs themselves. You check everything below before saving. Scanned PDFs (photos) do not work.</p>
+  <p><label>Institute <select id="inst">
+     <option value="auto">Auto-detect</option><option value="narayana">Narayana / Chanakya</option><option value="allen">Allen</option><option value="fiitjee">FIITJEE</option><option value="other">Other</option></select></label>
+   <label style="margin-left:12px">Exam <select id="examType"><option value="adv">JEE Advanced</option><option value="main">JEE Main</option></select></label></p>
   <p><label>Question paper PDF <input type="file" id="qp" accept="application/pdf"></label></p>
-  <p><label>Key &amp; solutions PDF (optional) <input type="file" id="sol" accept="application/pdf"></label></p>
-  <p><label>Title <input id="title" placeholder="JEE Advanced 2026 Paper 1" style="width:320px;padding:6px"></label>
+  <p><label>Answer key / solutions PDF <input type="file" id="sol" accept="application/pdf"></label> <span class="muted">optional, but without it you type every answer</span></p>
+  <p><label>Title <input id="title" placeholder="Allen Mock Test Paper 1" style="width:320px;padding:6px"></label>
      <label style="margin-left:12px">Duration (min) <input id="dur" type="number" value="180" style="width:70px;padding:6px"></label></p>
-  <p><label>Pattern <select id="preset">
-    <option value="single:3:1:6,multi:4:2:6,numeric:4:0:6">JEE Advanced P1 style: 6 single +3/-1, 6 multi +4/-2, 6 numeric +4/0</option>
-    <option value="integer:3:1:6,multi:4:2:6,numeric:4:0:6">JEE Advanced P2 style: 6 integer +3/-1, 6 multi +4/-2, 6 numeric +4/0</option>
-    <option value="single:4:1:20,numeric:4:1:5">JEE Main: 20 single +4/-1, 5 numeric +4/-1</option>
-    <option value="custom">Custom…</option></select></label>
-   <input id="custom" class="hidden" placeholder="type:+marks:-marks:count,... per subject" style="width:420px;padding:6px"></p>
   <button class="btn primary" id="go">Read PDFs</button> <span id="status" class="muted"></span>
  </div>
  <div class="card hidden" id="step2">
-  <h3 style="margin-top:0">Check and edit every question, then save</h3>
-  <p class="muted">Crop wrong? Use the ▲▼ buttons to move the top or bottom edge of the crop (8pt a step). Answer: single/multi as letters (<code>BCD</code>), numbers as printed, ranges as <code>0.78 TO 0.82</code>. Typed text is optional: HTML with <code>\( \)</code> math; when filled it replaces the crop in the exam.</p>
+  <h3 style="margin-top:0">1. Marking scheme</h3>
+  <p class="muted">One row per section found in the paper. Change a row and every question in that section follows. <label><input type="checkbox" id="sameAll" checked> same scheme for all subjects</label></p>
+  <table id="scheme"></table>
+  <p id="totals" class="muted"></p>
+  <h3>2. Check every question</h3>
+  <p class="muted">Crop wrong? ▲▼ move the top or bottom edge of the crop (8pt a step). Answer: letters for single / matching / multi (<code>BCD</code>), numbers as printed, ranges as <code>0.78 TO 0.82</code>. Typed text is optional (HTML with <code>\( \)</code> math); when filled it replaces the crop.</p>
   <div id="ed"></div>
   <p><button class="btn green" id="save">Save in this browser</button> <span id="status2" class="muted"></span></p>
-  <h3>Publish to the exam site (GitHub)</h3>
+  <h3>3. Publish to the exam site (GitHub)</h3>
   <p class="muted">Commits the paper into the repository that hosts the exam site. Use a fine-grained personal access token limited to that repository with <b>Contents: read and write</b>. The token stays in this browser only if you tick remember.</p>
   <div class="row" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
    <label>repo <input id="ghRepo" placeholder="username/jee-exam" style="width:200px;padding:6px"></label>
@@ -35,175 +36,114 @@
  </div>
 </div>
 <script src="app.js"></script>
+<script src="cutter.js"></script>
 <script>
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 const $ = id => document.getElementById(id);
-const DPI = 150, SCALE = DPI / 72, X0 = 22, X1 = 573, PAD = 8, SUBJECTS = ['Mathematics', 'Physics', 'Chemistry'];
-const SECTION_RE = /^SECTION\b.*Max/i, FOOTER_RE = /Page\.?\s*No|Pg\.?\s*No|^SR[._]/i;
-const HEADER_RE = /Narayana|GTA|Rankers|JAYATHE|GROUP|MAX\.MARKS|^(MATHEMATICS|PHYSICS|CHEMISTRY)$|For More Join|Page\.? ?No|^SR[._]/i;
-$('preset').onchange = () => $('custom').classList.toggle('hidden', $('preset').value !== 'custom');
-
-// ---- text lines per page: [{y0, y1, x, text}] in pt, y from the top (same shape as pdftotext -bbox-layout)
-async function pageLines(pdf, p) {
-  const page = await pdf.getPage(p), H = page.getViewport({ scale: 1 }).height;
-  const items = (await page.getTextContent()).items.filter(i => i.str.trim()).map(i => ({ x: i.transform[4], y: H - i.transform[5], h: i.height || 10, w: i.width, s: i.str }));
-  items.sort((a, b) => a.y - b.y || a.x - b.x);
-  const lines = [];
-  for (const it of items) {
-    const L = lines.find(l => Math.abs(l.base - it.y) < 3 && it.x - l.endX < 2 * it.h + 2 && it.x >= l.endX - 2);
-    if (L) { L.text += (it.x - L.endX > 0.3 * it.h ? ' ' : '') + it.s; L.endX = it.x + it.w; L.h = Math.max(L.h, it.h); }
-    else lines.push({ base: it.y, x: it.x, endX: it.x + it.w, h: it.h, text: it.s });
-  }
-  return lines.map(l => ({ y0: l.base - l.h, y1: l.base + 0.25 * l.h, x: l.x, text: l.text.trim() })).sort((a, b) => a.y0 - b.y0);
-}
-
-// ---- port of tools/build_paper.py find_blocks
-function findBlocks(pages, firstPage, expectN, tolerance = 10, inkRows = {}) {
-  const starts = [], seen = new Set(), cuts = {}, tops = {}, textLines = {}, sections = [];
-  for (const [p, lines] of pages) {
-    if (p < firstPage) continue;
-    cuts[p] = []; tops[p] = 50; textLines[p] = lines.filter(l => !HEADER_RE.test(l.text));
-    for (const l of lines) {
-      if (l.y0 < 50 && /Narayana|GTA/.test(l.text)) tops[p] = Math.max(tops[p], l.y1 + 1);
-      const m = l.text.match(/^(\d+)\.(\s|$)/);
-      if (m && l.x < 60 && +m[1] >= 1 && +m[1] <= expectN && !seen.has(+m[1])) { seen.add(+m[1]); starts.push([p, l.y0, +m[1]]); }
-      else if (SECTION_RE.test(l.text)) { cuts[p].push(l.y0); sections.push([p, l.y0 - 2]); }
-      else if (SUBJECTS.map(s => s.toUpperCase()).includes(l.text) || FOOTER_RE.test(l.text)) { if (l.y0 > 60) cuts[p].push(l.y0); }
-      if (l.text.includes('For More Join') && l.y0 > 700) cuts[p].push(l.y0);
-    }
-  }
-  const missing = []; for (let n = 1; n <= expectN; n++) if (!seen.has(n)) missing.push(n);
-  if (missing.length > expectN / tolerance) throw new Error(`question numbers not found: ${missing.join(', ')}. Is this PDF in the supported format?`);
-  const topOf = (p, y) => { // previous block's body text ends at B; cut in the first blank band (>=3pt) scanning up from the label
-    const above = textLines[p].filter(l => l.y1 <= y + 2), body = above.filter(l => l.x <= 90).map(l => l.y1);
-    const B = body.length ? Math.max(...body) : tops[p];
-    const rows = inkRows[p];
-    if (rows) { let run = 0; for (let r = Math.floor(y) + 5; r > B; r--) { run = rows[r] ? 0 : run + 1; if (run >= 3) return Math.max(tops[p], Math.min(y, r + run / 2)); } } // scan from a little below the label's line box
-    return Math.max(tops[p], (B + y) / 2);
-  };
-  const lastPage = Math.max(...Object.keys(cuts).map(Number)), blocks = {};
-  starts.forEach(([p, y, n], i) => {
-    const nxt = starts[i + 1], segs = [];
-    let page = p, y0 = topOf(p, y);
-    for (;;) {
-      const ends = cuts[page].filter(c => c > y0 + 2);
-      if (nxt && nxt[0] === page) ends.push(topOf(page, nxt[1]));
-      const end = ends.length ? Math.min(...ends) : 800;
-      segs.push([page, y0, end]);
-      if (end >= 700 && page < lastPage && (!nxt || nxt[0] > page)) {
-        page++; y0 = tops[page];
-        if (sections.some(([sp, sy]) => sp === page && sy < y0 + 25)) break; // next page opens with a section heading
-        const firstCut = Math.min(...cuts[page].filter(c => c > y0), nxt && nxt[0] === page ? topOf(page, nxt[1]) : 9e9);
-        if (!textLines[page].some(l => y0 < l.y0 && l.y1 < firstCut && l.x <= 90)) break; // only math fragments: next question's overhang
-        continue;
-      }
-      break;
-    }
-    blocks[n] = segs;
-  });
-  for (const n of missing) blocks[n] = blocks[n - 1] || blocks[n + 1];
-  blocks.sections = sections.map(([p, y]) => { const after = starts.filter(s => s[0] === p && s[1] > y).map(s => topOf(p, s[1])); return [[p, y, after.length ? Math.min(...after) : 800]]; });
-  return { blocks, missing };
-}
-
-const pageCanvas = {};
-async function renderPage(pdf, p) {
-  if (pageCanvas[pdf.id]?.[p]) return pageCanvas[pdf.id][p];
-  const page = await pdf.getPage(p), vp = page.getViewport({ scale: SCALE });
-  const c = document.createElement('canvas'); c.width = vp.width; c.height = vp.height;
-  await page.render({ canvasContext: c.getContext('2d'), viewport: vp }).promise;
-  (pageCanvas[pdf.id] ??= {})[p] = c; return c;
-}
-async function pageInk(pdf, p) { // per-pt rows: true if any pixel row inside that pt has ink within the crop width
-  const c = await renderPage(pdf, p), ctx = c.getContext('2d'), x0 = Math.round((X0 + 18) * SCALE), w = Math.round((X1 - X0 - 36) * SCALE); // inside the page's vertical border lines
-  const d = ctx.getImageData(x0, 0, w, c.height).data, pxRows = new Uint8Array(c.height);
-  for (let y = 0; y < c.height; y++) { let n = 0; for (let i = y * w * 4; i < (y + 1) * w * 4; i += 4) if (d[i] * 0.3 + d[i + 1] * 0.59 + d[i + 2] * 0.11 < 170 && ++n >= 2) { pxRows[y] = 1; break; } }
-  const rows = []; for (let y = 0; y < 842; y++) { let ink = false; for (let r = Math.floor(y * SCALE); r < Math.floor((y + 1) * SCALE) && r < c.height; r++) if (pxRows[r]) { ink = true; break; } rows.push(ink); }
-  return rows;
-}
-async function crop(pdf, segs, prefix, blobs) {
-  const files = [];
-  for (const [k, [p, yA, yB]] of segs.entries()) {
-    const y0 = Math.max(0, yA - PAD), y1 = Math.min(842, yB + PAD); // pad: a sliver of the neighbour beats a clipped line
-    const src = await renderPage(pdf, p), c = document.createElement('canvas');
-    const sx = X0 * SCALE, sy = y0 * SCALE, sw = (X1 - X0) * SCALE, sh = Math.max(4, (y1 - y0) * SCALE);
-    c.width = sw; c.height = sh; c.getContext('2d').drawImage(src, sx, sy, sw, sh, 0, 0, sw, sh);
-    const name = `${prefix}_${k}.png`; blobs[name] = await new Promise(r => c.toBlob(r, 'image/png')); files.push(name);
-  }
-  return files;
-}
-
-// ---- key sheet: numbers 1..N appear in reading order; the answer is the cell just to the right (ranges stack vertically).
-// Watermark text overlapping the table is ignored; a cell that cannot be read is left blank and the scan moves on.
-async function parseKey(pdf, N) {
-  const page = await pdf.getPage(1), H = page.getViewport({ scale: 1 }).height;
-  const items = (await page.getTextContent()).items.filter(i => i.str.trim()).map(i => ({ x: i.transform[4], y: H - i.transform[5], s: i.str.trim() }));
-  items.sort((a, b) => Math.round(a.y / 6) - Math.round(b.y / 6) || a.x - b.x);
-  const TOKEN = /^([A-D]{1,4}|-?\d+(\.\d+)?|TO)$/, ANSWER = /^(-?[\d.]+ TO -?[\d.]+|[A-D]{1,4}|-?[\d.]+)$/;
-  const key = {}; let want = 1;
-  const cellOf = it => items.filter(o => o.x > it.x + 3 && o.x < it.x + 80 && Math.abs(o.y - it.y) < 18 && TOKEN.test(o.s)).sort((a, b) => a.y - b.y).map(o => o.s).join(' ');
-  // number cells sit in fixed columns: learn their x from the first row (number, answer, number, answer, ...)
-  const one = items.find(i => i.s === '1' && ANSWER.test(cellOf(i)));
-  const row1 = one ? items.filter(o => Math.abs(o.y - one.y) < 6 && TOKEN.test(o.s)).sort((a, b) => a.x - b.x) : [];
-  const cols = row1.filter((_, i) => i % 2 === 0).map(o => o.x);
-  const isNumberCell = it => !cols.length || cols.some(c => Math.abs(c - it.x) < 6);
-  for (const it of items) {
-    if (want > N) break;
-    if (!isNumberCell(it)) continue;
-    if (it.s === String(want + 1)) want++;              // cell for `want` was unreadable: leave it blank
-    if (it.s !== String(want)) continue;
-    const cell = cellOf(it); if (ANSWER.test(cell)) key[want] = cell; want++;
-  }
-  return key;
-}
-
+const INSTITUTES = { narayana: { name: 'Narayana', match: /Narayana/i, key: 'grid' }, allen: { name: 'Allen', match: /ALLEN|Nurture Test Series/i, key: 'qa' }, fiitjee: { name: 'FIITJEE', match: /FIITJEE|AITS-/i, key: 'inline' }, other: { name: 'Other' } };
+const EXAMS = { adv: { name: 'JEE Advanced', marks: { single: [3, 1], multi: [4, 2], matching: [3, 1], integer: [3, 1], numeric: [4, 0] } },
+                main: { name: 'JEE Main', marks: { single: [4, 1], multi: [4, 2], matching: [4, 1], integer: [4, 1], numeric: [4, 1] } } };
+const TYPES = ['single', 'multi', 'matching', 'integer', 'numeric'];
 let built = null;
+
+async function cropNames(R, segs, prefix) { // segs -> stored PNG names
+  const blobs = await R.crop(segs);
+  return blobs.map((b, k) => { const name = `${prefix}_${k}.png`; built.blobs[name] = b; return name; });
+}
+
 $('go').onclick = async () => {
   const status = m => $('status').textContent = m;
   try {
     const qpFile = $('qp').files[0]; if (!qpFile) return status('choose the question paper PDF');
-    const spec = $('preset').value === 'custom' ? $('custom').value : $('preset').value;
-    const layout = spec.split(',').map(x => x.split(':')).map(([t, p, m, c]) => ({ type: t, marks: +p, neg: +m, count: +c }));
-    if (layout.some(l => !['single', 'multi', 'integer', 'numeric'].includes(l.type) || !(l.count > 0) || Number.isNaN(l.marks + l.neg))) return status('bad pattern spec');
-    const N = layout.reduce((s, l) => s + l.count, 0) * SUBJECTS.length;
     status('reading question paper…');
-    const qp = await pdfjsLib.getDocument({ data: await qpFile.arrayBuffer() }).promise; qp.id = 'qp';
-    const qpages = [], qink = {}; for (let p = 1; p <= qp.numPages; p++) { status(`reading page ${p} / ${qp.numPages}…`); qpages.push([p, await pageLines(qp, p)]); qink[p] = await pageInk(qp, p); }
-    const q = findBlocks(qpages, 1, N, 10, qink);
-    let sol = null, s = null, key = {};
+    const qp = await pdfjsLib.getDocument({ data: await qpFile.arrayBuffer() }).promise, R = Cutter.renderer(qp);
+    const pages = await Cutter.readPdf(qp, (p, n) => status(`reading page ${p} / ${n}…`));
+    let inst = $('inst').value;
+    if (inst === 'auto') { const t = pages.slice(0, 3).flatMap(p => p.lines.map(l => l.text)).join(' '); inst = Object.keys(INSTITUTES).find(k => INSTITUTES[k].match?.test(t)) || 'other'; $('inst').value = inst; }
+    status('finding questions…');
+    const an = await Cutter.analyse(pages, { ink: R.ink });
+    const N = an.questions.length;
+    if (!N) return status('failed: no numbered questions found. Is this a text PDF with labels like "1." and SECTION headings?');
+    let key = { answers: [], format: 'none', found: 0 }, solAn = null, SR = null, solNote = '';
     if ($('sol').files[0]) {
-      status('reading key & solutions…');
-      sol = await pdfjsLib.getDocument({ data: await $('sol').files[0].arrayBuffer() }).promise; sol.id = 'sol';
-      const spages = [], sink = {}; for (let p = 2; p <= sol.numPages; p++) { spages.push([p, await pageLines(sol, p)]); sink[p] = await pageInk(sol, p); }
-      try { s = findBlocks(spages, 2, N, 3, sink); } catch (e) { status('solutions skipped: ' + e.message); }
-      key = await parseKey(sol, N);
+      status('reading answer key / solutions…');
+      const sol = await pdfjsLib.getDocument({ data: await $('sol').files[0].arrayBuffer() }).promise; SR = Cutter.renderer(sol);
+      const spages = await Cutter.readPdf(sol);
+      solAn = await Cutter.analyse(spages, { ink: SR.ink });
+      key = Cutter.readKey(solAn, spages, N, INSTITUTES[inst].key);
+      if (solAn.questions.length !== N) solNote = ` Solutions PDF has ${solAn.questions.length} numbered solutions for ${N} questions: solution images may be shifted, check them.`;
     }
-    status('cropping images…');
-    const blobs = {}, questions = [];
-    const secImgs = q.blocks.sections.length === layout.length * SUBJECTS.length ? await Promise.all(q.blocks.sections.map((segs, k) => crop(qp, segs, `sec${k}`, blobs).then(f => f[0]))) : [];
-    let n = 1;
-    for (const [si, subject] of SUBJECTS.entries()) for (const [li, L] of layout.entries()) for (let i = 0; i < L.count; i++, n++) {
-      status(`cropping question ${n} / ${N}…`);
-      questions.push({ n, subject, section: li + 1, type: L.type, marks: L.marks, neg: L.neg, answer: key[n] || '', sectionImage: secImgs[si * layout.length + li] || null,
-        images: await crop(qp, q.blocks[n], `q${n}`, blobs), solution: s ? await crop(sol, s.blocks[n], `s${n}`, blobs) : [], segs: q.blocks[n].map(x => [...x]) });
-    }
+    const defaults = EXAMS[$('examType').value].marks;
+    const posInSubject = {};
+    const sections = an.sections.map((s, i) => {
+      const type = s.type || 'single', [dm, dn] = defaults[type];
+      posInSubject[s.subject] = (posInSubject[s.subject] || 0) + 1;
+      return { i, subject: s.subject || 'General', pos: posInSubject[s.subject], title: s.title, count: s.count, type, marks: s.marks ?? dm, neg: s.neg ?? dn, partial: type === 'multi', segs: s.segs, fromPdf: s.marks != null };
+    });
     const id = 'up-' + ($('title').value.trim() || qpFile.name.replace(/\.pdf$/i, '')).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-    built = { id, blobs, qp, paper: { id, exam: 'Uploaded', title: $('title').value.trim() || qpFile.name, duration: +$('dur').value * 60, maxMarks: 0, subjects: SUBJECTS, questions } };
-    renderEditor();
+    built = { id, R, blobs: {}, sections, paper: { id, exam: `${INSTITUTES[inst].name} · ${EXAMS[$('examType').value].name}`, title: $('title').value.trim() || qpFile.name.replace(/\.pdf$/i, ''), duration: +$('dur').value * 60, maxMarks: 0, subjects: [...new Set(sections.map(s => s.subject))], questions: [] } };
+    for (const s of sections) s.image = s.segs ? (await cropNames(R, s.segs, `sec${s.i}`))[0] : null;
+    const psgImgs = {};
+    for (const [i, x] of an.questions.entries()) {
+      status(`cropping question ${i + 1} / ${N}…`);
+      const s = sections[x.sec] || sections[0];
+      if (x.passage != null && !psgImgs[x.passage]) psgImgs[x.passage] = await cropNames(R, an.passages[x.passage].segs, `p${x.passage}`);
+      const sq = solAn?.questions[i];
+      built.paper.questions.push({ n: i + 1, subject: s.subject, section: s.pos, sec: s.i, type: s.type, marks: s.marks, neg: s.neg, partial: s.partial,
+        answer: key.answers[i] || '', sectionImage: s.image, passageImages: x.passage != null ? psgImgs[x.passage] : undefined,
+        images: await cropNames(R, x.segs, `q${i + 1}`), solution: sq?.segs ? await cropNames(SR, sq.segs, `s${i + 1}`) : [], segs: x.segs.map(g => [...g]), labelMissing: !!x.missing });
+    }
+    renderScheme(); renderEditor(); updateTotals();
     $('step2').classList.remove('hidden');
-    status(`done: ${N} questions${q.missing.length ? `; number labels missing for Q ${q.missing.join(', ')} (they share the previous crop)` : ''}. Check every question below, then save.`);
+    const miss = an.missing.length ? ` Number label not readable for Q ${an.missing.join(', ')}: those cards repeat a neighbour's crop, fix them with ▲▼.` : '';
+    status(`done: ${inst === 'other' ? '' : INSTITUTES[inst].name + ' format, '}${N} questions in ${sections.length} sections, ${key.found} answers read from the key (${key.format}).${miss}${solNote} Check the marking scheme and every question below.`);
   } catch (e) { status('failed: ' + e.message); console.error(e); }
 };
-const TYPES = ['single', 'multi', 'integer', 'numeric'];
-function renderEditor() {
+
+// ---- marking scheme table
+function renderScheme() {
   const e = JEE.esc;
+  $('scheme').innerHTML = '<tr><th>Subject</th><th>Section</th><th>Questions</th><th>Type</th><th>Correct</th><th>Wrong</th><th>Partial (multi)</th></tr>' +
+    built.sections.map(s => `<tr data-s="${s.i}"><td>${e(s.subject)}</td><td>${s.pos} <span class="muted">${e(s.title.slice(0, 40))}</span>${s.fromPdf ? '' : ' <span class="warn" title="marks not printed in this section; filled from the exam defaults">default marks</span>'}</td><td>${s.count}</td>
+     <td><select name="type">${TYPES.map(t => `<option value="${t}" ${t === s.type ? 'selected' : ''}>${JEE.typeLabel[t]}</option>`).join('')}</select></td>
+     <td>+<input type="number" name="marks" value="${s.marks}"></td><td>−<input type="number" name="neg" value="${s.neg}"></td>
+     <td><input type="checkbox" name="partial" ${s.partial ? 'checked' : ''} ${s.type === 'multi' ? '' : 'disabled'}></td></tr>`).join('');
+}
+$('scheme').onchange = ev => {
+  const tr = ev.target.closest('tr[data-s]'); if (!tr) return;
+  const src = built.sections[+tr.dataset.s], v = n => tr.querySelector(`[name=${n}]`);
+  const vals = { type: v('type').value, marks: +v('marks').value, neg: +v('neg').value, partial: v('type').value === 'multi' && v('partial').checked };
+  if (ev.target.name === 'type') vals.partial = vals.type === 'multi';   // a new multi section starts with JEE partial marking
+  const targets = $('sameAll').checked ? built.sections.filter(s => s.pos === src.pos && s.type === src.type || s === src) : [src];
+  for (const s of targets) {
+    Object.assign(s, vals);
+    const row = $('scheme').querySelector(`tr[data-s="${s.i}"]`);
+    row.querySelector('[name=type]').value = s.type; row.querySelector('[name=marks]').value = s.marks; row.querySelector('[name=neg]').value = s.neg;
+    row.querySelector('[name=partial]').checked = s.partial; row.querySelector('[name=partial]').disabled = s.type !== 'multi';
+    for (const q of built.paper.questions.filter(q => q.sec === s.i)) {
+      Object.assign(q, { type: s.type, marks: s.marks, neg: s.neg, partial: s.partial });
+      const card = $('ed').querySelector(`.ed[data-n="${q.n}"]`);
+      card.querySelector('[name=type]').value = q.type; card.querySelector('[name=marks]').value = q.marks; card.querySelector('[name=neg]').value = q.neg;
+    }
+  }
+  updateTotals();
+};
+function updateTotals() {
+  const qs = built.paper.questions;
+  $('totals').textContent = `${qs.length} questions · maximum ${qs.reduce((a, q) => a + q.marks, 0)} marks · ${built.paper.subjects.map(s => `${s}: ${qs.filter(q => q.subject === s).length}`).join(', ')}`;
+}
+
+// ---- question cards
+function renderEditor() {
+  const e = JEE.esc, url = f => URL.createObjectURL(built.blobs[f]);
   $('ed').innerHTML = built.paper.questions.map(x => `<div class="ed" data-n="${x.n}">
-   <div class="row"><b>Q${x.n}</b> <span class="muted">${x.subject} · Section ${x.section}</span>
+   <div class="row"><b>Q${x.n}</b> <span class="muted">${x.subject} · Section ${x.section}</span>${x.labelMissing ? ' <span class="warn">label not found: check this crop</span>' : ''}
     <label>type <select name="type">${TYPES.map(t => `<option ${t === x.type ? 'selected' : ''}>${t}</option>`).join('')}</select></label>
     <label>+<input name="marks" type="number" value="${x.marks}" style="width:50px"></label> <label>−<input name="neg" type="number" value="${x.neg}" style="width:50px"></label>
     <label>answer <input name="answer" value="${e(x.answer)}" style="width:120px"></label></div>
    <div class="row"><span class="muted">top edge</span> <button class="btn" data-a="top:-8">▲</button><button class="btn" data-a="top:8">▼</button> &nbsp; <span class="muted">bottom edge</span> <button class="btn" data-a="bot:-8">▲</button><button class="btn" data-a="bot:8">▼</button></div>
-   <div class="imgs">${x.images.map(f => `<img src="${URL.createObjectURL(built.blobs[f])}">`).join('')}</div>
+   ${x.passageImages ? `<div class="psg"><span class="muted">paragraph</span>${x.passageImages.map(f => `<img src="${url(f)}">`).join('')}</div>` : ''}
+   <div class="imgs">${x.images.map(f => `<img src="${url(f)}">`).join('')}</div>
    <details><summary class="muted" style="cursor:pointer">Typed text (optional)</summary>
     <textarea name="text" rows="3" placeholder="Question text, HTML + \\( math \\)">${e(x.text || '')}</textarea>
     ${['A', 'B', 'C', 'D'].map(o => `<div class="row"><b>${o})</b> <input class="opt" name="opt${o}" value="${e(x.options?.[o] || '')}"></div>`).join('')}
@@ -214,23 +154,24 @@ $('ed').onclick = async ev => {
   const b = ev.target.closest('button[data-a]'); if (!b) return;
   const card = b.closest('.ed'), x = built.paper.questions.find(q => q.n === +card.dataset.n);
   if (b.dataset.a === 'preview') {
-    const f = readCard(card, x); const opts = x.options ? Object.entries(x.options).map(([o, t]) => `<div><b>${o})</b> ${t}</div>`).join('') : '';
+    readCard(card, x); const opts = x.options ? Object.entries(x.options).map(([o, t]) => `<div><b>${o})</b> ${t}</div>`).join('') : '';
     const pv = card.querySelector('.pv'); pv.innerHTML = `<div>${x.text || ''}</div>${opts}`; JEE.typeset(pv); return;
   }
-  const [edge, d] = b.dataset.a.split(':'); const segs = x.segs;
-  if (edge === 'top') segs[0][1] = Math.max(0, segs[0][1] + +d); else segs[segs.length - 1][2] = Math.min(842, segs[segs.length - 1][2] + +d);
-  if (segs[0][1] >= segs[0][2]) return;
-  x.images = await crop(built.qp, segs, `q${x.n}`, built.blobs);
+  const [edge, d] = b.dataset.a.split(':'), segs = x.segs, last = segs[segs.length - 1];
+  if (edge === 'top') segs[0][1] = Math.max(0, segs[0][1] + +d); else last[2] = last[2] + +d;
+  if (segs[0][1] >= segs[0][2] || last[1] >= last[2]) { if (edge === 'top') segs[0][1] -= +d; else last[2] -= +d; return; }
+  x.images = await cropNames(built.R, segs, `q${x.n}`);
   card.querySelector('.imgs').innerHTML = x.images.map(f => `<img src="${URL.createObjectURL(built.blobs[f])}">`).join('');
 };
 function readCard(card, x) { // DOM -> question; returns the first invalid field name or null
   const v = n => card.querySelector(`[name=${n}]`).value.trim();
-  x.type = v('type'); x.marks = +v('marks'); x.neg = +v('neg'); x.answer = v('answer').toUpperCase();
+  x.type = v('type'); x.marks = +v('marks'); x.neg = +v('neg'); x.answer = (Cutter.normAnswer(v('answer')) ?? v('answer')).toUpperCase();
+  if (x.type !== 'multi') x.partial = false; else if (x.partial == null) x.partial = true;
   x.text = v('text') || undefined; if (!x.text) delete x.text;
   const opts = Object.fromEntries(['A', 'B', 'C', 'D'].map(o => [o, v('opt' + o)]).filter(([, t]) => t));
   if (Object.keys(opts).length) x.options = opts; else delete x.options;
-  const ok = x.type === 'single' ? /^[A-D]$/ : x.type === 'multi' ? /^[A-D]{1,4}$/ : x.type === 'integer' ? /^\d$/ : /^(-?[\d.]+( TO -?[\d.]+)?)$/;
-  return ok.test(x.answer) ? null : 'answer';
+  const ok = x.type === 'single' || x.type === 'matching' ? /^[A-D]$/ : x.type === 'multi' ? /^[A-D]{1,4}$/ : x.type === 'integer' ? /^\d$/ : /^(-?\d*\.?\d+( TO -?\d*\.?\d+)?)$/;
+  return ok.test(x.answer) && Number.isFinite(x.marks) && Number.isFinite(x.neg) ? null : 'answer';
 }
 function collect() { // DOM -> built.paper; returns list of questions with a bad answer
   const bad = [];
@@ -240,6 +181,11 @@ function collect() { // DOM -> built.paper; returns list of questions with a bad
   }
   built.paper.maxMarks = built.paper.questions.reduce((a, q) => a + q.marks, 0);
   return bad;
+}
+function cleanPaper() { // the stored paper: no editing state
+  const paper = JSON.parse(JSON.stringify(built.paper));
+  for (const q of paper.questions) { delete q.segs; delete q.labelMissing; }
+  return paper;
 }
 const b64 = blob => new Promise(r => { const fr = new FileReader(); fr.onload = () => r(fr.result.split(',')[1]); fr.readAsDataURL(blob); });
 try { $('ghRepo').value = localStorage.getItem('gh.repo') || ''; $('ghToken').value = localStorage.getItem('gh.token') || ''; $('ghRemember').checked = !!localStorage.getItem('gh.token'); } catch {}
@@ -255,13 +201,13 @@ $('publish').onclick = async () => {
     return r.json();
   };
   try {
-    const paper = JSON.parse(JSON.stringify(built.paper)); for (const q of paper.questions) delete q.segs;
+    const paper = cleanPaper();
     const dir = `papers/${paper.id}`;
     st('reading current index…');
     const head = await api('GET', `git/ref/heads/${branch}`), headSha = head.object.sha;
     const baseTree = (await api('GET', `git/commits/${headSha}`)).tree.sha;
     let index = []; try { const f = await api('GET', `contents/papers/index.json?ref=${branch}`); index = JSON.parse(decodeURIComponent(escape(atob(f.content.replace(/\n/g, ''))))); } catch {}
-    index = index.filter(e => e.id !== paper.id); index.push({ id: paper.id, exam: 'Uploaded', title: paper.title, duration: paper.duration / 60, maxMarks: paper.maxMarks });
+    index = index.filter(e => e.id !== paper.id); index.push({ id: paper.id, exam: paper.exam, title: paper.title, duration: paper.duration / 60, maxMarks: paper.maxMarks });
     const files = [[`${dir}/paper.json`, btoa(unescape(encodeURIComponent(JSON.stringify(paper, null, 1))))], ['papers/index.json', btoa(unescape(encodeURIComponent(JSON.stringify(index, null, 1))))]];
     for (const [name, blob] of Object.entries(built.blobs)) files.push([`${dir}/${name}`, await b64(blob)]);
     const tree = []; let done = 0;
@@ -275,15 +221,9 @@ $('publish').onclick = async () => {
   } catch (e) { st('publish failed: ' + e.message); console.error(e); }
 };
 $('save').onclick = async () => {
-  const bad = [];
-  for (const card of $('ed').querySelectorAll('.ed')) {
-    const x = built.paper.questions.find(q => q.n === +card.dataset.n), f = readCard(card, x);
-    card.querySelector('[name=answer]').classList.toggle('bad', !!f); if (f) bad.push(x.n);
-  }
+  const bad = collect();
   if (bad.length) return $('status2').textContent = `fix the answer for Q ${bad.join(', ')} (marked red)`;
-  built.paper.maxMarks = built.paper.questions.reduce((a, q) => a + q.marks, 0);
-  for (const q of built.paper.questions) delete q.segs;
-  await JEE.db.put({ id: built.id, blobs: built.blobs, paper: built.paper });
+  await JEE.db.put({ id: built.id, blobs: built.blobs, paper: cleanPaper() });
   $('status2').innerHTML = `saved. <a href="exam.html?p=${encodeURIComponent(built.id)}">Start this paper</a> or go <a href="index.html">home</a>.`;
 };
 </script></body></html>

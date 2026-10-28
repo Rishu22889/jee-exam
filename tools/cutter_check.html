@@ -1,0 +1,41 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Cutter check</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script><script src="../cutter.js"></script>
+<style>body{font:13px Arial;margin:8px}.q{border:2px solid #c00;margin:4px 0;break-inside:avoid}.q b{display:block;background:#fee}.q img{width:100%;display:block}.cols{column-count:var(--cols,3);column-gap:8px}table{border-collapse:collapse}td,th{border:1px solid #999;padding:2px 6px}</style></head><body>
+<!-- Dev tool: tools/cutter_check.html?qp=<pdf url>&sol=<pdf url>&from=1&to=60 runs the cutter and shows every crop. window.__result has the summary. -->
+<div id="sum">running…</div><div class="cols" id="out"></div>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+const q = new URLSearchParams(location.search);
+window.__run = (async () => {
+  const open = async url => pdfjsLib.getDocument(url).promise;
+  const qp = await open(q.get('qp')), R = Cutter.renderer(qp);
+  const an = await Cutter.analyse(await Cutter.readPdf(qp), { ink: R.ink });
+  let key = null, solAn = null, SR = null;
+  if (q.get('sol')) {
+    const sol = await open(q.get('sol')); SR = Cutter.renderer(sol);
+    const spages = await Cutter.readPdf(sol);
+    solAn = await Cutter.analyse(spages, { ink: SR.ink });
+    key = Cutter.readKey(solAn, spages, an.questions.length, q.get('prefer'));
+  }
+  const result = {
+    n: an.questions.length, missing: an.missing, twoCol: an.twoCol, labelX: an.labelX, bodyMax: an.bodyMax,
+    sections: an.sections.map(s => `${s.subject} | ${s.title} | ${s.count} | ${s.type} | +${s.marks} / -${s.neg}`),
+    passages: an.passages.map(p => p.range), withPassage: an.questions.filter(x => x.passage != null).map((x, i) => an.questions.indexOf(x) + 1),
+    solN: solAn?.questions.length, solMissing: solAn?.missing, keyFormat: key?.format, keyFound: key?.found, key: key?.answers,
+    multiSeg: an.questions.map((x, i) => x.segs?.length > 1 ? i + 1 : 0).filter(Boolean),
+  };
+  document.getElementById("sum").innerHTML = q.get("quiet") ? "" : "<pre>" + JSON.stringify(result, null, 1) + "</pre>";
+  out0 = document.getElementById('out'); out0.style.setProperty('--cols', q.get('cols') || 3);
+  const from = +(q.get('from') || 1), to = +(q.get('to') || 999), out = document.getElementById('out');
+  for (const [i, x] of an.questions.entries()) {
+    if (i + 1 < from || i + 1 > to) continue;
+    const imgs = await R.crop(x.segs);
+    const pimgs = x.passage != null && an.passages[x.passage].segs ? await R.crop(an.passages[x.passage].segs) : [];
+    const sol = solAn?.questions[i]?.segs && q.get('showsol') ? await SR.crop(solAn.questions[i].segs) : [];
+    out.insertAdjacentHTML('beforeend', `<div class="q"><b>Q${i + 1} · ${x.subject} · #${x.num}${x.missing ? ' · LABEL MISSING' : ''} · ${an.sections[x.sec]?.type ?? '?'} · key ${key?.answers[i] ?? ''}</b>` +
+      [...pimgs.map(b => ['passage', b]), ...imgs.map(b => ['q', b]), ...sol.map(b => ['sol', b])].map(([k, b]) => `<img title="${k}" style="${k === 'passage' ? 'opacity:.6' : ''}${k === 'sol' ? ';border-top:3px solid #06c' : ''}" src="${URL.createObjectURL(b)}">`).join('') + '</div>');
+  }
+  return result;
+})().catch(e => ({ error: e.stack }));
+window.__test = () => window.__run;
+</script></body></html>

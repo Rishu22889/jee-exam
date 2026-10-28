@@ -41,11 +41,12 @@ const JEE = {
     if (!JEE.isAnswered(ans)) return { marks: 0, verdict: 'skipped' };
     const key = String(q.answer).trim().toUpperCase();
     let ok;
-    if (q.type === 'single') ok = ans === key;
+    if (q.type === 'single' || q.type === 'matching') ok = ans === key;
     else if (q.type === 'multi') {
       const chosen = [...ans].sort(), correct = [...key].sort();
       if (chosen.some(c => !correct.includes(c))) return { marks: 0 - q.neg || 0, verdict: "wrong" };
       if (chosen.length === correct.length) return { marks: q.marks, verdict: 'correct' };
+      if (q.partial === false) return { marks: 0 - q.neg || 0, verdict: 'wrong' };   // all-or-nothing scheme
       // JEE Advanced partial marking: +1 per correct option chosen when no wrong option is chosen
       return { marks: Math.min(chosen.length, q.marks - 1), verdict: 'partial' };
     } else if (q.type === 'integer') ok = Number(ans) === Number(key);
@@ -84,12 +85,17 @@ const JEE = {
   esc(s) { return String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); },
   // question body: typed text + optional figure (a clipped band of the crop) when transcribed, else the crop images
   bodyHtml(q, src) {
+    const psg = q.passageImages?.length ? `<div class="passage"><b>Paragraph</b>${q.passageImages.map(f => `<img src="${src(f)}" alt="paragraph">`).join('')}</div>` : '';
+    return psg + JEE.questionHtml(q, src);
+  },
+  questionHtml(q, src) {
     if (!q.text) return q.images.map(f => `<img src="${src(f)}" alt="question ${q.n}">`).join('');
     const f = q.figure;
     const fig = f ? `<div class="fig"><img src="${src(f.image)}" alt="figure"></div>` : '';
     return `<div class="qtext">${q.text}</div>${fig}`;
   },
   typeset(el) { if (window.MathJax?.typesetPromise) return MathJax.typesetPromise([el]).catch(() => {}); },
-  typeLabel: { single: 'Single Correct Option', multi: 'One or More Correct Options', integer: 'Single Digit Integer (0-9)', numeric: 'Numerical Value' },
+  typeLabel: { single: 'Single Correct Option', multi: 'One or More Correct Options', matching: 'Matching List (one correct option)', integer: 'Single Digit Integer (0-9)', numeric: 'Numerical Value' },
+  isChoice: q => q.type === 'single' || q.type === 'multi' || q.type === 'matching',
 };
 if (typeof module !== 'undefined') module.exports = JEE;
