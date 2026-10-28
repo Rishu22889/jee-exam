@@ -1,0 +1,20 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JEE Mock Exams</title><link rel="stylesheet" href="style.css"></head><body>
+<div class="top"><b>JEE Mock Exam Portal</b><span>Computer Based Test practice</span></div>
+<div class="wrap">
+ <div class="card"><h2 style="margin-top:0">Available papers</h2><table id="papers"><tr><th>Exam</th><th>Paper</th><th>Duration</th><th>Max marks</th><th></th></tr></table></div>
+ <div class="card"><h2 style="margin-top:0">Your attempts</h2><table id="attempts"><tr><th>Date</th><th>Paper</th><th>Name</th><th>Score</th><th></th></tr></table><p id="noatt" class="muted">No attempts yet. Results are stored in this browser only.</p></div>
+</div>
+<script src="app.js"></script>
+<script>
+(async () => {
+  const papers = await JEE.loadIndex();
+  const live = id => localStorage.getItem('jee.live.' + id);
+  document.getElementById('papers').insertAdjacentHTML('beforeend', papers.map(p => `<tr><td>${JEE.esc(p.exam)}</td><td>${JEE.esc(p.title)}</td><td>${p.duration} min</td><td>${p.maxMarks}</td>
+   <td><a class="btn primary" href="exam.html?p=${encodeURIComponent(p.id)}">${live(p.id) ? 'Resume' : 'Start'}</a></td></tr>`).join(''));
+  const at = JEE.attempts();
+  document.getElementById('noatt').classList.toggle('hidden', at.length > 0);
+  document.getElementById('attempts').insertAdjacentHTML('beforeend', at.map(a => `<tr><td>${new Date(a.submittedAt).toLocaleString()}</td><td>${JEE.esc(a.title)}</td><td>${JEE.esc(a.name)}</td><td><b>${a.score}</b> / ${a.max}</td>
+   <td><a class="btn" href="result.html?a=${encodeURIComponent(a.id)}">Analysis</a></td></tr>`).join(''));
+})();
+</script></body></html>

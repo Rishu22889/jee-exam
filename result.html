@@ -1,0 +1,64 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Result Analysis</title><link rel="stylesheet" href="style.css"></head><body>
+<div class="top"><b id="title">Analysis</b><a href="index.html" style="color:#fff">Home</a></div>
+<div class="wrap">
+ <div class="card"><div id="head"></div><div class="stats" id="stats"></div></div>
+ <div class="card"><h3 style="margin-top:0">Subject-wise</h3><table id="subj"><tr><th>Subject</th><th>Score</th><th>Correct</th><th>Partial</th><th>Wrong</th><th>Skipped</th><th>Accuracy</th><th>Time</th><th></th></tr></table></div>
+ <div class="card"><h3 style="margin-top:0">Section-wise</h3><table id="sect"><tr><th>Section</th><th>Score</th><th>Correct</th><th>Partial</th><th>Wrong</th><th>Skipped</th><th>Time</th></tr></table></div>
+ <div class="card"><h3 style="margin-top:0">Question-wise <span class="muted" style="font-weight:normal">(click a row for the question and solution)</span></h3>
+  <p>Show: <label><input type="radio" name="f" value="all" checked> all</label> <label><input type="radio" name="f" value="wrong"> wrong</label> <label><input type="radio" name="f" value="partial"> partial</label> <label><input type="radio" name="f" value="skipped"> skipped</label></p>
+  <table id="qs"><tr><th>Q</th><th>Subject</th><th>Type</th><th>Your answer</th><th>Key</th><th>Result</th><th>Marks</th><th>Time</th></tr></table></div>
+ <div class="card"><h3 style="margin-top:0">Takeaways</h3><ul id="tips"></ul></div>
+</div>
+<script src="app.js"></script>
+<script>
+(async () => {
+ const $ = id => document.getElementById(id);
+ const aid = new URLSearchParams(location.search).get('a');
+ const a = JEE.attempts().find(x => x.id === aid);
+ if (!a) { document.body.innerHTML = '<div class="wrap"><div class="card">Attempt not found in this browser. <a href="index.html">Home</a></div></div>'; return; }
+ const paper = await JEE.loadPaper(a.paperId);
+ const img = f => `papers/${a.paperId}/${f}`;
+ const an = JEE.analyse(paper, a.responses);
+ const T = an.total, pct = x => Math.round(100 * x);
+ const acc = s => (s.correct + s.partial + s.wrong) ? pct(s.correct / (s.correct + s.partial + s.wrong)) + '%' : '–';
+ const attempted = s => s.correct + s.partial + s.wrong;
+ document.title = $('title').textContent = `${paper.title} – Analysis`;
+ $('head').innerHTML = `<p><b>${JEE.esc(a.name)}</b> · ${new Date(a.submittedAt).toLocaleString()} ${a.autoSubmitted ? '· <span class="red">auto-submitted when time ran out</span>' : ''} · time used ${JEE.fmtTime((a.submittedAt - a.startedAt) / 1000)} of ${JEE.fmtTime(paper.duration)}</p>`;
+ $('stats').innerHTML = [['Score', `${T.score} / ${T.max}`], ['Percentage', pct(T.score / T.max) + '%'], ['Attempted', `${attempted(T)} / ${T.count}`], ['Correct', T.correct], ['Partial', T.partial], ['Wrong', T.wrong], ['Accuracy', acc(T)], ['Negative marks', an.rows.reduce((s, r) => s + (r.marks < 0 ? -r.marks : 0), 0)]]
+  .map(([k, v]) => `<div class="stat"><b>${v}</b>${k}</div>`).join('');
+ $('subj').insertAdjacentHTML('beforeend', an.subjects.map(s => `<tr><td>${s.key}</td><td><b>${s.score}</b> / ${s.max}</td><td>${s.correct}</td><td>${s.partial}</td><td>${s.wrong}</td><td>${s.skipped}</td><td>${acc(s)}</td><td>${JEE.fmtTime(s.time)}</td><td style="min-width:120px"><div class="bar"><i style="width:${pct(Math.max(0, s.score) / s.max)}%"></i></div></td></tr>`).join(''));
+ $('sect').insertAdjacentHTML('beforeend', an.sections.map(s => `<tr><td>${s.key}</td><td><b>${s.score}</b> / ${s.max}</td><td>${s.correct}</td><td>${s.partial}</td><td>${s.wrong}</td><td>${s.skipped}</td><td>${JEE.fmtTime(s.time)}</td></tr>`).join(''));
+
+ const fmtAns = v => v == null ? '–' : Array.isArray(v) ? v.join('') : v;
+ const rowHtml = r => `<tr class="qrow" data-n="${r.q.n}" data-v="${r.verdict}"><td>${r.q.n}</td><td>${r.q.subject}</td><td>${r.q.type}</td><td>${fmtAns(r.ans)}</td><td>${r.q.answer}</td><td class="v-${r.verdict}">${r.verdict}</td><td>${r.marks}</td><td>${JEE.fmtTime(r.time)}</td></tr>`;
+ $('qs').insertAdjacentHTML('beforeend', an.rows.map(rowHtml).join(''));
+ const filter = () => { const f = document.querySelector('input[name=f]:checked').value; $('qs').querySelectorAll('.qrow').forEach(tr => tr.classList.toggle('hidden', f !== 'all' && tr.dataset.v !== f)); $('qs').querySelectorAll('.detail').forEach(d => d.remove()); };
+ document.querySelectorAll('input[name=f]').forEach(i => i.onchange = filter);
+ $('qs').onclick = e => {
+  const tr = e.target.closest('.qrow'); if (!tr) return;
+  const open = tr.nextElementSibling?.classList.contains('detail');
+  $('qs').querySelectorAll('.detail').forEach(d => d.remove());
+  if (open) return;
+  const q = paper.questions.find(x => x.n === +tr.dataset.n);
+  const sol = (q.solution || []).map(f => `<img src="${img(f)}" alt="solution">`).join('') || '<p class="muted">No solution image.</p>';
+  tr.insertAdjacentHTML('afterend', `<tr class="detail"><td colspan="8"><b>Question</b>${q.images.map(f => `<img src="${img(f)}" alt="question">`).join('')}<b>Solution</b>${sol}</td></tr>`);
+ };
+
+ // takeaways: simple rules, no magic
+ const tips = [];
+ const worst = [...an.subjects].sort((x, y) => x.score / x.max - y.score / y.max)[0];
+ tips.push(`Weakest subject: <b>${worst.key}</b> (${worst.score}/${worst.max}).`);
+ const neg = an.rows.filter(r => r.marks < 0);
+ if (neg.length) tips.push(`${neg.length} wrong attempts cost ${-neg.reduce((s, r) => s + r.marks, 0)} marks. Attempt only when sure, especially in ${neg.filter(r => r.q.type === 'multi').length ? 'multi-correct (−2 each)' : 'single-correct'} questions.`);
+ const slowWrong = an.rows.filter(r => r.verdict !== 'correct' && r.time > 300);
+ if (slowWrong.length) tips.push(`Spent over 5 min without full marks on Q ${slowWrong.map(r => r.q.n).join(', ')}. Skip and return later.`);
+ const skippedTime = an.rows.filter(r => r.verdict === 'skipped' && r.time > 120);
+ if (skippedTime.length) tips.push(`Q ${skippedTime.map(r => r.q.n).join(', ')}: over 2 min spent but left blank.`);
+ const unvisited = an.rows.filter(r => r.status === 'nv').length;
+ if (unvisited) tips.push(`${unvisited} questions were never opened. Plan time: about ${Math.round(paper.duration / 60 / paper.questions.length * 10) / 10} min per question.`);
+ const partialMulti = an.rows.filter(r => r.verdict === 'partial');
+ if (partialMulti.length) tips.push(`${partialMulti.length} multi-correct questions got partial marks: check every option, not only the first correct one.`);
+ $('tips').innerHTML = tips.map(t => `<li>${t}</li>`).join('');
+})();
+</script></body></html>

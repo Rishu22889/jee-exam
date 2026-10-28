@@ -1,0 +1,18 @@
+// node tools/test_score.js
+const JEE = require('../app.js'); const assert = require('assert');
+const single = { type: 'single', marks: 3, neg: 1, answer: 'B' };
+const multi = { type: 'multi', marks: 4, neg: 2, answer: 'ACD' };
+const num = { type: 'numeric', marks: 4, neg: 0, answer: '0.78 TO 0.82' };
+const num2 = { type: 'numeric', marks: 4, neg: 0, answer: '1.43' };
+const int = { type: 'integer', marks: 3, neg: 1, answer: '5' };
+const mains = { type: 'numeric', marks: 4, neg: 1, answer: '25' };
+const t = (q, a, marks, v) => { const r = JEE.score(q, a); assert.deepStrictEqual(r, { marks, verdict: v }, `${q.type} ${JSON.stringify(a)} -> ${JSON.stringify(r)}`); };
+t(single, 'B', 3, 'correct'); t(single, 'A', -1, 'wrong'); t(single, null, 0, 'skipped');
+t(multi, ['A', 'C', 'D'], 4, 'correct'); t(multi, ['D', 'A', 'C'], 4, 'correct'); t(multi, ['A', 'C'], 2, 'partial');
+t(multi, ['A'], 1, 'partial'); t(multi, ['A', 'B'], -2, 'wrong'); t(multi, [], 0, 'skipped');
+t(num, '0.80', 4, 'correct'); t(num, '0.78', 4, 'correct'); t(num, '0.83', 0, 'wrong'); t(num2, '1.43', 4, 'correct'); t(num2, '1.42', 0, 'wrong'); t(num2, '1.430', 4, 'correct');
+t(int, '5', 3, 'correct'); t(int, '4', -1, 'wrong'); t(mains, '25', 4, 'correct'); t(mains, '24', -1, 'wrong'); t(mains, '', 0, 'skipped');
+const paper = { questions: [{ ...single, n: 1, subject: 'Mathematics', section: 1 }, { ...multi, n: 2, subject: 'Physics', section: 2 }] };
+const an = JEE.analyse(paper, { 1: { ans: 'B', time: 10 }, 2: { ans: ['A'], time: 5 } });
+assert.strictEqual(an.total.score, 4); assert.strictEqual(an.total.max, 7); assert.strictEqual(an.subjects.length, 2);
+console.log('all score tests pass');
