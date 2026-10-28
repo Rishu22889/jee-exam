@@ -23,7 +23,15 @@
   <h3 style="margin-top:0">Check and edit every question, then save</h3>
   <p class="muted">Crop wrong? Use the ▲▼ buttons to move the top or bottom edge of the crop (8pt a step). Answer: single/multi as letters (<code>BCD</code>), numbers as printed, ranges as <code>0.78 TO 0.82</code>. Typed text is optional: HTML with <code>\( \)</code> math; when filled it replaces the crop in the exam.</p>
   <div id="ed"></div>
-  <p><button class="btn green" id="save">Save paper</button> <span id="status2" class="muted"></span></p>
+  <p><button class="btn green" id="save">Save in this browser</button> <span id="status2" class="muted"></span></p>
+  <h3>Publish to the exam site (GitHub)</h3>
+  <p class="muted">Commits the paper into the repository that hosts the exam site. Use a fine-grained personal access token limited to that repository with <b>Contents: read and write</b>. The token stays in this browser only if you tick remember.</p>
+  <div class="row" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+   <label>repo <input id="ghRepo" placeholder="username/jee-exam" style="width:200px;padding:6px"></label>
+   <label>branch <input id="ghBranch" value="main" style="width:80px;padding:6px"></label>
+   <label>token <input id="ghToken" type="password" placeholder="github_pat_…" style="width:260px;padding:6px"></label>
+   <label><input type="checkbox" id="ghRemember"> remember on this device</label>
+   <button class="btn primary" id="publish">Publish</button> <span id="status3" class="muted"></span></div>
  </div>
 </div>
 <script src="app.js"></script>
@@ -224,6 +232,48 @@ function readCard(card, x) { // DOM -> question; returns the first invalid field
   const ok = x.type === 'single' ? /^[A-D]$/ : x.type === 'multi' ? /^[A-D]{1,4}$/ : x.type === 'integer' ? /^\d$/ : /^(-?[\d.]+( TO -?[\d.]+)?)$/;
   return ok.test(x.answer) ? null : 'answer';
 }
+function collect() { // DOM -> built.paper; returns list of questions with a bad answer
+  const bad = [];
+  for (const card of $('ed').querySelectorAll('.ed')) {
+    const x = built.paper.questions.find(q => q.n === +card.dataset.n), f = readCard(card, x);
+    card.querySelector('[name=answer]').classList.toggle('bad', !!f); if (f) bad.push(x.n);
+  }
+  built.paper.maxMarks = built.paper.questions.reduce((a, q) => a + q.marks, 0);
+  return bad;
+}
+const b64 = blob => new Promise(r => { const fr = new FileReader(); fr.onload = () => r(fr.result.split(',')[1]); fr.readAsDataURL(blob); });
+try { $('ghRepo').value = localStorage.getItem('gh.repo') || ''; $('ghToken').value = localStorage.getItem('gh.token') || ''; $('ghRemember').checked = !!localStorage.getItem('gh.token'); } catch {}
+$('publish').onclick = async () => {
+  const st = m => $('status3').textContent = m;
+  const repo = $('ghRepo').value.trim(), branch = $('ghBranch').value.trim() || 'main', token = $('ghToken').value.trim();
+  if (!/^[\w.-]+\/[\w.-]+$/.test(repo) || !token) return st('enter repo as username/name and a token');
+  const bad = collect(); if (bad.length) return st(`fix the answer for Q ${bad.join(', ')} (marked red)`);
+  try { if ($('ghRemember').checked) { localStorage.setItem('gh.repo', repo); localStorage.setItem('gh.token', token); } else { localStorage.removeItem('gh.token'); } } catch {}
+  const api = async (method, path, body) => {
+    const r = await fetch(`https://api.github.com/repos/${repo}/${path}`, { method, headers: { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' }, body: body && JSON.stringify(body) });
+    if (!r.ok) throw new Error(`${method} ${path}: ${r.status} ${(await r.json().catch(() => ({}))).message || ''}`);
+    return r.json();
+  };
+  try {
+    const paper = JSON.parse(JSON.stringify(built.paper)); for (const q of paper.questions) delete q.segs;
+    const dir = `papers/${paper.id}`;
+    st('reading current index…');
+    const head = await api('GET', `git/ref/heads/${branch}`), headSha = head.object.sha;
+    const baseTree = (await api('GET', `git/commits/${headSha}`)).tree.sha;
+    let index = []; try { const f = await api('GET', `contents/papers/index.json?ref=${branch}`); index = JSON.parse(decodeURIComponent(escape(atob(f.content.replace(/\n/g, ''))))); } catch {}
+    index = index.filter(e => e.id !== paper.id); index.push({ id: paper.id, exam: 'Uploaded', title: paper.title, duration: paper.duration / 60, maxMarks: paper.maxMarks });
+    const files = [[`${dir}/paper.json`, btoa(unescape(encodeURIComponent(JSON.stringify(paper, null, 1))))], ['papers/index.json', btoa(unescape(encodeURIComponent(JSON.stringify(index, null, 1))))]];
+    for (const [name, blob] of Object.entries(built.blobs)) files.push([`${dir}/${name}`, await b64(blob)]);
+    const tree = []; let done = 0;
+    const worker = async () => { while (files.length) { const [path, content] = files.shift(); const { sha } = await api('POST', 'git/blobs', { content, encoding: 'base64' }); tree.push({ path, mode: '100644', type: 'blob', sha }); st(`uploading ${++done} files…`); } };
+    await Promise.all([worker(), worker(), worker(), worker()]);
+    st('committing…');
+    const newTree = await api('POST', 'git/trees', { base_tree: baseTree, tree });
+    const commit = await api('POST', 'git/commits', { message: `Add paper ${paper.title}`, tree: newTree.sha, parents: [headSha] });
+    await api('PATCH', `git/refs/heads/${branch}`, { sha: commit.sha });
+    st(`published: commit ${commit.sha.slice(0, 7)}. The exam site shows it after GitHub Pages rebuilds (about a minute).`);
+  } catch (e) { st('publish failed: ' + e.message); console.error(e); }
+};
 $('save').onclick = async () => {
   const bad = [];
   for (const card of $('ed').querySelectorAll('.ed')) {

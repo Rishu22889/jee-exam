@@ -8,7 +8,13 @@ Static site: no server, no database, no cost. Results are stored in the browser'
 ## Deploy (Vercel, free)
     npx vercel --prod
 
-## Add a paper
+## Two links
+- Exam site (for the student): `https://<user>.github.io/jee-exam/` — lists bundled papers and papers published from the upload page. No upload link on it.
+- Upload page (for you): `https://<user>.github.io/jee-exam/upload.html` — reads the PDFs in the browser, lets you check and edit every question, then either
+  saves the paper in that browser only, or **publishes** it: one commit into this repository through the GitHub API (needs a fine-grained personal
+  access token for this repo with Contents read/write). GitHub Pages rebuilds in about a minute and the exam site shows the paper.
+
+## Add a paper from the command line
 Needs poppler (`brew install poppler`). Write a key file (one `n answer` per line, ranges as `0.78 TO 0.82`), then:
 
     python3 tools/build_paper.py --id adv-2026-p1 --title "JEE Advanced 2026 Paper 1" \
