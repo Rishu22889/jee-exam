@@ -27,7 +27,7 @@
  </div>
 
  <div id="reports">
-  <div class="card" style="margin-bottom:12px"><div class="row" style="justify-content:space-between"><h3 style="margin:0">Reports</h3><button class="btn small" id="repReload">Refresh</button></div>
+  <div class="card" style="margin-bottom:12px"><div class="row" style="justify-content:space-between"><h3 style="margin:0">Reports</h3><div class="row"><button class="btn small" id="repReload">Refresh</button><button class="btn small danger" id="repDelAll">Delete all</button></div></div>
    <p class="muted" id="repNote" style="margin-bottom:0"></p></div>
   <div id="repDash"></div>
   <div class="card"><h3>All tests taken</h3><div id="repTable"></div></div>
@@ -287,16 +287,24 @@ $('testList').onclick = async ev => {
 $('testsReload').onclick = loadTests;
 
 // ---- reports: every attempt synced from linked devices, plus attempts taken in this browser
+let reps = [];
 async function loadReports() {
   $('repNote').textContent = 'loading…';
   try {
     await JEE.syncAttempts().catch(() => {});
-    const atts = await Dash.render($('repDash'), await JEE.allAttempts());
-    $('repTable').innerHTML = Dash.table(atts, a => `result.html?a=${encodeURIComponent(a.id)}&from=upload`);
+    const atts = reps = await Dash.render($('repDash'), await JEE.allAttempts());
+    $('repTable').innerHTML = Dash.table(atts, a => `result.html?a=${encodeURIComponent(a.id)}&from=upload`, true);
     $('repNote').textContent = JEE.gh.linked() ? `${atts.length} test${atts.length === 1 ? '' : 's'} from all linked devices. A test shows here as soon as it is submitted on a linked device.` : 'Not connected: only tests taken in this browser are shown. Connect above, then link your brother\'s device.';
   } catch (e) { $('repNote').textContent = 'could not load reports: ' + e.message; }
 }
 $('repReload').onclick = loadReports;
+async function delReports(ids, what, b) {
+  if (!ids.length || !confirm(`Delete ${what}? ${JEE.gh.linked() ? 'It is removed from GitHub and from every linked device.' : 'Not connected: only this browser\'s copy is removed.'} This cannot be undone.`)) return;
+  b.disabled = true; $('repNote').textContent = 'deleting…';
+  try { await JEE.deleteAttempts(ids); loadReports(); } catch (e) { $('repNote').textContent = 'delete failed: ' + e.message; } finally { b.disabled = false; }
+}
+$('repTable').onclick = ev => { const b = ev.target.closest('[data-delrep]'), a = b && reps.find(x => x.id === b.dataset.delrep); if (a) delReports([a.id], `the report "${a.title}" of ${Dash.when(a.submittedAt)}`, b); };
+$('repDelAll').onclick = ev => delReports(reps.map(a => a.id), `all ${reps.length} reports`, ev.target);
 loadTests(); loadReports();
 
 // ---- saving the paper being edited

@@ -104,6 +104,7 @@ const JEE = {
     const list = await JEE.gh.list('results');
     const want = new Map(list.filter(f => f.name.endsWith('.json')).map(f => [f.name.slice(0, -5), f.path]));
     for (const id of Object.keys(cache)) if (!want.has(id)) delete cache[id];
+    JEE.setAttempts(JEE.attempts().filter(a => !a.synced || want.has(a.id))); // synced but gone from the repo: deleted on the upload page
     await Promise.all([...want].filter(([id]) => !cache[id]).map(async ([id, path]) => { try { cache[id] = await JEE.gh.getJson(path); } catch {} }));
     try { localStorage.setItem('jee.remote', JSON.stringify(cache)); } catch {}
     return Object.values(cache);
@@ -113,6 +114,16 @@ const JEE = {
     try { remote = await JEE.remoteAttempts(); } catch (e) { console.warn(e); }
     const ids = new Set(local.map(a => a.id));
     return [...local, ...remote.filter(a => !ids.has(a.id))].sort((a, b) => b.submittedAt - a.submittedAt);
+  },
+  async deleteAttempts(ids) { // from the repo (so every linked device drops them) and from this browser
+    if (JEE.gh.linked()) {
+      const there = new Set((await JEE.gh.list('results')).map(f => f.name.replace(/\.json$/, '')));
+      const files = ids.filter(id => there.has(id)).map(id => ({ path: `results/${id}.json`, content: null }));
+      if (files.length) await JEE.gh.commit(files, `Delete ${files.length} report${files.length > 1 ? 's' : ''}`);
+    }
+    const gone = new Set(ids);
+    JEE.setAttempts(JEE.attempts().filter(a => !gone.has(a.id)));
+    try { const c = JSON.parse(localStorage.getItem('jee.remote') || '{}'); for (const id of ids) delete c[id]; localStorage.setItem('jee.remote', JSON.stringify(c)); } catch {}
   },
   async findAttempt(id) {
     const a = JEE.attempts().find(x => x.id === id); if (a) return a;

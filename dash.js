@@ -73,14 +73,14 @@ const Dash = {
     }).join('')}</div>`;
   },
 
-  table(atts, href = a => `result.html?a=${encodeURIComponent(a.id)}`) {
+  table(atts, href = a => `result.html?a=${encodeURIComponent(a.id)}`, del = false) {
     if (!atts.length) return '<div class="empty">No tests taken yet.</div>';
     return `<div class="tablewrap"><table><tr><th>Date</th><th>Paper</th><th class="hide-sm">Name</th><th class="num">Score</th><th style="min-width:110px">%</th><th>Left test</th><th></th></tr>${atts.map(a => {
       const p = Dash.pct(a.score, a.max), away = a.away?.count || 0;
       return `<tr><td>${Dash.when(a.submittedAt)}</td><td>${JEE.esc(a.title)}</td><td class="hide-sm">${JEE.esc(a.name || '')}</td><td class="num"><b>${a.score}</b> / ${a.max}</td>
         <td><div class="row" style="flex-wrap:nowrap"><div class="meter" style="flex:1"><i style="width:${Math.max(0, p)}%"></i></div><span class="num" style="width:38px">${p}%</span></div></td>
         <td>${away ? `<span class="badge warn" title="left the exam window ${away} times, ${JEE.fmtTime(a.away.secs)} in total">${away}× · ${a.away.secs < 60 ? Math.round(a.away.secs) + ' s' : Math.round(a.away.secs / 60) + ' min'}</span>` : '<span class="muted">no</span>'}</td>
-        <td><a class="btn small" href="${href(a)}">Analysis</a></td></tr>`;
+        <td><div class="row" style="flex-wrap:nowrap"><a class="btn small" href="${href(a)}">Analysis</a>${del ? `<button class="btn small danger" data-delrep="${JEE.esc(a.id)}">Delete</button>` : ''}</div></td></tr>`;
     }).join('')}</table></div>`;
   },
 
