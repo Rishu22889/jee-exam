@@ -18,7 +18,13 @@ const JEE = {
     const local = (await JEE.db.all().catch(() => [])).filter(r => !ids.has(r.id)).map(r => JEE.indexEntry(r.paper, { local: true }));
     return [...published, ...local];
   },
-  indexEntry: (p, extra) => ({ id: p.id, exam: p.exam || 'Uploaded', title: p.title, duration: p.duration / 60, maxMarks: p.maxMarks, questions: p.questions?.length, ...extra }),
+  indexEntry: (p, extra) => ({ id: p.id, exam: p.exam || 'Uploaded', title: p.title, duration: p.duration / 60, maxMarks: p.maxMarks, questions: p.questions?.length, startAt: p.startAt, ...extra }),
+  // first attempt only from startAt to 15 min after it; retakes any time. 'open' | 'early' | 'missed'
+  LATE: 15 * 60e3,
+  window: (p, attempted, now) => !p.startAt || attempted ? 'open' : now < p.startAt ? 'early' : now <= p.startAt + JEE.LATE ? 'open' : 'missed',
+  // web server clock minus device clock (Date header), so changing the device clock does not open a test early
+  skew() { return JEE._skew ??= fetch(`papers/index.json?t=${Date.now()}`, { method: 'HEAD', cache: 'no-store' }).then(r => Date.parse(r.headers.get('date')) - Date.now() || 0, () => 0); },
+  localInput: t => t ? new Date(t - new Date(t).getTimezoneOffset() * 60e3).toISOString().slice(0, 16) : '', // value for <input type=datetime-local>
   // uploaded papers live in IndexedDB: {id, paper, blobs:{file: Blob}}
   db: {
     open() {

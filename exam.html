@@ -21,6 +21,7 @@
   <div class="tablewrap"><table id="scheme"><tr><th>Subject</th><th>Section</th><th>Question type</th><th>Questions</th><th>Full marks</th><th>Negative</th></tr></table></div>
   <p style="margin-top:16px"><label>Candidate name: <input id="name" placeholder="Your name"></label></p>
   <p><label><input type="checkbox" id="agree"> I have read and understood the instructions. I declare that I will not use any unfair means during the examination.</label></p>
+  <p id="gateMsg" class="hidden" style="font-weight:600"></p>
   <button class="btn primary" id="begin" disabled>I am ready to begin</button>
  </div>
 </div>
@@ -82,9 +83,21 @@
   const rows = {};
   for (const q of paper.questions) { const k = q.subject + q.section; rows[k] ??= { ...q, count: 0 }; rows[k].count++; }
   $('scheme').insertAdjacentHTML('beforeend', Object.values(rows).map(r => `<tr><td>${r.subject}</td><td>${r.section}</td><td>${JEE.typeLabel[r.type]}</td><td>${r.count}</td><td>+${r.marks}</td><td>${r.neg ? '-' + r.neg : '0'}</td></tr>`).join(''));
-  const check = () => { $('begin').disabled = !($('agree').checked && $('name').value.trim()); };
-  $('agree').onchange = $('name').oninput = check;
-  await new Promise(res => $('begin').onclick = res);
+  const off = await JEE.skew(), tried = !!paper.startAt && (await JEE.allAttempts()).some(a => a.paperId === pid);
+  const gate = () => JEE.window(paper, tried, Date.now() + off), at = t => new Date(t).toLocaleString(undefined, { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+  const check = () => {
+    const g = gate(), m = $('gateMsg');
+    m.classList.toggle('hidden', !paper.startAt || tried);
+    m.style.color = g === 'open' ? '' : 'var(--bad-ink)';
+    m.textContent = g === 'early' ? `This test opens at ${at(paper.startAt)}. It starts in ${JEE.fmtTime((paper.startAt - Date.now() - off) / 1000)}.`
+      : g === 'missed' ? `The start window closed at ${at(paper.startAt + JEE.LATE)}. The first attempt had to begin within 15 minutes of ${at(paper.startAt)}. Ask for the test to be rescheduled.`
+      : `Begin before ${at(paper.startAt + JEE.LATE)}.`;
+    $('begin').disabled = !($('agree').checked && $('name').value.trim() && g === 'open');
+  };
+  $('agree').onchange = $('name').oninput = check; check();
+  const gt = setInterval(check, 1000);
+  await new Promise(res => $('begin').onclick = () => gate() === 'open' && res());
+  clearInterval(gt);
   const now = Date.now();
   state = { paperId: pid, name: $('name').value.trim(), startedAt: now, endsAt: now + paper.duration * 1000, cur: 1, responses: {}, enteredAt: now, seenAt: now, away: { count: 0, secs: 0, fs: 0 } };
   save(); fullscreen();

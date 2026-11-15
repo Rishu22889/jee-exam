@@ -25,21 +25,24 @@
   $('lSave').onclick = () => { const repo = $('lRepo').value.trim(), token = $('lToken').value.trim(); if (!/^[\w.-]+\/[\w.-]+$/.test(repo) || !token) return $('lMsg').textContent = 'enter repo as username/name and the token'; JEE.gh.save({ repo, branch: JEE.gh.cfg().branch, token }); $('lToken').value = ''; $('lMsg').textContent = 'linked'; showSync(); refresh(); };
   $('lOff').onclick = () => { localStorage.removeItem('gh.token'); $('lMsg').textContent = 'unlinked: results stay on this device'; showSync(); };
 
-  const papers = await JEE.loadIndex();
+  const papers = await JEE.loadIndex(), off = await JEE.skew();
   async function refresh() {
     await JEE.syncAttempts().catch(() => {});
     const atts = await Dash.render($('dash'), await JEE.allAttempts());
     const live = id => { try { return JSON.parse(localStorage.getItem('jee.live.' + id)); } catch { return null; } };
     $('papers').innerHTML = papers.map(p => {
       const mine = atts.filter(a => a.paperId === p.id), best = mine.reduce((b, a) => (!b || a.score > b.score ? a : b), null), L = live(p.id);
-      const left = L ? Math.max(0, (L.endsAt - Date.now()) / 1000) : 0;
+      const left = L ? Math.max(0, (L.endsAt - Date.now()) / 1000) : 0, g = L ? 'open' : JEE.window(p, mine.length, Date.now() + off);
       return `<div class="paper"><div class="row" style="justify-content:space-between"><span class="badge">${JEE.esc(p.exam)}</span>${p.local ? '<span class="badge warn" title="saved in this browser only: publish it from the upload page to see it on other devices">this device only</span>' : ''}</div>
         <h4>${JEE.esc(p.title)}</h4><div class="meta">${p.duration} min · ${p.maxMarks} marks${p.questions ? ` · ${p.questions} questions` : ''}</div>
         ${best ? `<div><div class="row" style="justify-content:space-between;font-size:12px"><span>Best ${best.score} / ${best.max}</span><span class="muted">${mine.length} attempt${mine.length > 1 ? 's' : ''}</span></div><div class="meter"><i style="width:${Math.max(0, Dash.pct(best.score, best.max))}%"></i></div></div>` : '<div class="meta">Not attempted yet</div>'}
-        <div class="acts"><a class="btn primary" href="exam.html?p=${encodeURIComponent(p.id)}">${L ? (left > 0 ? `Resume · ${JEE.fmtTime(left)} left` : 'Submit (time over)') : best ? 'Take again' : 'Start'}</a></div></div>`;
+        ${p.startAt && !mine.length && !L ? `<div class="meta">Starts ${Dash.when(p.startAt)} · begin within 15 min</div>` : ''}
+        <div class="acts">${g === 'open' ? `<a class="btn primary" href="exam.html?p=${encodeURIComponent(p.id)}">${L ? (left > 0 ? `Resume · ${JEE.fmtTime(left)} left` : 'Submit (time over)') : best ? 'Take again' : 'Start'}</a>`
+          : `<button class="btn" disabled>${g === 'early' ? 'Not open yet' : 'Missed the start time'}</button>`}</div></div>`;
     }).join('') || '<div class="empty">No papers yet. Add one from the upload page.</div>';
     $('attempts').innerHTML = Dash.table(atts);
   }
   refresh();
+  setInterval(() => { if (!document.hidden) refresh(); }, 60e3); // a scheduled test opens without reloading
 })();
 </script></body></html>

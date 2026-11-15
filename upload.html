@@ -43,6 +43,7 @@
   <p><label>Answer key / solutions PDF <input type="file" id="sol" accept="application/pdf"></label> <span class="muted">optional, but without it you type every answer</span></p>
   <p><label>Title <input id="title" placeholder="Allen Mock Test Paper 1" style="width:320px"></label>
      <label style="margin-left:12px">Duration (min) <input id="dur" type="number" value="180" style="width:80px"></label></p>
+  <p><label>Start time <input id="startAt" type="datetime-local"></label> <span class="muted">optional: the first attempt can begin only from this time to 15 minutes after it; retakes any time. Empty: open any time.</span></p>
   <button class="btn primary" id="go">Read PDFs</button> <span id="status" class="muted"></span>
  </div>
  <div class="card hidden" id="step2">
@@ -208,6 +209,7 @@ function collect() { // DOM -> built.paper; returns list of questions with a bad
 function cleanPaper() { // the stored paper: no editing state
   const paper = JSON.parse(JSON.stringify(built.paper));
   for (const q of paper.questions) { delete q.segs; delete q.labelMissing; }
+  paper.startAt = $('startAt').value ? new Date($('startAt').value).getTime() : undefined;
   return paper;
 }
 const b64 = blob => new Promise(r => { const fr = new FileReader(); fr.onload = () => r(fr.result.split(',')[1]); fr.readAsDataURL(blob); });
@@ -252,6 +254,13 @@ async function deletePublished(id, st) {
   st(`deleted ${id}. Reports of its attempts are kept.`);
 }
 
+async function setStart(id, startAt, st) { // paper.json and its index entry, one commit
+  st('saving start time…');
+  const paper = await JEE.gh.getJson(`papers/${id}/paper.json`); paper.startAt = startAt;
+  const index = (await JEE.gh.getJson('papers/index.json')).map(e => e.id === id ? JEE.indexEntry(paper) : e);
+  await JEE.gh.commit([{ path: `papers/${id}/paper.json`, content: JEE.gh.b64(JSON.stringify(paper, null, 1)) }, { path: 'papers/index.json', content: JEE.gh.b64(JSON.stringify(index, null, 1)) }], `Start time for ${id}`);
+}
+
 // ---- tests list: published (read from GitHub when connected, so it is fresh) + saved in this browser
 let tests = [];
 async function loadTests() {
@@ -260,8 +269,9 @@ async function loadTests() {
   const local = await JEE.db.all().catch(() => []), pub = new Set(published.map(p => p.id));
   tests = [...published.map(p => ({ ...p, where: 'published' })), ...local.filter(r => !pub.has(r.id)).map(r => ({ ...JEE.indexEntry(r.paper), where: 'local' }))];
   const both = new Set(local.filter(r => pub.has(r.id)).map(r => r.id));
-  $('testList').innerHTML = tests.length ? `<table><tr><th>Test</th><th>Exam</th><th class="num">Marks</th><th>Where</th><th></th></tr>${tests.map(t => `<tr>
+  $('testList').innerHTML = tests.length ? `<table><tr><th>Test</th><th>Exam</th><th class="num">Marks</th><th>First attempt starts</th><th>Where</th><th></th></tr>${tests.map(t => `<tr>
     <td><b>${JEE.esc(t.title)}</b><div class="muted where">${JEE.esc(t.id)} · ${t.duration} min</div></td><td>${JEE.esc(t.exam)}</td><td class="num">${t.maxMarks}</td>
+    <td><div class="row" style="flex-wrap:nowrap"><input type="datetime-local" value="${JEE.localInput(t.startAt)}" data-start-in="${JEE.esc(t.id)}"><button class="btn small" data-start="${JEE.esc(t.id)}">Set</button></div></td>
     <td>${t.where === 'published' ? '<span class="badge">published</span>' + (both.has(t.id) ? ' <span class="badge" title="a copy is also saved in this browser">+ this laptop</span>' : '') : '<span class="badge warn">this laptop only</span>'}</td>
     <td><div class="row"><a class="btn small" href="exam.html?p=${encodeURIComponent(t.id)}" target="_blank">Open</a>
      ${t.where === 'local' ? `<button class="btn small primary" data-pub="${JEE.esc(t.id)}">Publish</button>` : ''}
@@ -270,7 +280,13 @@ async function loadTests() {
 $('testList').onclick = async ev => {
   const st = m => $('testMsg').textContent = m, b = ev.target.closest('button'); if (!b) return;
   try {
-    if (b.dataset.pub) {
+    if (b.dataset.start) {
+      const t = tests.find(x => x.id === b.dataset.start), v = document.querySelector(`[data-start-in="${CSS.escape(t.id)}"]`).value, at = v ? new Date(v).getTime() : undefined;
+      b.disabled = true;
+      if (t.where === 'published') { if (needConn(st)) return; await setStart(t.id, at, st); }
+      else { const rec = await JEE.db.get(t.id); rec.paper.startAt = at; await JEE.db.put(rec); }
+      st(`${t.title}: ${at ? 'first attempt starts ' + Dash.when(at) : 'open any time'}`); loadTests();
+    } else if (b.dataset.pub) {
       if (needConn(st)) return;
       const rec = await JEE.db.get(b.dataset.pub); b.disabled = true;
       await publishPaper(rec.paper, rec.blobs, st); await JEE.db.del(rec.id); loadTests();
