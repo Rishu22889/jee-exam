@@ -28,7 +28,7 @@
   const papers = await JEE.loadIndex(), off = await JEE.skew();
   async function refresh() {
     await JEE.syncAttempts().catch(() => {});
-    const atts = await Dash.render($('dash'), await JEE.allAttempts());
+    const atts = await Dash.render($('dash'), await JEE.allAttempts(), mine => $('attempts').innerHTML = Dash.table(mine));
     const live = id => { try { return JSON.parse(localStorage.getItem('jee.live.' + id)); } catch { return null; } };
     $('papers').innerHTML = papers.map(p => {
       const mine = atts.filter(a => a.paperId === p.id), best = mine.reduce((b, a) => (!b || a.score > b.score ? a : b), null), L = live(p.id);
@@ -40,7 +40,6 @@
         <div class="acts">${g === 'open' ? `<a class="btn primary" href="exam.html?p=${encodeURIComponent(p.id)}">${L ? (left > 0 ? `Resume · ${JEE.fmtTime(left)} left` : 'Submit (time over)') : best ? 'Take again' : 'Start'}</a>`
           : `<button class="btn" disabled>${g === 'early' ? 'Not open yet' : 'Missed the start time'}</button>`}</div></div>`;
     }).join('') || '<div class="empty">No papers yet. Add one from the upload page.</div>';
-    $('attempts').innerHTML = Dash.table(atts);
   }
   refresh();
   setInterval(() => { if (!document.hidden) refresh(); }, 60e3); // a scheduled test opens without reloading

@@ -308,8 +308,7 @@ async function loadReports() {
   $('repNote').textContent = 'loading…';
   try {
     await JEE.syncAttempts().catch(() => {});
-    const atts = reps = await Dash.render($('repDash'), await JEE.allAttempts());
-    $('repTable').innerHTML = Dash.table(atts, a => `result.html?a=${encodeURIComponent(a.id)}&from=upload`, true);
+    const atts = reps = await Dash.render($('repDash'), await JEE.allAttempts(), mine => $('repTable').innerHTML = Dash.table(mine, a => `result.html?a=${encodeURIComponent(a.id)}&from=upload`, true));
     $('repNote').textContent = JEE.gh.linked() ? `${atts.length} test${atts.length === 1 ? '' : 's'} from all linked devices. A test shows here as soon as it is submitted on a linked device.` : 'Not connected: only tests taken in this browser are shown. Connect above, then link your brother\'s device.';
   } catch (e) { $('repNote').textContent = 'could not load reports: ' + e.message; }
 }

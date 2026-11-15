@@ -100,13 +100,29 @@ const Dash = {
     root.addEventListener('pointerout', e => { if (e.target.closest('[data-tip]') && !e.relatedTarget?.closest?.('[data-tip]')) Dash.hideTip(); });
   },
 
-  // tiles + trend + subject strength into root; returns the attempts with subject summaries
-  async render(root, atts) {
+  // Advanced and Main have different patterns and marks, so each gets its own progress view
+  kind: a => /main/i.test(`${a.exam || ''} ${a.title || ''}`) ? 'JEE Main' : 'JEE Advanced',
+  pick: null, // chosen view, kept across the dashboard's periodic refresh
+
+  // exam switch + tiles + trend + subject strength into root; onPick(attempts of the chosen exam) on every switch.
+  // Returns all attempts with subject summaries.
+  async render(root, atts, onPick = () => {}) {
     atts = await Promise.all(atts.map(JEE.summary));
-    root.innerHTML = `${Dash.tiles(atts)}<div class="grid2"><div class="card"><h3>Score trend <span class="muted" style="font-weight:normal;font-size:13px">% of maximum marks</span></h3><div class="chart"></div></div>
-      <div class="card"><h3>Subject strength <span class="muted" style="font-weight:normal;font-size:13px">% of marks, all tests</span></h3>${Dash.subjects(atts)}</div></div>`;
-    Dash.trend(root.querySelector('.chart'), atts);
-    Dash.tips(root);
+    const kinds = ['JEE Advanced', 'JEE Main'].filter(k => atts.some(a => Dash.kind(a) === k));
+    if (!kinds.includes(Dash.pick)) Dash.pick = atts.length ? Dash.kind(atts[0]) : null;
+    const draw = () => {
+      const mine = atts.filter(a => !Dash.pick || Dash.kind(a) === Dash.pick);
+      root.innerHTML = `${kinds.length ? `<div class="row" role="tablist" style="margin-bottom:12px">${kinds.map(k => `<button class="btn${k === Dash.pick ? ' primary' : ''}" role="tab" aria-selected="${k === Dash.pick}" data-kind="${k}">${k} · ${atts.filter(a => Dash.kind(a) === k).length} test${atts.filter(a => Dash.kind(a) === k).length === 1 ? '' : 's'}</button>`).join('')}</div>` : ''}${Dash.view(mine)}`;
+      Dash.trend(root.querySelector('.chart'), mine);
+      onPick(mine);
+    };
+    root.onclick = e => { const b = e.target.closest('[data-kind]'); if (b && b.dataset.kind !== Dash.pick) { Dash.pick = b.dataset.kind; draw(); } };
+    if (!root.dataset.tips) { Dash.tips(root); root.dataset.tips = 1; }
+    draw();
     return atts;
+  },
+  view(atts) {
+    return `${Dash.tiles(atts)}<div class="grid2"><div class="card"><h3>Score trend <span class="muted" style="font-weight:normal;font-size:13px">% of maximum marks</span></h3><div class="chart"></div></div>
+      <div class="card"><h3>Subject strength <span class="muted" style="font-weight:normal;font-size:13px">% of marks, all tests</span></h3>${Dash.subjects(atts)}</div></div>`;
   },
 };
