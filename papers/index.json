@@ -12,5 +12,14 @@
   "title": "JEE Advanced GTA-1 Paper 2",
   "duration": 180,
   "maxMarks": 198
+ },
+ {
+  "id": "up-jee-main-mock-1",
+  "exam": "Allen · JEE Main",
+  "title": "Jee Main Mock 1",
+  "duration": 180,
+  "maxMarks": 300,
+  "questions": 75,
+  "startAt": 1794799500000
  }
 ]
