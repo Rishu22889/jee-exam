@@ -21,14 +21,5 @@
   "maxMarks": 300,
   "questions": 75,
   "startAt": 1794799500000
- },
- {
-  "id": "up-allen-jee-mains-full-1",
-  "exam": "Other · JEE Main",
-  "title": "Allen Jee Mains Full - 1",
-  "duration": 180,
-  "maxMarks": 300,
-  "questions": 75,
-  "startAt": 1795491000000
  }
 ]
